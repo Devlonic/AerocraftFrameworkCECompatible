@@ -594,10 +594,6 @@ namespace MYDE_AerocraftFramework
             {
                 yield break;
             }
-            if (AerocraftCompat.Ammo.UsesAmmo && Gizmo_AerocraftAmmo.HasAnyMagazine(this))
-            {
-                yield return new Gizmo_AerocraftAmmo(this);
-            }
             Check_Texture_Icon_UpOrDown();
             yield return new Command_Action
             {
@@ -650,6 +646,69 @@ namespace MYDE_AerocraftFramework
                     }, (int)Angle_Fly_Now));
                 }
             };
+        }
+
+        /// <summary>
+        /// A gizmo for each weapon (its own gun and every mount), so the mounts never need to be selected, and orders
+        /// for all of them at once.
+        /// </summary>
+        public override IEnumerable<Gizmo> GetWeaponGizmos()
+        {
+            List<Building_Aerocraft_Base> turrets = AllTurrets.Where(t => t.Gun_Now != null).ToList();
+            bool several = turrets.Count > 1;
+            if (several)
+            {
+                yield return new Command_AerocraftAttackAll(turrets);
+            }
+            foreach (Building_Aerocraft_Base turret in turrets)
+            {
+                Command_AerocraftWeapon weapon = new Command_AerocraftWeapon(turret);
+                if (!several && turret == this)
+                {
+                    weapon.hotKey = KeyBindingDefOf.Misc4;
+                }
+                yield return weapon;
+            }
+            if (several)
+            {
+                if (turrets.Any(t => t.ForcedTarget.IsValid))
+                {
+                    yield return new Command_Action
+                    {
+                        defaultLabel = "AerocraftFramework_StopAll_Label".Translate(),
+                        defaultDesc = "AerocraftFramework_StopAll_Desc".Translate(),
+                        icon = AerocraftWeaponOrders.HaltIcon,
+                        hotKey = KeyBindingDefOf.Misc5,
+                        Order = -95.5f,
+                        action = () =>
+                        {
+                            SoundDefOf.Tick_Low.PlayOneShotOnCamera();
+                            AerocraftWeaponOrders.StopAttacking(AllTurrets);
+                        }
+                    };
+                }
+                yield return new Command_Toggle
+                {
+                    defaultLabel = "AerocraftFramework_HoldFireAll_Label".Translate(),
+                    defaultDesc = "AerocraftFramework_HoldFireAll_Desc".Translate(),
+                    icon = AerocraftWeaponOrders.HoldFireIcon,
+                    hotKey = KeyBindingDefOf.Misc6,
+                    Order = -95f,
+                    isActive = () => AllTurrets.All(t => t.HoldFire),
+                    toggleAction = () => AerocraftWeaponOrders.SetHoldFire(AllTurrets.ToList(), !AllTurrets.All(t => t.HoldFire))
+                };
+            }
+            if (AerocraftCompat.Ammo.UsesAmmo && turrets.Any(AerocraftWeaponOrders.HasMagazine))
+            {
+                yield return new Command_Action
+                {
+                    defaultLabel = "AerocraftFramework_ReloadAll_Label".Translate(),
+                    defaultDesc = "AerocraftFramework_ReloadAll_Desc".Translate(),
+                    icon = MYDE_TexButton.Reload,
+                    Order = -94f,
+                    action = () => AerocraftWeaponOrders.OrderReload(AllTurrets, this)
+                };
+            }
         }
 
         // ------------------------------------------------------------------ damage

@@ -37,6 +37,7 @@ namespace MYDE_AerocraftFramework
         private Building_Aerocraft_Base testTurret;
         private ThingDef testAmmo;
         private Map defeatedMap;
+        private readonly HashSet<Building_Aerocraft_AsBaseThing> reportedLost = new HashSet<Building_Aerocraft_AsBaseThing>();
         private int counter;
         private string legacyAircraftId;
         private int homeTile = -1;
@@ -176,6 +177,19 @@ namespace MYDE_AerocraftFramework
             {
                 Find.Storyteller.storytellerComps.Clear();
                 Find.Storyteller.incidentQueue.Clear();
+                foreach (Quest quest in Find.QuestManager.QuestsListForReading.Where(q => q.State == QuestState.Ongoing || q.State == QuestState.NotYetAccepted).ToList())
+                {
+                    quest.End(QuestEndOutcome.Unknown, sendLetter: false);
+                }
+            }
+            // Whatever still turns up at home (a quest's raiders, hostile animals of a faction) is not the test's enemy.
+            if (Find.TickManager.TicksGame % 250 == 0 && HomeMap != null)
+            {
+                foreach (Pawn intruder in HomeMap.mapPawns.AllPawnsSpawned.Where(p => p != hostile && p.HostileTo(Faction.OfPlayer)).ToList())
+                {
+                    Note($"Removed an intruder: {intruder.LabelShort} ({intruder.Faction?.Name ?? "no faction"})");
+                    intruder.Destroy();
+                }
             }
             switch (step)
             {
@@ -444,6 +458,12 @@ namespace MYDE_AerocraftFramework
             List<(Building_Aerocraft_Base turret, Thing gun)> guns = MagazineGuns().ToList();
             List<(Building_Aerocraft_Base turret, Thing gun)> notFull = guns.Where(g => AerocraftCompat.Ammo.NeedsReload(g.gun)).ToList();
             Note($"auto reload: {guns.Count - notFull.Count}/{guns.Count} full; jobs: {string.Join(", ", HomeMap.mapPawns.FreeColonistsSpawned.Select(p => p.LabelShort + "=" + (p.CurJobDef?.defName ?? "-")))}");
+            foreach (Building_Aerocraft_AsBaseThing lost in aircraft.Where(a => !a.Spawned && !reportedLost.Contains(a)).ToList())
+            {
+                reportedLost.Add(lost);
+                Note($"  {lost.def.defName} is gone (destroyed {lost.Destroyed}, hit points {lost.HitPoints}/{lost.MaxHitPoints}); "
+                    + $"fires on the map {HomeMap.listerThings.ThingsOfDef(ThingDefOf.Fire).Count}, hostile pawns: {string.Join(", ", HomeMap.mapPawns.AllPawnsSpawned.Where(p => p.HostileTo(Faction.OfPlayer)).Select(p => p.LabelShort))}");
+            }
             if (notFull.Count == 0)
             {
                 Check(true, $"colonists reloaded all {guns.Count} aircraft guns automatically");
@@ -583,6 +603,14 @@ namespace MYDE_AerocraftFramework
                         IntVec3 cell = CellFinder.RandomClosewalkCellNear(subject.Position + new IntVec3(15, 0, 0), map, 3);
                         GenSpawn.Spawn(hostile, cell, map);
                         Note($"Spawned hostile {hostile} ({enemy?.Name}) at {cell}");
+                        // The weapon gizmos' orders: hold fire everywhere, then attack with every weapon that reaches.
+                        List<Building_Aerocraft_Base> weapons = subject.AllTurrets.ToList();
+                        AerocraftWeaponOrders.SetHoldFire(weapons, true);
+                        List<Building_Aerocraft_Base> reaching = weapons.Where(t => AerocraftWeaponOrders.CanAttack(t, hostile)).ToList();
+                        int ordered = AerocraftWeaponOrders.OrderAttack(weapons, hostile);
+                        Check(ordered > 0 && ordered == reaching.Count && reaching.All(t => t.ForcedTarget.Thing == hostile && !t.HoldFire),
+                            $"{ordered} of {weapons.Count} weapons ordered to attack at once, their hold fire lifted");
+                        AerocraftWeaponOrders.SetHoldFire(weapons.Except(reaching), false);
                         counter = 2;
                     }
                     else if (StepTicks > 2000)
@@ -683,6 +711,16 @@ namespace MYDE_AerocraftFramework
                     {
                         ThingDef shot = support.TryGetComp<Comp_ShootSomethingManual>().Props.ShootSomethingDef;
                         Check(AerocraftCompat.Ammo.LaunchProjectile(support, shot, support.DrawPos, 1f, support.Position + new IntVec3(6, 0, 0)), $"{support.def.defName} launched {shot?.defName}");
+                    }
+                    // Let the bomb land first: it falls next to the colonists who loaded it, and the boarding step
+                    // must not pick one of them while the shell is still in the air.
+                    counter = 4;
+                    stepStartTick = Find.TickManager.TicksGame;
+                    break;
+                case 4:
+                    if (StepTicks < 600)
+                    {
+                        return;
                     }
                     subject.Change_Down();
                     counter = 3;
@@ -981,6 +1019,23 @@ namespace MYDE_AerocraftFramework
                         AerocraftCompat.Ammo.DebugSetMagazine(magazines[i], i == 0 ? 0 : Mathf.Max(1, capacity / 10));
                     }
                     Note($"UI: aircraft tab and gizmos of {craft?.def.defName} ({magazines.Count} magazines)");
+                    if (craft != null)
+                    {
+                        List<Gizmo> gizmos = craft.GetGizmos().ToList();
+                        List<Command_AerocraftWeapon> weaponGizmos = gizmos.OfType<Command_AerocraftWeapon>().ToList();
+                        int weaponCount = craft.AllTurrets.Count(t => t.Gun_Now != null);
+                        Check(weaponGizmos.Count == weaponCount && weaponGizmos.Select(g => g.turret).Distinct().Count() == weaponCount && (weaponCount < 2 || gizmos.OfType<Command_AerocraftAttackAll>().Any()),
+                            $"the aircraft shows a gizmo for each of its {weaponCount} weapons and one to attack with all");
+                        Check(weaponGizmos.All(g => g.RightClickFloatMenuOptions.Count() >= 2), "every weapon gizmo has a right click menu");
+                        Building_Aerocraft_AsWeapon firstMount = craft.AllExtraWeapon.OfType<Building_Aerocraft_AsWeapon>().FirstOrDefault();
+                        if (firstMount != null)
+                        {
+                            List<object> underMouse = AerocraftUtility.PutAircraftBeforeMounts(new List<object> { firstMount, craft });
+                            List<object> mountOnly = AerocraftUtility.PutAircraftBeforeMounts(new List<object> { firstMount });
+                            Check(underMouse.SequenceEqual(new object[] { craft, firstMount }) && mountOnly.SequenceEqual(new object[] { craft, firstMount }),
+                                "a click on a weapon mount selects its aircraft first");
+                        }
+                    }
                     Find.Selector.ClearSelection();
                     Find.Selector.Select(craft, playSound: false);
                     CameraJumper.TryJump(craft);
@@ -988,7 +1043,11 @@ namespace MYDE_AerocraftFramework
                     break;
                 case 2:
                     Building_Aerocraft_Base mount = craft?.AllExtraWeapon.OfType<Building_Aerocraft_Base>().FirstOrDefault();
-                    Note($"UI: weapon mount {mount?.def.defName}");
+                    Note($"UI: weapon mount {mount?.def.defName}, targeting with all weapons of the aircraft");
+                    if (craft != null)
+                    {
+                        AerocraftWeaponOrders.BeginTargeting(craft.AllTurrets);
+                    }
                     Find.Selector.ClearSelection();
                     if (mount != null)
                     {
@@ -997,6 +1056,7 @@ namespace MYDE_AerocraftFramework
                     }
                     break;
                 case 3:
+                    Find.Targeter.StopTargeting();
                     Note("UI: angle dialog and ammo menu");
                     uiWindow = new Dialog_Slider_Aerocraft(v => v.ToString(), -180, 180, v => { }, 0);
                     Find.WindowStack.Add(uiWindow);
@@ -1029,6 +1089,8 @@ namespace MYDE_AerocraftFramework
             if (GenCommandLine.TryGetCommandLineArg("af_report", out string report))
             {
                 string path = Path.Combine(Path.GetDirectoryName(report), name + ".png");
+                // Dev mode opens the log on errors (Ukrainian grammar ones included); it would hide the picture.
+                Find.WindowStack.TryRemove(typeof(LudeonTK.EditWindow_Log), doCloseSound: false);
                 ScreenCapture.CaptureScreenshot(path);
                 Note("screenshot " + path);
             }

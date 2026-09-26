@@ -153,44 +153,25 @@ namespace MYDE_AerocraftFramework
 
         // ------------------------------------------------------------------ UI and orders
 
-        public override IEnumerable<Gizmo> GetGunGizmos(Building_Aerocraft_Base turret, Thing gun)
+        /// <summary>
+        /// The fire mode and aim mode toggles, when the gun has more than one of them. Only the first two of CE's
+        /// commands are taken: the third one asks the caster for a shooting skill that a turret does not have.
+        /// </summary>
+        public override IEnumerable<Command> GetGunModeCommands(Building_Aerocraft_Base turret, Thing gun)
         {
-            CompAmmoUser comp = Ammo(gun);
-            if (comp != null)
+            CompFireModes modes = gun?.TryGetComp<CompFireModes>();
+            if (modes == null || turret.Faction != Faction.OfPlayer)
             {
-                foreach (Gizmo gizmo in comp.CompGetGizmosExtra())
-                {
-                    // The aircraft has its own ammo gizmo covering all of its guns.
-                    if (gizmo is GizmoAmmoStatus && turret is Building_Aerocraft_AsBaseThing)
-                    {
-                        continue;
-                    }
-                    yield return gizmo;
-                }
-                if (comp.HasMagazine && turret.Faction == Faction.OfPlayer)
-                {
-                    Command_Action reload = new Command_Action
-                    {
-                        defaultLabel = "AerocraftFramework_Command_ReloadNow".Translate(),
-                        defaultDesc = "AerocraftFramework_Command_ReloadNow_Desc".Translate(gun.LabelShort),
-                        icon = MYDE_TexButton.Reload,
-                        action = () => TryOrderReload(turret, gun)
-                    };
-                    AcceptanceReport canReload = CanReloadNow(turret, gun);
-                    if (!canReload.Accepted)
-                    {
-                        reload.Disable(canReload.Reason.NullOrEmpty() ? "CE_TurretFull".Translate().ToString() : canReload.Reason);
-                    }
-                    yield return reload;
-                }
+                yield break;
             }
-            CompFireModes fireModes = gun.TryGetComp<CompFireModes>();
-            if (fireModes != null && turret.Faction == Faction.OfPlayer)
+            List<Command> commands = modes.GenerateGizmos().Take(2).ToList();
+            if (modes.AvailableFireModes.Count > 1 && commands.Count > 0)
             {
-                foreach (Command command in fireModes.GenerateGizmos())
-                {
-                    yield return command;
-                }
+                yield return commands[0];
+            }
+            if (modes.AvailableAimModes.Count > 1 && commands.Count > 1)
+            {
+                yield return commands[1];
             }
         }
 

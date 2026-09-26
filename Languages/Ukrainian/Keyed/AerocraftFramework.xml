@@ -87,8 +87,31 @@
 	<AerocraftFramework_Command_ReloadNow>Перезарядити</AerocraftFramework_Command_ReloadNow>
 	<AerocraftFramework_Command_ReloadNow_Desc>Послати найближчого вільного колоніста перезарядити {0} вибраним типом набоїв.</AerocraftFramework_Command_ReloadNow_Desc>
 	<AerocraftFramework_FloatMenu_Reload>Перезарядити {0}: {1}</AerocraftFramework_FloatMenu_Reload>
-	<AerocraftFramework_Gizmo_Ammo>Боєзапас</AerocraftFramework_Gizmo_Ammo>
-	<AerocraftFramework_Gizmo_Ammo_Tip>Боєзапас усієї зброї апарата. Клацніть, щоб послати колоністів перезарядити все (апарат має стояти на землі).</AerocraftFramework_Gizmo_Ammo_Tip>
+	<AerocraftFramework_ReloadAll_Label>Перезарядити все</AerocraftFramework_ReloadAll_Label>
+	<AerocraftFramework_ReloadAll_Desc>Послати колоністів перезарядити всю зброю апарата, якій бракує набоїв (апарат має стояти на землі).</AerocraftFramework_ReloadAll_Desc>
+
+	<!-- ============ Керування зброєю ============ -->
+	<AerocraftFramework_Weapon_Tip>Ліва кнопка: вибрати ціль для цієї зброї.\nПрава кнопка: інші накази.</AerocraftFramework_Weapon_Tip>
+	<AerocraftFramework_Weapon_Range>Дальність: {0}</AerocraftFramework_Weapon_Range>
+	<AerocraftFramework_Weapon_Target>Ціль: {0}</AerocraftFramework_Weapon_Target>
+	<AerocraftFramework_Weapon_Ready>Готова</AerocraftFramework_Weapon_Ready>
+	<AerocraftFramework_Weapon_OnlyInFlight>Стріляє лише в польоті (налаштування мода).</AerocraftFramework_Weapon_OnlyInFlight>
+	<AerocraftFramework_Weapon_OutOfRange>Поза дальністю</AerocraftFramework_Weapon_OutOfRange>
+	<AerocraftFramework_Weapon_InRange>Дістає: {0} з {1}</AerocraftFramework_Weapon_InRange>
+	<AerocraftFramework_Weapon_NoneInRange>Жодна вибрана зброя не дістає до цієї цілі.</AerocraftFramework_Weapon_NoneInRange>
+	<AerocraftFramework_Weapon_Attack>Атакувати...</AerocraftFramework_Weapon_Attack>
+	<AerocraftFramework_Weapon_FireAtWill>Вогонь на власний розсуд</AerocraftFramework_Weapon_FireAtWill>
+	<AerocraftFramework_Weapon_AmmoTip>Перезарядка й тип набоїв.</AerocraftFramework_Weapon_AmmoTip>
+	<AerocraftFramework_Weapon_Ammo>Набої: {0}</AerocraftFramework_Weapon_Ammo>
+	<AerocraftFramework_Weapon_SwitchTip>Перейти на іншу зброю, що лежить на борту.</AerocraftFramework_Weapon_SwitchTip>
+	<AerocraftFramework_Weapon_Use>Взяти: {0}</AerocraftFramework_Weapon_Use>
+	<AerocraftFramework_Weapon_SelectMount>Виділити це кріплення</AerocraftFramework_Weapon_SelectMount>
+	<AerocraftFramework_AttackAll_Label>Атакувати всією зброєю</AerocraftFramework_AttackAll_Label>
+	<AerocraftFramework_AttackAll_Desc>Вибрати ціль для всієї зброї апарата: стрілятиме кожна, що до неї дістає.</AerocraftFramework_AttackAll_Desc>
+	<AerocraftFramework_StopAll_Label>Припинити атаку</AerocraftFramework_StopAll_Label>
+	<AerocraftFramework_StopAll_Desc>Уся зброя апарата забуває задані цілі й знову сама обирає, у кого стріляти.</AerocraftFramework_StopAll_Desc>
+	<AerocraftFramework_HoldFireAll_Label>Не стріляти (уся зброя)</AerocraftFramework_HoldFireAll_Label>
+	<AerocraftFramework_HoldFireAll_Desc>Уся зброя апарата не стріляє сама. Наказ атакувати ціль знімає це з тієї зброї, якій його дали.</AerocraftFramework_HoldFireAll_Desc>
 
 	<!-- ============ Вкладка ============ -->
 	<AerocraftFramework_ITab>Апарат</AerocraftFramework_ITab>

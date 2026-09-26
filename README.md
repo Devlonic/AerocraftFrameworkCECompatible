@@ -49,11 +49,20 @@ Other bugs of the original that show up in normal play:
 - **Reloading** (CE): haulers reload the current gun, the weapons stored on board and every weapon mount of
   landed aircraft. The job unloads the old ammo type, carries the right amount and puts leftovers into other
   guns. CE methods whose signatures changed between releases are bound by reflection.
-- **Orders**: a *Reload now* gizmo, reload and ammo type buttons in the aircraft tab, and right-click
-  *Reload X with Y* options for a selected colonist.
+- **Weapon control**, in the style of Vehicle Framework turrets. The aircraft shows a gizmo for each weapon, its
+  own gun and every mount, so the mounts never need to be selected. Click the icon, then a target: the targeter
+  draws the ranges and refuses targets out of reach. The stop button sits on the icon; small buttons toggle hold
+  fire, CE fire and aim modes, the ammo type and reload, and weapons stored on board; the ammo (or the cooldown)
+  is shown below; right click lists every order. Identical weapons group into one gizmo (two rocket pods, or the
+  same gun of several selected aircraft), so one click aims them all. *Attack with all weapons* (the old attack
+  hotkey) aims every weapon that reaches the target; *Stop attacking*, *Hold fire (all)* and *Reload all* cover
+  the whole aircraft. A click on an aircraft selects the aircraft rather than the mount drawn over it; a second
+  click selects the mount.
+- **Orders**: reload and ammo type buttons in the aircraft tab, and right-click *Reload X with Y* options for a
+  selected colonist.
 - **Interface**: an aircraft tab with flight status, fuel, crew, weapons with ammo bars, weapon mounts and
-  bombs; an ammo gizmo for all weapons of the aircraft (click: reload everything); inspect lines with ammo and
-  flight status; *Everyone out*; *Load bombs*; a clearer settings page; Ukrainian translation.
+  bombs; inspect lines with ammo and flight status; *Everyone out*; *Load bombs*; a clearer settings page;
+  Ukrainian translation.
 - **Bombs** accept CE mortar shells; bombs and fire foam shells fly as CE projectiles; weapon mounts no longer
   hit their own aircraft.
 - Pilots count as colonists (no game over while everyone is in the air).
@@ -128,7 +137,7 @@ tools\Run-AutoTest.ps1 -DataDir C:\Temp\af-test-vanilla -NoCombatExtended
 
 It uses its own data folder (your config and saves are not touched), starts a quick test game with Harmony, the
 DLCs, CE (optional), Vehicle Framework, RimThunder Core, this mod and Gruppa Krovi, turns off random incidents
-(a raid on the test map downs the colonists it needs), and checks:
+and quests and removes other hostiles from the home map (a raid downs the colonists the test needs), and checks:
 
 - every aircraft def (framework and addons) spawns with its weapon, mounts and links;
 - colonists reload every empty gun automatically; a manual order switches the ammo type;
@@ -138,7 +147,10 @@ DLCs, CE (optional), Vehicle Framework, RimThunder Core, this mod and Gruppa Kro
 - boarding by job, a save/load round trip and the load of a legacy save with a nested follow target;
 - a flight to an enemy settlement and back with pilots and mounts; the crew counts as colonists there, and the
   map stays open when the settlement is defeated with only the crew on it;
-- the settings window, the aircraft tab and the dialogs draw without errors;
+- the weapon orders: every weapon that reaches an enemy attacks it at once and its hold fire is lifted; the
+  aircraft shows a weapon gizmo for each weapon, with a right click menu; a click selects the aircraft first;
+- the settings window, the aircraft tab, the weapon gizmos, the targeter and the dialogs draw without errors
+  (screenshots are saved next to the report);
 - deconstruction and destruction let the pilots out.
 
 It writes a PASS/FAIL report and counts every error logged during the run.

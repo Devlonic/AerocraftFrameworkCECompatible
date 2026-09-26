@@ -39,6 +39,16 @@ namespace MYDE_AerocraftFramework
         }
     }
 
+    /// <summary>A click on an aircraft selects the aircraft, not the weapon mount drawn over it.</summary>
+    [HarmonyPatch(typeof(Selector), "SelectableObjectsUnderMouse")]
+    internal static class Patch_Selector_SelectableObjectsUnderMouse
+    {
+        private static void Postfix(ref IEnumerable<object> __result)
+        {
+            __result = AerocraftUtility.PutAircraftBeforeMounts(__result);
+        }
+    }
+
     /// <summary>An enemy settlement map is kept while a player aircraft is on it.</summary>
     [HarmonyPatch(typeof(Settlement), nameof(Settlement.ShouldRemoveMapNow))]
     internal static class Patch_Settlement_ShouldRemoveMapNow

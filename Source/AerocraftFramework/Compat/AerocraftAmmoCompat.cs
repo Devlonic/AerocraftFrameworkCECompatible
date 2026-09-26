@@ -94,8 +94,11 @@ namespace MYDE_AerocraftFramework
 
         // ------------------------------------------------------------------ UI and orders
 
-        /// <summary>Extra gizmos for the current gun (ammo selection, fire modes...).</summary>
-        public virtual IEnumerable<Gizmo> GetGunGizmos(Building_Aerocraft_Base turret, Thing gun)
+        /// <summary>
+        /// Mode toggles of a gun (Combat Extended fire and aim modes), shown as small buttons on its weapon gizmo.
+        /// Guns of the same kind return the same commands in the same order.
+        /// </summary>
+        public virtual IEnumerable<Command> GetGunModeCommands(Building_Aerocraft_Base turret, Thing gun)
         {
             yield break;
         }

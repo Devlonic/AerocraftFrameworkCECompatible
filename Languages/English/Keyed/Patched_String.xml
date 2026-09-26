@@ -45,8 +45,31 @@
 	<AerocraftFramework_Command_ReloadNow>Reload now</AerocraftFramework_Command_ReloadNow>
 	<AerocraftFramework_Command_ReloadNow_Desc>Send the closest free colonist to reload {0} with the selected ammo type.</AerocraftFramework_Command_ReloadNow_Desc>
 	<AerocraftFramework_FloatMenu_Reload>Reload {0} with {1}</AerocraftFramework_FloatMenu_Reload>
-	<AerocraftFramework_Gizmo_Ammo>Ammo</AerocraftFramework_Gizmo_Ammo>
-	<AerocraftFramework_Gizmo_Ammo_Tip>Ammo of all the weapons of this aircraft. Click to send colonists to reload them (the aircraft must be landed).</AerocraftFramework_Gizmo_Ammo_Tip>
+	<AerocraftFramework_ReloadAll_Label>Reload all</AerocraftFramework_ReloadAll_Label>
+	<AerocraftFramework_ReloadAll_Desc>Send colonists to reload every weapon of the aircraft that is not full (the aircraft must be landed).</AerocraftFramework_ReloadAll_Desc>
+
+	<!-- ============ Weapon control ============ -->
+	<AerocraftFramework_Weapon_Tip>Left click: choose a target for this weapon.\nRight click: more orders.</AerocraftFramework_Weapon_Tip>
+	<AerocraftFramework_Weapon_Range>Range: {0}</AerocraftFramework_Weapon_Range>
+	<AerocraftFramework_Weapon_Target>Target: {0}</AerocraftFramework_Weapon_Target>
+	<AerocraftFramework_Weapon_Ready>Ready</AerocraftFramework_Weapon_Ready>
+	<AerocraftFramework_Weapon_OnlyInFlight>Shoots only in flight (mod settings).</AerocraftFramework_Weapon_OnlyInFlight>
+	<AerocraftFramework_Weapon_OutOfRange>Out of range</AerocraftFramework_Weapon_OutOfRange>
+	<AerocraftFramework_Weapon_InRange>In range: {0} of {1}</AerocraftFramework_Weapon_InRange>
+	<AerocraftFramework_Weapon_NoneInRange>None of the chosen weapons reaches this target.</AerocraftFramework_Weapon_NoneInRange>
+	<AerocraftFramework_Weapon_Attack>Attack...</AerocraftFramework_Weapon_Attack>
+	<AerocraftFramework_Weapon_FireAtWill>Fire at will</AerocraftFramework_Weapon_FireAtWill>
+	<AerocraftFramework_Weapon_AmmoTip>Reloading and ammo type.</AerocraftFramework_Weapon_AmmoTip>
+	<AerocraftFramework_Weapon_Ammo>Ammo: {0}</AerocraftFramework_Weapon_Ammo>
+	<AerocraftFramework_Weapon_SwitchTip>Switch to another weapon stored on board.</AerocraftFramework_Weapon_SwitchTip>
+	<AerocraftFramework_Weapon_Use>Use {0}</AerocraftFramework_Weapon_Use>
+	<AerocraftFramework_Weapon_SelectMount>Select this weapon mount</AerocraftFramework_Weapon_SelectMount>
+	<AerocraftFramework_AttackAll_Label>Attack with all weapons</AerocraftFramework_AttackAll_Label>
+	<AerocraftFramework_AttackAll_Desc>Choose a target for every weapon of the aircraft: each one that reaches it shoots at it.</AerocraftFramework_AttackAll_Desc>
+	<AerocraftFramework_StopAll_Label>Stop attacking</AerocraftFramework_StopAll_Label>
+	<AerocraftFramework_StopAll_Desc>Every weapon of the aircraft forgets its ordered target and picks its targets again.</AerocraftFramework_StopAll_Desc>
+	<AerocraftFramework_HoldFireAll_Label>Hold fire (all)</AerocraftFramework_HoldFireAll_Label>
+	<AerocraftFramework_HoldFireAll_Desc>No weapon of the aircraft shoots on its own. Ordering a weapon to attack a target lifts it for that weapon.</AerocraftFramework_HoldFireAll_Desc>
 
 	<!-- ============ Tab ============ -->
 	<AerocraftFramework_ITab_Reload>Reload now</AerocraftFramework_ITab_Reload>

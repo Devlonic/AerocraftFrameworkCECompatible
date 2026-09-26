@@ -617,16 +617,13 @@ namespace MYDE_AerocraftFramework
             Verb verb = AttackVerb;
             if (Is_ShowRadiusOfRange && verb != null)
             {
-                IntVec3 center = DrawPos.ToIntVec3();
-                float range = verb.verbProps.range;
-                if (range < 90f)
-                {
-                    GenDraw.DrawRadiusRing(center, range);
-                }
+                // A circle, not a radius ring: rings fail above the radius of the precomputed cell pattern (about 56).
+                Vector3 center = Position.ToVector3Shifted();
+                GenDraw.DrawCircleOutline(center, verb.verbProps.range);
                 float minRange = verb.verbProps.EffectiveMinRange(allowAdjacentShot: true);
-                if (minRange < 90f && minRange > 0.1f)
+                if (minRange > 0.1f)
                 {
-                    GenDraw.DrawRadiusRing(center, minRange);
+                    GenDraw.DrawCircleOutline(center, minRange, SimpleColor.Red);
                 }
             }
             if (WarmingUp && CurrentTarget.IsValid)
@@ -688,51 +685,9 @@ namespace MYDE_AerocraftFramework
             {
                 yield break;
             }
-            if (Gun_Now != null)
+            foreach (Gizmo gizmo in GetWeaponGizmos())
             {
-                foreach (Gizmo gizmo in AerocraftCompat.Ammo.GetGunGizmos(this, Gun_Now))
-                {
-                    yield return gizmo;
-                }
-            }
-            if (CanSetForcedTarget && AttackVerb != null)
-            {
-                yield return new Command_VerbTarget
-                {
-                    defaultLabel = "CommandSetForceAttackTarget".Translate(),
-                    defaultDesc = "CommandSetForceAttackTargetDesc".Translate(),
-                    icon = ContentFinder<Texture2D>.Get("UI/Commands/Attack"),
-                    verb = AttackVerb,
-                    hotKey = KeyBindingDefOf.Misc4,
-                    drawRadius = false
-                };
-            }
-            if (forcedTarget.IsValid)
-            {
-                yield return new Command_Action
-                {
-                    defaultLabel = "CommandStopForceAttack".Translate(),
-                    defaultDesc = "CommandStopForceAttackDesc".Translate(),
-                    icon = ContentFinder<Texture2D>.Get("UI/Commands/Halt"),
-                    hotKey = KeyBindingDefOf.Misc5,
-                    action = () =>
-                    {
-                        ResetForcedTarget();
-                        SoundDefOf.Tick_Low.PlayOneShotOnCamera();
-                    }
-                };
-            }
-            if (CanToggleHoldFire)
-            {
-                yield return new Command_Toggle
-                {
-                    defaultLabel = "CommandHoldFire".Translate(),
-                    defaultDesc = "CommandHoldFireDesc".Translate(),
-                    icon = ContentFinder<Texture2D>.Get("UI/Commands/HoldFire"),
-                    hotKey = KeyBindingDefOf.Misc6,
-                    toggleAction = ToggleHoldFire,
-                    isActive = () => HoldFire
-                };
+                yield return gizmo;
             }
             if (Spawned)
             {
@@ -766,6 +721,18 @@ namespace MYDE_AerocraftFramework
             }
         }
 
+        /// <summary>
+        /// The weapon gizmo of this turret: target, stop, hold fire, fire modes, ammo and stored weapons in one
+        /// place. The aircraft body shows the gizmos of all its weapons.
+        /// </summary>
+        public virtual IEnumerable<Gizmo> GetWeaponGizmos()
+        {
+            if (Gun_Now != null && CanSetForcedTarget)
+            {
+                yield return new Command_AerocraftWeapon(this);
+            }
+        }
+
         public override IEnumerable<FloatMenuOption> GetFloatMenuOptions(Pawn selPawn)
         {
             foreach (FloatMenuOption option in base.GetFloatMenuOptions(selPawn))
@@ -783,7 +750,13 @@ namespace MYDE_AerocraftFramework
 
         public virtual void ToggleHoldFire()
         {
-            HoldFire = !HoldFire;
+            SetHoldFire(!HoldFire);
+        }
+
+        /// <summary>Hold fire for this turret only (the body's <see cref="ToggleHoldFire"/> also covers its mounts).</summary>
+        public void SetHoldFire(bool holdFire)
+        {
+            HoldFire = holdFire;
             if (HoldFire)
             {
                 ResetForcedTarget();

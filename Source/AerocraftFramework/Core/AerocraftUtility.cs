@@ -24,6 +24,36 @@ namespace MYDE_AerocraftFramework
         }
 
         /// <summary>
+        /// Puts an aircraft before its weapon mounts in the objects under the mouse. Mounts are drawn over the body,
+        /// so a click used to select a mount; now it selects the aircraft (which shows the gizmos of all its weapons)
+        /// and a second click on the same spot selects the mount, as the game cycles through the list.
+        /// </summary>
+        public static List<object> PutAircraftBeforeMounts(IEnumerable<object> objects)
+        {
+            List<object> list = objects as List<object> ?? new List<object>(objects);
+            for (int i = 0; i < list.Count; i++)
+            {
+                if (!(list[i] is Building_Aerocraft_AsWeapon mount) || !(mount.Building_Aerocraft_AsBaseThing is Building_Aerocraft_AsBaseThing body)
+                    || !body.Spawned || body.Map != mount.Map || !body.def.selectable)
+                {
+                    continue;
+                }
+                int bodyIndex = list.IndexOf(body);
+                if (bodyIndex >= 0 && bodyIndex < i)
+                {
+                    continue;
+                }
+                if (bodyIndex > i)
+                {
+                    list.RemoveAt(bodyIndex);
+                }
+                list.Insert(i, body);
+                i++;
+            }
+            return list;
+        }
+
+        /// <summary>
         /// Whether colonists may refuel or reload this turret now: it must be landed and, with the matching setting,
         /// inside the home area.
         /// </summary>
