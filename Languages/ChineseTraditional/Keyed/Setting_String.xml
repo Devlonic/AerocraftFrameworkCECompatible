@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!--Mod设置-->
+  <AerocraftFramework_Setting_Label>飛行器框架</AerocraftFramework_Setting_Label>
+  <AerocraftFramework_Setting_Initialization>初始化</AerocraftFramework_Setting_Initialization>
+  <AerocraftFramework_Setting_True>開</AerocraftFramework_Setting_True>
+  <AerocraftFramework_Setting_False>關</AerocraftFramework_Setting_False>
+  <AerocraftFramework_Setting_If_CheckMapBoundary>檢測地圖邊界</AerocraftFramework_Setting_If_CheckMapBoundary>
+  <AerocraftFramework_Setting_If_DrawShadow>渲染陰影</AerocraftFramework_Setting_If_DrawShadow>
+  <AerocraftFramework_Setting_Draw_Shadow_HeighRange_Min>光照最短時陰影偏移距離</AerocraftFramework_Setting_Draw_Shadow_HeighRange_Min>
+  <AerocraftFramework_Setting_Draw_Shadow_HeighRange_Max>光照最長時陰影偏移距離</AerocraftFramework_Setting_Draw_Shadow_HeighRange_Max>
+  <AerocraftFramework_Setting_Draw_Shadow_Angle>陰影偏移角度</AerocraftFramework_Setting_Draw_Shadow_Angle>
+  <AerocraftFramework_Setting_If_CanFireOnlyFlying>是否僅在飛行時開火</AerocraftFramework_Setting_If_CanFireOnlyFlying>
+  <AerocraftFramework_Setting_If_CanControlNonPlayer>（測試用）可控制任意飛行器</AerocraftFramework_Setting_If_CanControlNonPlayer>
+</LanguageData>

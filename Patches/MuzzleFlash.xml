@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Muzzle Flash</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <success>Always</success>
+      <operations>
+        <!--基础武器-->
+        <li Class="PatchOperationAddModExtension">
+          <xpath>Defs/ThingDef[defName="MYDE_AF_UniversalWeapon_BaseGun"]</xpath>
+          <value>
+            <li Class="MuzzleFlash.MuzzleFlashProps">
+              <def>MF_StandardMuzzleFalsh</def>
+              <drawSize>(1.3,1.3)</drawSize>
+              <offsets>
+                <li>(0.6,0)</li>
+              </offsets>
+            </li>
+          </value>
+        </li>
+        <li Class="PatchOperationAddModExtension">
+          <xpath>Defs/ThingDef[defName="MYDE_AF_UniversalWeapon_MiniGun"]</xpath>
+          <value>
+            <li Class="MuzzleFlash.MuzzleFlashProps">
+              <def>MF_StandardMuzzleFalsh</def>
+              <drawSize>(1.3,1.3)</drawSize>
+              <offsets>
+                <li>(0.6,0)</li>
+              </offsets>
+            </li>
+          </value>
+        </li>
+        <li Class="PatchOperationAddModExtension">
+          <xpath>Defs/ThingDef[defName="MYDE_AF_UniversalWeapon_SniperGun"]</xpath>
+          <value>
+            <li Class="MuzzleFlash.MuzzleFlashProps">
+              <def>MF_StandardMuzzleFalsh</def>
+              <drawSize>(1.3,1.3)</drawSize>
+              <offsets>
+                <li>(0.6,0)</li>
+              </offsets>
+            </li>
+          </value>
+        </li>
+        <li Class="PatchOperationAddModExtension">
+          <xpath>Defs/ThingDef[defName="MYDE_AF_UniversalWeapon_GrenadeGun"]</xpath>
+          <value>
+            <li Class="MuzzleFlash.MuzzleFlashProps">
+              <def>MF_StandardMuzzleFalsh</def>
+              <drawSize>(1.3,1.3)</drawSize>
+              <offsets>
+                <li>(0.6,0)</li>
+              </offsets>
+            </li>
+          </value>
+        </li>
+        <!--四旋翼定制武器-->
+        <li Class="PatchOperationAddModExtension">
+          <xpath>Defs/ThingDef[defName="MYDE_AF_RotorCraft_FourPropeller_ExtraWeapon_MachineGun_Weapon"]</xpath>
+          <value>
+            <li Class="MuzzleFlash.MuzzleFlashProps">
+              <def>MF_StandardMuzzleFalsh</def>
+              <drawSize>(1.3,1.3)</drawSize>
+              <offsets>
+                <li>(1.5,0)</li>
+              </offsets>
+            </li>
+          </value>
+        </li>
+        <li Class="PatchOperationAddModExtension">
+          <xpath>Defs/ThingDef[defName="MYDE_AF_RotorCraft_FourPropeller_ExtraWeapon_Rocket_Weapon"]</xpath>
+          <value>
+            <li Class="MuzzleFlash.MuzzleFlashProps">
+              <def>MF_StandardMuzzleFalsh</def>
+              <drawSize>(1.3,1.3)</drawSize>
+              <offsets>
+                <li>(1,0)</li>
+              </offsets>
+            </li>
+          </value>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+</Patch>

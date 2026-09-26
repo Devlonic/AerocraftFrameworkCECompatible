@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <!--进入飞行器的Job-->
+  <JobDef>
+    <defName>MYDE_AerocraftFramework_Job_Enter_Building_Aerocraft_AsBaseThing</defName>
+    <driverClass>MYDE_AerocraftFramework.JobDriver_Enter_Building_Aerocraft_AsBaseThing</driverClass>
+    <reportString>Entering the Aerocraft.</reportString>
+  </JobDef>
+  <!--给飞行器替换武器的Job-->
+  <JobDef>
+    <defName>MYDE_AerocraftFramework_Job_ReplaceCurrentWeapon</defName>
+    <driverClass>MYDE_AerocraftFramework.JobDriver_ReplaceCurrentWeapon</driverClass>
+    <reportString>Replace current weapon</reportString>
+  </JobDef>
+  <!--给飞行器装填炮弹的Job-->
+  <JobDef>
+    <defName>MYDE_AerocraftFramework_Job_LoadShell</defName>
+    <driverClass>MYDE_AerocraftFramework.JobDriver_LoadShell</driverClass>
+    <reportString>Load Shell</reportString>
+  </JobDef>
+</Defs>

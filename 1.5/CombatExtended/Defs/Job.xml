@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <WorkGiverDef>
+    <defName>MYDE_AF_CE_ReloadTurrets</defName>
+    <label>reload turrets</label>
+    <giverClass>MYDE_AerocraftFramework.WorkGiver_ReloadTurret</giverClass>
+    <workType>Hauling</workType>
+    <verb>reload</verb>
+    <gerund>reloading</gerund>
+    <priorityInType>105</priorityInType>
+    <requiredCapacities>
+      <li>Manipulation</li>
+    </requiredCapacities>
+    <nonColonistsCanDo>true</nonColonistsCanDo>
+  </WorkGiverDef>
+  <JobDef>
+    <defName>MYDE_AF_CE_ReloadTurret</defName>
+    <driverClass>MYDE_AerocraftFramework.JobDriver_ReloadTurret</driverClass>
+    <reportString>Reloading TurretType TargetA with TargetB.</reportString>
+    <modExtensions>
+      <li Class="CombatExtended.JobDefExtensionCE">
+        <isCrouchJob>true</isCrouchJob>
+      </li>
+    </modExtensions>
+  </JobDef>
+</Defs>

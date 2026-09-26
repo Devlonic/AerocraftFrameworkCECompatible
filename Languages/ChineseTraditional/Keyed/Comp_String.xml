@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!--=====武器替换-->
+  <AerocraftFramework_ReplaceCurrentWeapon_Replace>替換</AerocraftFramework_ReplaceCurrentWeapon_Replace>
+  <AerocraftFramework_ReplaceCurrentWeapon_CurrentWeapon>當前武器</AerocraftFramework_ReplaceCurrentWeapon_CurrentWeapon>
+  <AerocraftFramework_SelectPawnAndLetItReplace_Label>替換武器·目標</AerocraftFramework_SelectPawnAndLetItReplace_Label>
+  <AerocraftFramework_SelectPawnAndLetItReplace_Desc>選擇一個同派系的攜帶武器的生物，另他將自己的武器替換到飛行器上</AerocraftFramework_SelectPawnAndLetItReplace_Desc>
+  <!--=====炮弹装载-->
+  <AerocraftFramework_LoadShell_For>為</AerocraftFramework_LoadShell_For>
+  <AerocraftFramework_LoadShell>裝載炮彈</AerocraftFramework_LoadShell>
+  <AerocraftFramework_NeedShell>需要任意類型的炮彈    （右鍵點擊飛行器進行裝載炮彈）</AerocraftFramework_NeedShell>
+  <AerocraftFramework_NoFlying>不在飛行狀態</AerocraftFramework_NoFlying>
+  <AerocraftFramework_ShellEmpty>空</AerocraftFramework_ShellEmpty>
+  <!--=====载人-->
+  <AerocraftFramework_InnerPawnNum>內部人員數量</AerocraftFramework_InnerPawnNum>
+  <AerocraftFramework_MaxInnerPawn>內部人員已滿</AerocraftFramework_MaxInnerPawn>
+  <AerocraftFramework_EnterAerocraft>進入</AerocraftFramework_EnterAerocraft>
+  <AerocraftFramework_CannotEnter>無法進入</AerocraftFramework_CannotEnter>
+  <AerocraftFramework_AerocraftIsNotStatic>並非靜止</AerocraftFramework_AerocraftIsNotStatic>
+  <AerocraftFramework_NeedPawnToControl>需要有殖民者控制</AerocraftFramework_NeedPawnToControl>
+  <AerocraftFramework_NeedPawnToControl_PawnNum>所需數量</AerocraftFramework_NeedPawnToControl_PawnNum>
+  <!--=====跨地图-->
+  <AerocraftFramework_ChoseWorldTargetError>飛行器框架：必須選擇有效的目標</AerocraftFramework_ChoseWorldTargetError>
+  <AerocraftFramework_OutOfRange>超出範圍</AerocraftFramework_OutOfRange>
+  <AerocraftFramework_TargetNotValid>沒有目標</AerocraftFramework_TargetNotValid>
+  <AerocraftFramework_NoBack>無法返回</AerocraftFramework_NoBack>
+  <AerocraftFramework_FuelSurplus>燃料剩餘</AerocraftFramework_FuelSurplus>
+  <!--=====安装武器-->
+  <AerocraftFramework_AddWeapon>安裝武器</AerocraftFramework_AddWeapon>
+  <AerocraftFramework_NoAerocraftInPosition>當前位置不存在任何飛行器</AerocraftFramework_NoAerocraftInPosition>
+</LanguageData>

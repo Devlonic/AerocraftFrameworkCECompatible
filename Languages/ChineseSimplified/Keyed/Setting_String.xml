@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!--Mod设置-->
+  <AerocraftFramework_Setting_Label>飞行器框架</AerocraftFramework_Setting_Label>
+  <AerocraftFramework_Setting_Initialization>初始化</AerocraftFramework_Setting_Initialization>
+  <AerocraftFramework_Setting_True>开</AerocraftFramework_Setting_True>
+  <AerocraftFramework_Setting_False>关</AerocraftFramework_Setting_False>
+  <AerocraftFramework_Setting_If_CheckMapBoundary>检测地图边界</AerocraftFramework_Setting_If_CheckMapBoundary>
+  <AerocraftFramework_Setting_If_DrawShadow>渲染阴影</AerocraftFramework_Setting_If_DrawShadow>
+  <AerocraftFramework_Setting_Draw_Shadow_HeighRange_Min>光照最短时阴影偏移距离</AerocraftFramework_Setting_Draw_Shadow_HeighRange_Min>
+  <AerocraftFramework_Setting_Draw_Shadow_HeighRange_Max>光照最长时阴影偏移距离</AerocraftFramework_Setting_Draw_Shadow_HeighRange_Max>
+  <AerocraftFramework_Setting_Draw_Shadow_Angle>阴影偏移角度</AerocraftFramework_Setting_Draw_Shadow_Angle>
+  <AerocraftFramework_Setting_If_CanFireOnlyFlying>是否仅在飞行时开火</AerocraftFramework_Setting_If_CanFireOnlyFlying>
+  <AerocraftFramework_Setting_If_FixedWingNoLimitToFly>减少固定翼飞行器飞行限制</AerocraftFramework_Setting_If_FixedWingNoLimitToFly>
+  <AerocraftFramework_Setting_If_FixedWingNoLimitToFly_Desc>包括：1.起飞降落无限制
+2.起飞降落过程中
+
+如果想不受限制地让固定翼飞行器起飞，或者遇到起飞后无法控制飞行器的Bug时，可以选择开启这个功能</AerocraftFramework_Setting_If_FixedWingNoLimitToFly_Desc>
+  <AerocraftFramework_Setting_If_CanControlNonPlayer>（测试用）可控制任意飞行器</AerocraftFramework_Setting_If_CanControlNonPlayer>
+</LanguageData>

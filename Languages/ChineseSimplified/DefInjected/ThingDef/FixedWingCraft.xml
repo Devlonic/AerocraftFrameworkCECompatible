@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!-- 轰炸机 -->
+  <MYDE_AF_FWCraft_Bombardment.label>“日蚀”FH-203</MYDE_AF_FWCraft_Bombardment.label>
+  <MYDE_AF_FWCraft_Bombardment.description>“日蚀”FH-203是一款短距起降载人轰炸机，通过搭载炮弹从而实现远距离抛射炮弹以及近距离快速投弹，基于武器系统的独特构造，能够加装替换绝大部分武器到机体上，适用于轰炸目标以及远距离运输等任务，是现代战争的重要战略武器。</MYDE_AF_FWCraft_Bombardment.description>
+  <!-- 跨地图 -->
+  <MYDE_AF_Skyfalller_FWCraft_Bombardment_CrossMapThing.label>“日蚀”FH-203 （离开）</MYDE_AF_Skyfalller_FWCraft_Bombardment_CrossMapThing.label>
+  <MYDE_AF_FWCraft_Bombardment.comps.CompRefuelable.outOfFuelMessage>需要燃料</MYDE_AF_FWCraft_Bombardment.comps.CompRefuelable.outOfFuelMessage>
+  <MYDE_AF_FWCraft_Bombardment.comps.Comp_MoveToTargetAndHover.TakeOffAndLanding_Icon_On_Label>升空</MYDE_AF_FWCraft_Bombardment.comps.Comp_MoveToTargetAndHover.TakeOffAndLanding_Icon_On_Label>
+  <MYDE_AF_FWCraft_Bombardment.comps.Comp_MoveToTargetAndHover.TakeOffAndLanding_Icon_Off_Label>降落</MYDE_AF_FWCraft_Bombardment.comps.Comp_MoveToTargetAndHover.TakeOffAndLanding_Icon_Off_Label>
+  <MYDE_AF_FWCraft_Bombardment.comps.Comp_MoveToTargetAndHover.TakeOffAndLanding_Icon_Description>切换升空与降落，“日蚀”FH-203属于固定翼飞行器，需要20格以上无遮挡的距离才能够升空与降落，只有在飞行中才能进行攻击，升空后通过鼠标右键进行移动，右键点击非我方物体可强制攻击目标，右键点击我方物体可切换为跟随模式</MYDE_AF_FWCraft_Bombardment.comps.Comp_MoveToTargetAndHover.TakeOffAndLanding_Icon_Description>
+  <MYDE_AF_FWCraft_Bombardment.comps.Comp_CarryPawn.Gizmos_CarryPawn_Label>快速搭载</MYDE_AF_FWCraft_Bombardment.comps.Comp_CarryPawn.Gizmos_CarryPawn_Label>
+  <MYDE_AF_FWCraft_Bombardment.comps.Comp_CarryPawn.Gizmos_CarryPawn_Description>快速搭载周边5x5范围内的殖民者</MYDE_AF_FWCraft_Bombardment.comps.Comp_CarryPawn.Gizmos_CarryPawn_Description>
+  <MYDE_AF_FWCraft_Bombardment.comps.Comp_CanCrossMap.CrossMap_Label>跨地图</MYDE_AF_FWCraft_Bombardment.comps.Comp_CanCrossMap.CrossMap_Label>
+  <MYDE_AF_FWCraft_Bombardment.comps.Comp_CanCrossMap.CrossMap_Description>跨地图，不可选择空地作为目标地点。为了避免出现无法返回的情况，请确保具有足够的燃料进行往返</MYDE_AF_FWCraft_Bombardment.comps.Comp_CanCrossMap.CrossMap_Description>
+  <MYDE_AF_FWCraft_Bombardment.comps.Comp_CanLoadShell.LaunchShell_Label>发射</MYDE_AF_FWCraft_Bombardment.comps.Comp_CanLoadShell.LaunchShell_Label>
+  <MYDE_AF_FWCraft_Bombardment.comps.Comp_CanLoadShell.LaunchShell_Description>发射当前装载的炮弹</MYDE_AF_FWCraft_Bombardment.comps.Comp_CanLoadShell.LaunchShell_Description>
+  <MYDE_AF_FWCraft_Bombardment.comps.Comp_CanLoadShell.DropShell_Label>投弹</MYDE_AF_FWCraft_Bombardment.comps.Comp_CanLoadShell.DropShell_Label>
+  <MYDE_AF_FWCraft_Bombardment.comps.Comp_CanLoadShell.DropShell_Description>快速投出当前装载的炮弹到附近地点</MYDE_AF_FWCraft_Bombardment.comps.Comp_CanLoadShell.DropShell_Description>
+  <!-- 航空母舰 -->
+  <MYDE_AF_FWCraft_AerocraftCarrier.label>“枢衡”NL-706</MYDE_AF_FWCraft_AerocraftCarrier.label>
+  <MYDE_AF_FWCraft_AerocraftCarrier.description>“枢衡”NL-706是一款载人型空天母舰，为部署和指挥无人机战斗群设计。具备快速生产及部署无人机的能力，基于武器系统的独特构造，能够加装替换绝大部分武器到机体上，实现多目标并行作战。集成可替换的武器组。为空中作战提供强大的火力支持。</MYDE_AF_FWCraft_AerocraftCarrier.description>
+  <!-- 武器·无人机生产装置 -->
+  <MYDE_AF_FWCraft_AerocraftCarrier_ExtraWeapon_SpawnDrone.label>无人机生产装置</MYDE_AF_FWCraft_AerocraftCarrier_ExtraWeapon_SpawnDrone.label>
+  <MYDE_AF_FWCraft_AerocraftCarrier_ExtraWeapon_SpawnDrone.description>无人机生产装置</MYDE_AF_FWCraft_AerocraftCarrier_ExtraWeapon_SpawnDrone.description>
+  <MYDE_AF_FWCraft_AerocraftCarrier_ExtraWeapon_Weapon_SpawnDrone.label>无人机生产装置</MYDE_AF_FWCraft_AerocraftCarrier_ExtraWeapon_Weapon_SpawnDrone.label>
+  <MYDE_AF_FWCraft_AerocraftCarrier_ExtraWeapon_Weapon_SpawnDrone.description>无人机生产装置</MYDE_AF_FWCraft_AerocraftCarrier_ExtraWeapon_Weapon_SpawnDrone.description>
+  <MYDE_AF_FWCraft_AerocraftCarrier_ExtraWeapon_Weapon_SpawnDrone.verbs.0.label>生成无人机</MYDE_AF_FWCraft_AerocraftCarrier_ExtraWeapon_Weapon_SpawnDrone.verbs.0.label>
+  <!-- 武器·武器组 -->
+  <MYDE_AF_FWCraft_AerocraftCarrier_ExtraWeapon_WeaponGroup.label>武器组</MYDE_AF_FWCraft_AerocraftCarrier_ExtraWeapon_WeaponGroup.label>
+  <MYDE_AF_FWCraft_AerocraftCarrier_ExtraWeapon_WeaponGroup.description>武器组，能够被替换为任何武器</MYDE_AF_FWCraft_AerocraftCarrier_ExtraWeapon_WeaponGroup.description>
+  <!-- 跨地图 -->
+  <MYDE_AF_Skyfalller_FWCraft_AerocraftCarrier_CrossMapThing.label>“枢衡”NL-706 (离开)</MYDE_AF_Skyfalller_FWCraft_AerocraftCarrier_CrossMapThing.label>
+  <MYDE_AF_FWCraft_AerocraftCarrier.comps.CompRefuelable.outOfFuelMessage>需要燃料</MYDE_AF_FWCraft_AerocraftCarrier.comps.CompRefuelable.outOfFuelMessage>
+  <MYDE_AF_FWCraft_AerocraftCarrier.comps.Comp_MoveToTargetAndHover.TakeOffAndLanding_Icon_On_Label>升空</MYDE_AF_FWCraft_AerocraftCarrier.comps.Comp_MoveToTargetAndHover.TakeOffAndLanding_Icon_On_Label>
+  <MYDE_AF_FWCraft_AerocraftCarrier.comps.Comp_MoveToTargetAndHover.TakeOffAndLanding_Icon_Off_Label>降落</MYDE_AF_FWCraft_AerocraftCarrier.comps.Comp_MoveToTargetAndHover.TakeOffAndLanding_Icon_Off_Label>
+  <MYDE_AF_FWCraft_AerocraftCarrier.comps.Comp_MoveToTargetAndHover.TakeOffAndLanding_Icon_Description>切换升空与降落，“枢衡”NL-706属于固定翼飞行器，需要30格以上无遮挡的距离才能够升空与降落，只有在飞行中才能进行攻击，升空后通过鼠标右键进行移动，右键点击非我方物体可强制攻击目标，右键点击我方物体可切换为跟随模式</MYDE_AF_FWCraft_AerocraftCarrier.comps.Comp_MoveToTargetAndHover.TakeOffAndLanding_Icon_Description>
+  <MYDE_AF_FWCraft_AerocraftCarrier.comps.Comp_CarryPawn.Gizmos_CarryPawn_Label>快速搭载</MYDE_AF_FWCraft_AerocraftCarrier.comps.Comp_CarryPawn.Gizmos_CarryPawn_Label>
+  <MYDE_AF_FWCraft_AerocraftCarrier.comps.Comp_CarryPawn.Gizmos_CarryPawn_Description>快速搭载周边7x7范围内的殖民者</MYDE_AF_FWCraft_AerocraftCarrier.comps.Comp_CarryPawn.Gizmos_CarryPawn_Description>
+  <MYDE_AF_FWCraft_AerocraftCarrier.comps.Comp_CanCrossMap.CrossMap_Label>跨地图</MYDE_AF_FWCraft_AerocraftCarrier.comps.Comp_CanCrossMap.CrossMap_Label>
+  <MYDE_AF_FWCraft_AerocraftCarrier.comps.Comp_CanCrossMap.CrossMap_Description>跨地图，不可选择空地作为目标地点。为了避免出现无法返回的情况，请确保具有足够的燃料进行往返</MYDE_AF_FWCraft_AerocraftCarrier.comps.Comp_CanCrossMap.CrossMap_Description>
+  <MYDE_AF_FWCraft_AerocraftCarrier.comps.Comp_CanLoadShell.LaunchShell_Label>发射</MYDE_AF_FWCraft_AerocraftCarrier.comps.Comp_CanLoadShell.LaunchShell_Label>
+  <MYDE_AF_FWCraft_AerocraftCarrier.comps.Comp_CanLoadShell.LaunchShell_Description>发射当前装载的炮弹</MYDE_AF_FWCraft_AerocraftCarrier.comps.Comp_CanLoadShell.LaunchShell_Description>
+  <MYDE_AF_FWCraft_AerocraftCarrier.comps.Comp_CanLoadShell.DropShell_Label>投弹</MYDE_AF_FWCraft_AerocraftCarrier.comps.Comp_CanLoadShell.DropShell_Label>
+  <MYDE_AF_FWCraft_AerocraftCarrier.comps.Comp_CanLoadShell.DropShell_Description>快速投出当前装载的炮弹到附近地点</MYDE_AF_FWCraft_AerocraftCarrier.comps.Comp_CanLoadShell.DropShell_Description>
+  <MYDE_AF_FWCraft_AerocraftCarrier_ExtraWeapon_SpawnDrone.comps.CompRefuelable.outOfFuelMessage>需要材料</MYDE_AF_FWCraft_AerocraftCarrier_ExtraWeapon_SpawnDrone.comps.CompRefuelable.outOfFuelMessage>
+</LanguageData>

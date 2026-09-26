@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!-- 基础武器 -->
+  <MYDE_AF_UniversalWeapon_BaseGun.label>基础武器</MYDE_AF_UniversalWeapon_BaseGun.label>
+  <MYDE_AF_UniversalWeapon_BaseGun.description>基础武器，武器性能等同于小型自动机枪塔</MYDE_AF_UniversalWeapon_BaseGun.description>
+  <!-- 武器安装·速射机枪 -->
+  <MYDE_AF_AddableWeapon_MiniGun.label>武器·速射机枪</MYDE_AF_AddableWeapon_MiniGun.label>
+  <MYDE_AF_AddableWeapon_MiniGun.description>为飞行器安装速射机枪</MYDE_AF_AddableWeapon_MiniGun.description>
+  <MYDE_AF_UniversalWeapon_MiniGun.label>速射机枪</MYDE_AF_UniversalWeapon_MiniGun.label>
+  <MYDE_AF_UniversalWeapon_MiniGun.description>速射机枪</MYDE_AF_UniversalWeapon_MiniGun.description>
+  <!-- 武器安装·狙击枪 -->
+  <MYDE_AF_AddableWeapon_SniperGun.label>武器·狙击枪</MYDE_AF_AddableWeapon_SniperGun.label>
+  <MYDE_AF_AddableWeapon_SniperGun.description>为飞行器安装狙击枪</MYDE_AF_AddableWeapon_SniperGun.description>
+  <MYDE_AF_UniversalWeapon_SniperGun.label>狙击枪</MYDE_AF_UniversalWeapon_SniperGun.label>
+  <MYDE_AF_UniversalWeapon_SniperGun.description>狙击枪</MYDE_AF_UniversalWeapon_SniperGun.description>
+  <!-- 武器安装·榴弹 -->
+  <MYDE_AF_AddableWeapon_GrenadeGun.label>武器·榴弹发射器</MYDE_AF_AddableWeapon_GrenadeGun.label>
+  <MYDE_AF_AddableWeapon_GrenadeGun.description>为飞行器安装榴弹发射器</MYDE_AF_AddableWeapon_GrenadeGun.description>
+  <MYDE_AF_UniversalWeapon_GrenadeGun.label>榴弹发射器</MYDE_AF_UniversalWeapon_GrenadeGun.label>
+  <MYDE_AF_UniversalWeapon_GrenadeGun.description>榴弹发射器</MYDE_AF_UniversalWeapon_GrenadeGun.description>
+  <MYDE_AF_UniversalWeapon_GrenadeGun_Projectile.label>榴弹</MYDE_AF_UniversalWeapon_GrenadeGun_Projectile.label>
+</LanguageData>

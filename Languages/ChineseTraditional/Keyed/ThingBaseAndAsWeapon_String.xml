@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!--总父类-->
+  <AerocraftFramework_ShowRadiusofRange_Label>顯示攻擊範圍</AerocraftFramework_ShowRadiusofRange_Label>
+  <AerocraftFramework_ShowRadiusofRange_Description>顯示攻擊範圍</AerocraftFramework_ShowRadiusofRange_Description>
+  <AerocraftFramework_ShowRadiusofRange_SelectAll_Label>一鍵選取</AerocraftFramework_ShowRadiusofRange_SelectAll_Label>
+  <AerocraftFramework_ShowRadiusofRange_SelectAll_Desc>一鍵選取同派系的相同類型的飛行器</AerocraftFramework_ShowRadiusofRange_SelectAll_Desc>
+  <AerocraftFramework_CurrentWeaponName>當前武器</AerocraftFramework_CurrentWeaponName>
+  <!--机体-->
+  <AerocraftFramework_ExtraWeaponName>武器</AerocraftFramework_ExtraWeaponName>
+  <AerocraftFramework_GoBack_Label>返回</AerocraftFramework_GoBack_Label>
+  <AerocraftFramework_GoBack_Desc>返回到升空時的位置</AerocraftFramework_GoBack_Desc>
+  <AerocraftFramework_NeedFuel>需要燃料</AerocraftFramework_NeedFuel>
+  <AerocraftFramework_NeedEnergy>需要電力</AerocraftFramework_NeedEnergy>
+  <AerocraftFramework_SetAngle_Label>設定角度至{0}</AerocraftFramework_SetAngle_Label>
+  <AerocraftFramework_SetAngle_Desc>調整設定飛行器角度</AerocraftFramework_SetAngle_Desc>
+  <!--作为武器-->
+  <AerocraftFramework_AsWeapon_IfBreakDown>是否損壞</AerocraftFramework_AsWeapon_IfBreakDown>
+  <AerocraftFramework_SelectBaseThing_Label>選擇機體</AerocraftFramework_SelectBaseThing_Label>
+  <AerocraftFramework_SelectBaseThing_Desc>選擇機體</AerocraftFramework_SelectBaseThing_Desc>
+</LanguageData>

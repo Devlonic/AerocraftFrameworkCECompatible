@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!--Mod设置-->
+  <AerocraftFramework_ITab>信息</AerocraftFramework_ITab>
+  <AerocraftFramework_ITab_InnerPawn>内部人员</AerocraftFramework_ITab_InnerPawn>
+  <AerocraftFramework_ITab_CurrentWeapon>当前武器</AerocraftFramework_ITab_CurrentWeapon>
+  <AerocraftFramework_ITab_InnerWeapon>内部武器</AerocraftFramework_ITab_InnerWeapon>
+  <AerocraftFramework_ITab_ExtraWeapon>额外武器</AerocraftFramework_ITab_ExtraWeapon>
+  <AerocraftFramework_ITab_ExtraWeapon_Select>选择此额外武器</AerocraftFramework_ITab_ExtraWeapon_Select>
+  <AerocraftFramework_ITab_CurrentShell>当前炮弹</AerocraftFramework_ITab_CurrentShell>
+  <AerocraftFramework_ITab_InnerShell>内部炮弹</AerocraftFramework_ITab_InnerShell>
+  <AerocraftFramework_ITab_Pawn_Drop>放下</AerocraftFramework_ITab_Pawn_Drop>
+  <AerocraftFramework_ITab_Drop>放下</AerocraftFramework_ITab_Drop>
+  <AerocraftFramework_ITab_Replace>替换</AerocraftFramework_ITab_Replace>
+  <AerocraftFramework_ITab_ReplaceToOrigin>替换为初始武器</AerocraftFramework_ITab_ReplaceToOrigin>
+  <AerocraftFramework_ITab_Shell_Drop>放下</AerocraftFramework_ITab_Shell_Drop>
+  <AerocraftFramework_ITab_Shell_Replace>替换当前炮弹</AerocraftFramework_ITab_Shell_Replace>
+</LanguageData>

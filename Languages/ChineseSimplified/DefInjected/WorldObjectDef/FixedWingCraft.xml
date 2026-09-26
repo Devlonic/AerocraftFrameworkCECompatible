@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- 跨地图 -->
+
+  <MYDE_AF_WorldObject_FWCraft_Bombardment_CrossMapThing.label>“日蚀”FH-203</MYDE_AF_WorldObject_FWCraft_Bombardment_CrossMapThing.label>
+  <MYDE_AF_WorldObject_FWCraft_Bombardment_CrossMapThing.description>“日蚀”FH-203</MYDE_AF_WorldObject_FWCraft_Bombardment_CrossMapThing.description>
+
+  <MYDE_AF_WorldObject_FWCraft_AerocraftCarrier_CrossMapThing.label>“枢衡”NL-706</MYDE_AF_WorldObject_FWCraft_AerocraftCarrier_CrossMapThing.label>
+  <MYDE_AF_WorldObject_FWCraft_AerocraftCarrier_CrossMapThing.description>“枢衡”NL-706</MYDE_AF_WorldObject_FWCraft_AerocraftCarrier_CrossMapThing.description>
+
+
+</LanguageData>

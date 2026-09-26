@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <!--扬尘-->
+  <FleckDef ParentName="FleckBase_Thrown">
+    <defName>MYDE_AF_Fleck_Smoke</defName>
+    <graphicData>
+      <texPath>Things/Mote/Smoke</texPath>
+      <renderInstanced>true</renderInstanced>
+      <!--<shaderType>Transparent</shaderType>-->
+    </graphicData>
+    <altitudeLayer>FogOfWar</altitudeLayer>
+    <fadeInTime>0.5</fadeInTime>
+    <solidTime>0</solidTime>
+    <fadeOutTime>0.5</fadeOutTime>
+    <growthRate>-0.005</growthRate>
+  </FleckDef>
+  <!--导弹尾迹-->
+  <FleckDef ParentName="FleckBase_Thrown">
+    <defName>MYDE_AF_Fleck_ProjectileSmoke</defName>
+    <graphicData>
+      <texPath>Things/Mote/Smoke</texPath>
+      <renderInstanced>true</renderInstanced>
+      <!--<shaderType>Transparent</shaderType>-->
+    </graphicData>
+    <altitudeLayer>FogOfWar</altitudeLayer>
+    <fadeInTime>0.1</fadeInTime>
+    <solidTime>0</solidTime>
+    <fadeOutTime>0.5</fadeOutTime>
+    <growthRate>-0.005</growthRate>
+  </FleckDef>
+  <!--火光-->
+  <FleckDef ParentName="FleckBase_Thrown">
+    <defName>MYDE_AF_Fleck_HeatGlow_Intense</defName>
+    <graphicData>
+      <texPath>Things/Mote/FireGlow</texPath>
+    </graphicData>
+    <altitudeLayer>FogOfWar</altitudeLayer>
+    <fadeInTime>0.1</fadeInTime>
+    <solidTime>0.1</solidTime>
+    <fadeOutTime>0.3</fadeOutTime>
+  </FleckDef>
+</Defs>

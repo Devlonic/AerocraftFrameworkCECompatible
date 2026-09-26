@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <AerocraftFramework_AerocraftArrived>Arrived {0_label}</AerocraftFramework_AerocraftArrived>
+  <AerocraftFramework_CommandAttackSettlement>Aerocraft·Attack</AerocraftFramework_CommandAttackSettlement>
+  <AerocraftFramework_Trade_Leave_Label>Leave the Aerocraft</AerocraftFramework_Trade_Leave_Label>
+  <AerocraftFramework_Trade_Leave_Desc>The 'Content' inside the Aerocraft will temporarily leave the Aerocraft and generate a Caravan, allowing for trade and non combat missions</AerocraftFramework_Trade_Leave_Desc>
+  <AerocraftFramework_Trade_GetOn_Label>Boarded the Aerocraft</AerocraftFramework_Trade_GetOn_Label>
+  <AerocraftFramework_Trade_GetOn_Desc>Carven boarded the Aerocraft</AerocraftFramework_Trade_GetOn_Desc>
+  <AerocraftFramework_TradeError>Error: No colonizers inside the Aerocraft's 'Content'</AerocraftFramework_TradeError>
+  <AerocraftFramework_Refuel_Label>Refuel</AerocraftFramework_Refuel_Label>
+  <AerocraftFramework_Refuel_Desc>Retrieve fuel that meets the requirements from the 'Content' into the Aerocraft to fill the Aerocraft with fuel</AerocraftFramework_Refuel_Desc>
+  <AerocraftFramework_Refuel_Message_A>Unable to fill: The fuel in the Aerocraft is already full</AerocraftFramework_Refuel_Message_A>
+  <AerocraftFramework_Refuel_Message_B>Error: Could not find suitable fuel to fill in the 'Content'</AerocraftFramework_Refuel_Message_B>
+  <AerocraftFramework_TradeError_CannotCarry>Unable to load</AerocraftFramework_TradeError_CannotCarry>
+</LanguageData>

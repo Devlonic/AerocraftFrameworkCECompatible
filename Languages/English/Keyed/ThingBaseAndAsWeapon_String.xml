@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!--总父类-->
+  <AerocraftFramework_ShowRadiusofRange_Label>Display Range</AerocraftFramework_ShowRadiusofRange_Label>
+  <AerocraftFramework_ShowRadiusofRange_Description>Display Range</AerocraftFramework_ShowRadiusofRange_Description>
+  <AerocraftFramework_ShowRadiusofRange_SelectAll_Label>Select All</AerocraftFramework_ShowRadiusofRange_SelectAll_Label>
+  <AerocraftFramework_ShowRadiusofRange_SelectAll_Desc>Select all aerocraft of the same type from the same faction</AerocraftFramework_ShowRadiusofRange_SelectAll_Desc>
+  <AerocraftFramework_CurrentWeaponName>Current weapon</AerocraftFramework_CurrentWeaponName>
+  <!--机体-->
+  <AerocraftFramework_ExtraWeaponName>Weapon</AerocraftFramework_ExtraWeaponName>
+  <AerocraftFramework_GoBack_Label>Go Back</AerocraftFramework_GoBack_Label>
+  <AerocraftFramework_GoBack_Desc>Go Back to the position during take off</AerocraftFramework_GoBack_Desc>
+  <AerocraftFramework_NeedFuel>Need fuel</AerocraftFramework_NeedFuel>
+  <AerocraftFramework_NeedEnergy>Need electricity</AerocraftFramework_NeedEnergy>
+  <AerocraftFramework_SetAngle_Label>Set the angle to {0}</AerocraftFramework_SetAngle_Label>
+  <AerocraftFramework_SetAngle_Desc>Adjusting and setting the aerocraft angle</AerocraftFramework_SetAngle_Desc>
+  <!--作为武器-->
+  <AerocraftFramework_AsWeapon_IfBreakDown>Break Down</AerocraftFramework_AsWeapon_IfBreakDown>
+  <AerocraftFramework_SelectBaseThing_Label>Select aerocraft</AerocraftFramework_SelectBaseThing_Label>
+  <AerocraftFramework_SelectBaseThing_Desc>Select aerocraft</AerocraftFramework_SelectBaseThing_Desc>
+</LanguageData>

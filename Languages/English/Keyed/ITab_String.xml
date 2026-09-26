@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!--Mod设置-->
+  <AerocraftFramework_ITab>Info</AerocraftFramework_ITab>
+  <AerocraftFramework_ITab_InnerPawn>Internal Pawns</AerocraftFramework_ITab_InnerPawn>
+  <AerocraftFramework_ITab_CurrentWeapon>Current Weapon</AerocraftFramework_ITab_CurrentWeapon>
+  <AerocraftFramework_ITab_InnerWeapon>Internal Weapons</AerocraftFramework_ITab_InnerWeapon>
+  <AerocraftFramework_ITab_ExtraWeapon>Extra Weapon</AerocraftFramework_ITab_ExtraWeapon>
+  <AerocraftFramework_ITab_ExtraWeapon_Select>Choose this Extra Weapon</AerocraftFramework_ITab_ExtraWeapon_Select>
+  <AerocraftFramework_ITab_CurrentShell>Current Shell</AerocraftFramework_ITab_CurrentShell>
+  <AerocraftFramework_ITab_InnerShell>Internal Shells</AerocraftFramework_ITab_InnerShell>
+  <AerocraftFramework_ITab_Pawn_Drop>Lay down</AerocraftFramework_ITab_Pawn_Drop>
+  <AerocraftFramework_ITab_Drop>Lay down</AerocraftFramework_ITab_Drop>
+  <AerocraftFramework_ITab_Replace>Replace</AerocraftFramework_ITab_Replace>
+  <AerocraftFramework_ITab_ReplaceToOrigin>Replace with initial weapon</AerocraftFramework_ITab_ReplaceToOrigin>
+  <AerocraftFramework_ITab_Shell_Drop>Lay down</AerocraftFramework_ITab_Shell_Drop>
+  <AerocraftFramework_ITab_Shell_Replace>Replace current shells</AerocraftFramework_ITab_Shell_Replace>
+</LanguageData>

@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!-- 初级飞行器 -->
+  <MYDE_AF_Research_PrimaryAerocraft.label>初级飞行器</MYDE_AF_Research_PrimaryAerocraft.label>
+  <MYDE_AF_Research_PrimaryAerocraft.description>初级飞行器</MYDE_AF_Research_PrimaryAerocraft.description>
+  <!-- 中级飞行器 -->
+  <MYDE_AF_Research_IntermediateAerocraft.label>中级飞行器</MYDE_AF_Research_IntermediateAerocraft.label>
+  <MYDE_AF_Research_IntermediateAerocraft.description>中级飞行器</MYDE_AF_Research_IntermediateAerocraft.description>
+  <!-- 高级飞行器 -->
+  <MYDE_AF_Research_AdvancedAerocraf.label>高级飞行器</MYDE_AF_Research_AdvancedAerocraf.label>
+  <MYDE_AF_Research_AdvancedAerocraf.description>高级飞行器</MYDE_AF_Research_AdvancedAerocraf.description>
+  <!-- 超凡飞行器 -->
+  <MYDE_AF_Research_ArchotechAerocraft.label>超凡飞行器</MYDE_AF_Research_ArchotechAerocraft.label>
+  <MYDE_AF_Research_ArchotechAerocraft.description>超凡飞行器</MYDE_AF_Research_ArchotechAerocraft.description>
+</LanguageData>

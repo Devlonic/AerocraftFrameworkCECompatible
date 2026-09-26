@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!-- 进入飞行器的Job -->
+  <MYDE_AerocraftFramework_Job_Enter_Building_Aerocraft_AsBaseThing.reportString>进入飞行器</MYDE_AerocraftFramework_Job_Enter_Building_Aerocraft_AsBaseThing.reportString>
+  <!-- 给飞行器替换武器的Job -->
+  <MYDE_AerocraftFramework_Job_ReplaceCurrentWeapon.reportString>替换飞行器当前武器</MYDE_AerocraftFramework_Job_ReplaceCurrentWeapon.reportString>
+  <!-- 给飞行器装填炮弹的Job -->
+  <MYDE_AerocraftFramework_Job_LoadShell.reportString>装载炮弹</MYDE_AerocraftFramework_Job_LoadShell.reportString>
+</LanguageData>

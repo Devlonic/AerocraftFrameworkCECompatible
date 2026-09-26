@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <AerocraftFramework_AerocraftArrived>抵達{0_label}</AerocraftFramework_AerocraftArrived>
+  <AerocraftFramework_CommandAttackSettlement>飛行器·進攻</AerocraftFramework_CommandAttackSettlement>
+  <AerocraftFramework_Trade_Leave_Label>離開飛行器</AerocraftFramework_Trade_Leave_Label>
+  <AerocraftFramework_Trade_Leave_Desc>飛行器內“裝載”的內容將暫時離開飛行器並生成遠行隊，從而能够進行貿易以及執行非戰鬥任務</AerocraftFramework_Trade_Leave_Desc>
+  <AerocraftFramework_Trade_GetOn_Label>登上飛行器</AerocraftFramework_Trade_GetOn_Label>
+  <AerocraftFramework_Trade_GetOn_Desc>遠行隊登上飛行器</AerocraftFramework_Trade_GetOn_Desc>
+  <AerocraftFramework_TradeError>錯誤：飛行器內並未“裝載”任何殖民者</AerocraftFramework_TradeError>
+  <AerocraftFramework_Refuel_Label>填充燃料</AerocraftFramework_Refuel_Label>
+  <AerocraftFramework_Refuel_Desc>從飛行器“裝載”中的物品中檢索符合要求的燃料，從而為飛行器填充燃料</AerocraftFramework_Refuel_Desc>
+  <AerocraftFramework_Refuel_Message_A>無法填充：飛行器中的燃料已經充滿</AerocraftFramework_Refuel_Message_A>
+  <AerocraftFramework_Refuel_Message_B>錯誤：未能在“裝載”內容中找到合適填充的燃料</AerocraftFramework_Refuel_Message_B>
+  <AerocraftFramework_TradeError_CannotCarry>無法裝載</AerocraftFramework_TradeError_CannotCarry>
+</LanguageData>

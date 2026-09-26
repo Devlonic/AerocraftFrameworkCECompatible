@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <!--=======================初级飞行器=======================-->
+  <ResearchProjectDef>
+    <tab>MYDE_AerocraftFramework_ResearchTab</tab>
+    <defName>MYDE_AF_Research_PrimaryAerocraft</defName>
+    <label>Primary Aerocraft</label>
+    <description>Primary Aerocraft</description>
+    <baseCost>2000</baseCost>
+    <techLevel>Industrial</techLevel>
+    <researchViewX>0</researchViewX>
+    <researchViewY>2.5</researchViewY>
+    <prerequisites>
+      <li>Machining</li>
+    </prerequisites>
+  </ResearchProjectDef>
+  <!--=======================中级飞行器=======================-->
+  <ResearchProjectDef>
+    <tab>MYDE_AerocraftFramework_ResearchTab</tab>
+    <defName>MYDE_AF_Research_IntermediateAerocraft</defName>
+    <label>Intermediate Aerocraft</label>
+    <description>Intermediate Aerocraft</description>
+    <baseCost>3000</baseCost>
+    <techLevel>Industrial</techLevel>
+    <researchViewX>2</researchViewX>
+    <researchViewY>2.5</researchViewY>
+    <prerequisites>
+      <li>MYDE_AF_Research_PrimaryAerocraft</li>
+      <li>MicroelectronicsBasics</li>
+    </prerequisites>
+  </ResearchProjectDef>
+  <!--=======================高级飞行器=======================-->
+  <ResearchProjectDef>
+    <tab>MYDE_AerocraftFramework_ResearchTab</tab>
+    <defName>MYDE_AF_Research_AdvancedAerocraf</defName>
+    <label>Advanced Aerocraf</label>
+    <description>Advanced Aerocraf</description>
+    <baseCost>4000</baseCost>
+    <techLevel>Spacer</techLevel>
+    <researchViewX>4</researchViewX>
+    <researchViewY>2.5</researchViewY>
+    <prerequisites>
+      <li>MYDE_AF_Research_IntermediateAerocraft</li>
+      <li>MultiAnalyzer</li>
+    </prerequisites>
+  </ResearchProjectDef>
+  <!--=======================超凡飞行器=======================-->
+  <ResearchProjectDef>
+    <tab>MYDE_AerocraftFramework_ResearchTab</tab>
+    <defName>MYDE_AF_Research_ArchotechAerocraft</defName>
+    <label>Archotech Aerocraf</label>
+    <description>Archotech Aerocraf</description>
+    <baseCost>5000</baseCost>
+    <techLevel>Archotech</techLevel>
+    <researchViewX>6</researchViewX>
+    <researchViewY>2.5</researchViewY>
+    <prerequisites>
+      <li>MYDE_AF_Research_AdvancedAerocraf</li>
+    </prerequisites>
+  </ResearchProjectDef>
+</Defs>

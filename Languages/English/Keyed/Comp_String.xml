@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!--=====武器替换-->
+  <AerocraftFramework_ReplaceCurrentWeapon_Replace>Replace</AerocraftFramework_ReplaceCurrentWeapon_Replace>
+  <AerocraftFramework_ReplaceCurrentWeapon_CurrentWeapon>Current weapon</AerocraftFramework_ReplaceCurrentWeapon_CurrentWeapon>
+  <AerocraftFramework_SelectPawnAndLetItReplace_Label>ReplaceWeapon·Select</AerocraftFramework_SelectPawnAndLetItReplace_Label>
+  <AerocraftFramework_SelectPawnAndLetItReplace_Desc>Choose a weapon carrying Pawn from the same faction and replace it with his own weapon on the aerocraft</AerocraftFramework_SelectPawnAndLetItReplace_Desc>
+  <!--=====炮弹装载-->
+  <AerocraftFramework_LoadShell_For>For</AerocraftFramework_LoadShell_For>
+  <AerocraftFramework_LoadShell>Load shell</AerocraftFramework_LoadShell>
+  <AerocraftFramework_NeedShell>Requires any type of shell     (Right click on the Aerocraft to load shells)</AerocraftFramework_NeedShell>
+  <AerocraftFramework_NoFlying>Not in flight</AerocraftFramework_NoFlying>
+  <AerocraftFramework_ShellEmpty>Empty</AerocraftFramework_ShellEmpty>
+  <!--=====载人-->
+  <AerocraftFramework_InnerPawnNum>Number of internal pawn</AerocraftFramework_InnerPawnNum>
+  <AerocraftFramework_MaxInnerPawn>Internal pawn are full</AerocraftFramework_MaxInnerPawn>
+  <AerocraftFramework_EnterAerocraft>Enter</AerocraftFramework_EnterAerocraft>
+  <AerocraftFramework_CannotEnter>Unable to enter</AerocraftFramework_CannotEnter>
+  <AerocraftFramework_AerocraftIsNotStatic>not stationary</AerocraftFramework_AerocraftIsNotStatic>
+  <AerocraftFramework_NeedPawnToControl>Need to have colonizer control</AerocraftFramework_NeedPawnToControl>
+  <AerocraftFramework_NeedPawnToControl_PawnNum>Required quantity</AerocraftFramework_NeedPawnToControl_PawnNum>
+  <!--=====跨地图-->
+  <AerocraftFramework_ChoseWorldTargetError>Aerocraft Framework: must select a valid target</AerocraftFramework_ChoseWorldTargetError>
+  <AerocraftFramework_OutOfRange>Out of range</AerocraftFramework_OutOfRange>
+  <AerocraftFramework_TargetNotValid>Target not valid</AerocraftFramework_TargetNotValid>
+  <AerocraftFramework_NoBack>Unable to return</AerocraftFramework_NoBack>
+  <AerocraftFramework_FuelSurplus>Fuel surplus</AerocraftFramework_FuelSurplus>
+  <!--=====安装武器-->
+  <AerocraftFramework_AddWeapon>Install weapon</AerocraftFramework_AddWeapon>
+  <AerocraftFramework_NoAerocraftInPosition>There is no aircraft present at the current position</AerocraftFramework_NoAerocraftInPosition>
+</LanguageData>

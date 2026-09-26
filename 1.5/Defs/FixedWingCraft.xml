@@ -1,0 +1,789 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <!--===============轰炸机-->
+  <ThingDef ParentName="MYDE_AerocraftFramework_XmlParent">
+    <defName>MYDE_AF_FWCraft_Bombardment</defName>
+    <label>“Eclipse”FH-203</label>
+    <description>The "Eclipse" FH-203 is a short range takeoff and landing manned bomber that carries artillery shells to achieve long-range and fast projectile delivery at close range. Based on the unique structure of the weapon system, it can add and replace the majority of weapons to the aerocraft, suitable for bombing targets and long-distance transportation tasks. It is an important strategic weapon in modern warfare.</description>
+    <thingClass>MYDE_AerocraftFramework.Building_Aerocraft_AsBaseThing</thingClass>
+    <uiIconPath>AerocraftFramework/FWCraft_Bombardment/UI</uiIconPath>
+    <graphicData>
+      <texPath>AerocraftFramework/FWCraft_Bombardment/UI</texPath>
+      <drawSize>(4,4)</drawSize>
+    </graphicData>
+    <statBases>
+      <MaxHitPoints>2000</MaxHitPoints>
+      <WorkToBuild>36000</WorkToBuild>
+      <Mass>50</Mass>
+      <Beauty>5</Beauty>
+      <!--这个是精准度-->
+      <ShootingAccuracyTurret>0.97</ShootingAccuracyTurret>
+    </statBases>
+    <costList>
+      <Steel>600</Steel>
+      <Plasteel>150</Plasteel>
+      <ComponentIndustrial>30</ComponentIndustrial>
+      <Chemfuel>150</Chemfuel>
+    </costList>
+    <constructionSkillPrerequisite>7</constructionSkillPrerequisite>
+    <minifiedDef>MYDE_AerocraftFramework_MinifiedThing</minifiedDef>
+    <thingCategories>
+      <li>MYDE_AerocraftFramework_Root</li>
+    </thingCategories>
+    <researchPrerequisites>
+      <li>MYDE_AF_Research_IntermediateAerocraft</li>
+    </researchPrerequisites>
+    <designationCategory>MYDE_AerocraftFramework_DesignationCategory</designationCategory>
+    <size>(3,3)</size>
+    <inspectorTabs>
+      <li>ITab_ContentsTransporter</li>
+    </inspectorTabs>
+    <comps>
+      <!--原版燃料-->
+      <li Class="CompProperties_Refuelable">
+        <!--<fuelLabel>Fuel</fuelLabel>-->
+        <!--<fuelGizmoLabel>Fuel</fuelGizmoLabel>-->
+        <outOfFuelMessage>Needs Fuel</outOfFuelMessage>
+        <fuelFilter>
+          <thingDefs>
+            <li>Chemfuel</li>
+          </thingDefs>
+        </fuelFilter>
+        <fuelCapacity>900</fuelCapacity>
+        <fuelMultiplier>1</fuelMultiplier>
+        <initialFuelPercent>0.1</initialFuelPercent>
+        <autoRefuelPercent>1</autoRefuelPercent>
+        <showFuelGizmo>true</showFuelGizmo>
+        <minimumFueledThreshold>1</minimumFueledThreshold>
+        <consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
+        <!--<fuelIconPath>UI/Overlays/Barrel</fuelIconPath>-->
+        <targetFuelLevelConfigurable>true</targetFuelLevelConfigurable>
+        <initialConfigurableTargetFuelLevel>900</initialConfigurableTargetFuelLevel>
+      </li>
+      <!--本体的渲染+阴影-->
+      <li Class="MYDE_AerocraftFramework.CompProperties_Base_Thing">
+        <!--是否渲染-->
+        <If_Draw_Base>True</If_Draw_Base>
+        <!--飞行的大小变化-->
+        <Draw_ScaleIncreaseFactor_WhenFlying>0.5</Draw_ScaleIncreaseFactor_WhenFlying>
+        <!--本体的图层大小+高度-->
+        <Draw_Base_TexturePath>AerocraftFramework/FWCraft_Bombardment/Base</Draw_Base_TexturePath>
+        <Draw_Base_Scale>4</Draw_Base_Scale>
+        <Draw_Base_ExtraAltitudeLayerNum>0.4</Draw_Base_ExtraAltitudeLayerNum>
+        <!--是否制作阴影+阴影最大最下长度+阴影角度-->
+        <If_NeedDrawAllShadow>True</If_NeedDrawAllShadow>
+        <!--是否制作本体阴影+大小+图层+透明度-->
+        <If_DrawShadow_Base>true</If_DrawShadow_Base>
+        <Draw_Shadow_Base_Scale>3</Draw_Shadow_Base_Scale>
+        <Draw_Shadow_Base_HeightFactor>4</Draw_Shadow_Base_HeightFactor>
+        <Draw_Shadow_Base_ExtraAltitudeLayerNum>-0.5</Draw_Shadow_Base_ExtraAltitudeLayerNum>
+        <Draw_Shadow_Base_Transparency>0.5</Draw_Shadow_Base_Transparency>
+      </li>
+      <!--主武器渲染+阴影-->
+      <li Class="MYDE_AerocraftFramework.CompProperties_Base_Weapon">
+        <!--枪械-->
+        <WeaponDef>MYDE_AF_UniversalWeapon_MiniGun</WeaponDef>
+        <!--是否渲染-->
+        <If_Draw_Gun>False</If_Draw_Gun>
+        <!--枪的图层高度-->
+        <Draw_Gun_Scale>1</Draw_Gun_Scale>
+        <Draw_Gun_ExtraAltitudeLayerNum>0.3</Draw_Gun_ExtraAltitudeLayerNum>
+        <!--是否制作枪械阴影+大小+图层+透明度-->
+        <If_DrawShadow_Gun>False</If_DrawShadow_Gun>
+        <Draw_Shadow_Gun_Scale>0.75</Draw_Shadow_Gun_Scale>
+        <Draw_Shadow_Gun_ExtraAltitudeLayerNum>-0.6</Draw_Shadow_Gun_ExtraAltitudeLayerNum>
+        <Draw_Shadow_Gun_Transparency>0.5</Draw_Shadow_Gun_Transparency>
+      </li>
+      <!--移动方式-->
+      <li Class="MYDE_AerocraftFramework.CompProperties_MoveToTargetAndHover">
+        <!--碰撞检测的最大移动距离-->
+        <Check_CollideMoveRangeMax>10</Check_CollideMoveRangeMax>
+        <!--起飞需要的预热时间-->
+        <Move_WarmUpTickMax>2</Move_WarmUpTickMax>
+        <!--是否需要转向，False则省略飞行器转向过程-->
+        <If_NeedTurnWhenMoving>True</If_NeedTurnWhenMoving>
+        <!--是否是滑跃起飞-->
+        <If_NeedGlidingWhenTakeOff>True</If_NeedGlidingWhenTakeOff>
+        <Gliding_Range>20</Gliding_Range>
+        <GlidingTakeOffOrDownTickMax>60</GlidingTakeOffOrDownTickMax>
+        <!--最大移动速度+转向时的移动速度-->
+        <MoveSpeed_Max>0.25</MoveSpeed_Max>
+        <MoveSpeed_Turning>0.13</MoveSpeed_Turning>
+        <!--默认盘旋设置 True为开 False为关-->
+        <Default_HoverSet>True</Default_HoverSet>
+        <!--盘旋的文字+图标-->
+        <If_ShowHover_Icon>False</If_ShowHover_Icon>
+        <!--起飞降落的图标切换·文字+图标-->
+        <TakeOffAndLanding_Icon_On_Label>Take off</TakeOffAndLanding_Icon_On_Label>
+        <TakeOffAndLanding_Icon_Off_Label>Landing</TakeOffAndLanding_Icon_Off_Label>
+        <TakeOffAndLanding_Icon_Description>Switching between takeoff and landing, the "Eclipse" FH-203 belongs to a fixed wing aerocraft and requires an unobstructed distance of more than 20 grids to launch and land. It can only attack during flight. After takeoff, move it with the right mouse button, right-click on Non-Player faction object to forcibly attack the target, right-click on our faction object to switch to follow mode.</TakeOffAndLanding_Icon_Description>
+        <TakeOffAndLanding_Icon_On_IconPath>AerocraftFramework/Icon/Up</TakeOffAndLanding_Icon_On_IconPath>
+        <TakeOffAndLanding_Icon_Off_IconPath>AerocraftFramework/Icon/Down</TakeOffAndLanding_Icon_Off_IconPath>
+        <!--盘旋的角速度+转向速度-->
+        <AngleChangePerTick_Hover>1</AngleChangePerTick_Hover>
+        <AngleChangePerTick_Turning>2</AngleChangePerTick_Turning>
+        <!--每Tick消耗燃料量 1 = 60燃料/秒 0.015 = 0.9燃料/秒-->
+        <FuelConsumePerTick>0.015</FuelConsumePerTick>
+      </li>
+      <!--摧毁自爆-->
+      <li Class="MYDE_AerocraftFramework.CompProperties_DoExplosion_BySomeWays">
+        <!--被摧毁时是否自爆-->
+        <If_DoExplosion_WhenDestroy>True</If_DoExplosion_WhenDestroy>
+        <!--生命值归0的时候是否沿路径坠毁后自爆+坠毁距离-->
+        <If_Drop_WhenHitpointZero>True</If_Drop_WhenHitpointZero>
+        <Drop_Range>20</Drop_Range>
+        <!--这个是伤害，写多少就造成多少伤害，不是CompProperties_Explosive的乘数，其他的所有字段都跟原版的CompProperties_Explosive相同-->
+        <damageAmountBase>50</damageAmountBase>
+        <explosiveRadius>4.9</explosiveRadius>
+        <explosiveDamageType>Bomb</explosiveDamageType>
+      </li>
+      <!--载人-->
+      <li Class="MYDE_AerocraftFramework.CompProperties_CarryPawn">
+        <!--最大载人量-->
+        <CarryPawnNumMax>5</CarryPawnNumMax>
+        <!--是否将当前武器替换为被载人的武器-->
+        <If_ChangeWeaponByPawnWeaponWhenCarry>False</If_ChangeWeaponByPawnWeaponWhenCarry>
+        <!--载人的文字+图标路径+最大载人范围-->
+        <If_ShowFastLordGizmos>True</If_ShowFastLordGizmos>
+        <Gizmos_CarryPawn_Label>Fast loading</Gizmos_CarryPawn_Label>
+        <Gizmos_CarryPawn_Description>Fast loading colonizers within the surrounding 5x5 range</Gizmos_CarryPawn_Description>
+        <Gizmos_CarryPawn_IconPath>AerocraftFramework/FWCraft_Bombardment/CarryPawn</Gizmos_CarryPawn_IconPath>
+        <CarryPawn_MaxRange>2</CarryPawn_MaxRange>
+      </li>
+      <!--替换武器-->
+      <li Class="MYDE_AerocraftFramework.CompProperties_ReplaceCurrentWeapon"></li>
+      <!--跨地图-->
+      <li Class="CompProperties_Transporter">
+        <restEffectiveness>0.8</restEffectiveness>
+        <max1PerGroup>true</max1PerGroup>
+        <massCapacity>900</massCapacity>
+      </li>
+      <li Class="MYDE_AerocraftFramework.CompProperties_CanCrossMap">
+        <LeavingThingDef>MYDE_AF_Skyfalller_FWCraft_Bombardment_CrossMapThing</LeavingThingDef>
+        <WorldObjectDef>MYDE_AF_WorldObject_FWCraft_Bombardment_CrossMapThing</WorldObjectDef>
+        <TravelSpeed>0.00025</TravelSpeed>
+        <!--燃料消耗乘数，10是每格10消耗，算上来回需要20燃料每格，原版空投舱近似于每格2燃料消耗，来回4燃料-->
+        <FuelConsumeBase>10</FuelConsumeBase>
+        <CrossMap_Label>Cross Map</CrossMap_Label>
+        <CrossMap_Description>Cross map, no open space can be selected as the target location. To avoid situations where it is impossible to return, please ensure that there is sufficient fuel for round-trip travel</CrossMap_Description>
+        <CrossMap_IconPath>AerocraftFramework/Icon/CrossMap</CrossMap_IconPath>
+        <DefaultThing_ToRefuel>Chemfuel</DefaultThing_ToRefuel>
+      </li>
+      <!--储存并发射迫击炮-->
+      <li Class="MYDE_AerocraftFramework.CompProperties_CanLoadShell">
+        <!--射程+装填冷却时间+偏移范围+最大载弹量-->
+        <LaunchShell_Range>30</LaunchShell_Range>
+        <LaunchShell_ConsumeTickPerLaunch>150</LaunchShell_ConsumeTickPerLaunch>
+        <LaunchShell_ReloadTickMax>600</LaunchShell_ReloadTickMax>
+        <LaunchShell_ForceRadius>5</LaunchShell_ForceRadius>
+        <LoadShell_Max>30</LoadShell_Max>
+        <!--发射炮弹的文字+图标-->
+        <LaunchShell_Label>Launch</LaunchShell_Label>
+        <LaunchShell_Description>Launch current shell</LaunchShell_Description>
+        <LaunchShell_False_IconPath>AerocraftFramework/Nothing/Nothing</LaunchShell_False_IconPath>
+        <!--投弹的文字+图标-->
+        <DropShell_Label>Drop shell</DropShell_Label>
+        <DropShell_Description>Fast Droping shell to around position</DropShell_Description>
+      </li>
+      <!--特效生成-->
+      <li Class="MYDE_AerocraftFramework.CompProperties_SpawnFleck">
+        <!--生成的特效-->
+        <FleckDef>MYDE_AF_Fleck_HeatGlow_Intense</FleckDef>
+        <!--这个是播放特效的间隔-->
+        <Fleck_MakeFleckTickMax>1</Fleck_MakeFleckTickMax>
+        <!--这个是播放多少次特效-->
+        <Fleck_MakeFleckNum_Origin>1</Fleck_MakeFleckNum_Origin>
+        <Fleck_MakeFleckNum_Max>0</Fleck_MakeFleckNum_Max>
+        <!--这个是位置调整-->
+        <Fleck_Range_ToSetPosition>1.28</Fleck_Range_ToSetPosition>
+        <Fleck_Angle_ToSetPosition>165</Fleck_Angle_ToSetPosition>
+        <!--这个是是否跟随飞行角度·用来制作尾焰-->
+        <Fleck_If_FollowBaseThingAngle>True</Fleck_If_FollowBaseThingAngle>
+        <!--这个是特效贴图旋转角度-->
+        <Fleck_Rotation>-180~180</Fleck_Rotation>
+        <!--这个是特效飞行方向-->
+        <!--<Fleck_Angle>-180~180</Fleck_Angle>-->
+        <Fleck_Angle>0</Fleck_Angle>
+        <!--这个是特效大小-->
+        <Fleck_Scale>1.2</Fleck_Scale>
+        <!--这个是特效飞行速度-->
+        <Fleck_Speed>2~3</Fleck_Speed>
+      </li>
+      <li Class="MYDE_AerocraftFramework.CompProperties_SpawnFleck">
+        <!--生成的特效-->
+        <FleckDef>MYDE_AF_Fleck_HeatGlow_Intense</FleckDef>
+        <!--这个是播放特效的间隔-->
+        <Fleck_MakeFleckTickMax>1</Fleck_MakeFleckTickMax>
+        <!--这个是播放多少次特效-->
+        <Fleck_MakeFleckNum_Origin>1</Fleck_MakeFleckNum_Origin>
+        <Fleck_MakeFleckNum_Max>0</Fleck_MakeFleckNum_Max>
+        <!--这个是位置调整-->
+        <Fleck_Range_ToSetPosition>1.28</Fleck_Range_ToSetPosition>
+        <Fleck_Angle_ToSetPosition>13</Fleck_Angle_ToSetPosition>
+        <!--这个是是否跟随飞行角度·用来制作尾焰-->
+        <Fleck_If_FollowBaseThingAngle>True</Fleck_If_FollowBaseThingAngle>
+        <!--这个是特效贴图旋转角度-->
+        <Fleck_Rotation>-180~180</Fleck_Rotation>
+        <!--这个是特效飞行方向-->
+        <!--<Fleck_Angle>-180~180</Fleck_Angle>-->
+        <Fleck_Angle>0</Fleck_Angle>
+        <!--这个是特效大小-->
+        <Fleck_Scale>1.2</Fleck_Scale>
+        <!--这个是特效飞行速度-->
+        <Fleck_Speed>2~3</Fleck_Speed>
+      </li>
+      <li Class="MYDE_AerocraftFramework.CompProperties_SpawnFleck">
+        <!--生成的特效-->
+        <FleckDef>MYDE_AF_Fleck_HeatGlow_Intense</FleckDef>
+        <!--这个是播放特效的间隔-->
+        <Fleck_MakeFleckTickMax>1</Fleck_MakeFleckTickMax>
+        <!--这个是播放多少次特效-->
+        <Fleck_MakeFleckNum_Origin>1</Fleck_MakeFleckNum_Origin>
+        <Fleck_MakeFleckNum_Max>0</Fleck_MakeFleckNum_Max>
+        <!--这个是位置调整-->
+        <Fleck_Range_ToSetPosition>1.84</Fleck_Range_ToSetPosition>
+        <Fleck_Angle_ToSetPosition>109</Fleck_Angle_ToSetPosition>
+        <!--这个是是否跟随飞行角度·用来制作尾焰-->
+        <Fleck_If_FollowBaseThingAngle>True</Fleck_If_FollowBaseThingAngle>
+        <!--这个是特效贴图旋转角度-->
+        <Fleck_Rotation>-180~180</Fleck_Rotation>
+        <!--这个是特效飞行方向-->
+        <!--<Fleck_Angle>-180~180</Fleck_Angle>-->
+        <Fleck_Angle>0</Fleck_Angle>
+        <!--这个是特效大小-->
+        <Fleck_Scale>1.2</Fleck_Scale>
+        <!--这个是特效飞行速度-->
+        <Fleck_Speed>2~3</Fleck_Speed>
+      </li>
+      <li Class="MYDE_AerocraftFramework.CompProperties_SpawnFleck">
+        <!--生成的特效-->
+        <FleckDef>MYDE_AF_Fleck_HeatGlow_Intense</FleckDef>
+        <!--这个是播放特效的间隔-->
+        <Fleck_MakeFleckTickMax>1</Fleck_MakeFleckTickMax>
+        <!--这个是播放多少次特效-->
+        <Fleck_MakeFleckNum_Origin>1</Fleck_MakeFleckNum_Origin>
+        <Fleck_MakeFleckNum_Max>0</Fleck_MakeFleckNum_Max>
+        <!--这个是位置调整-->
+        <Fleck_Range_ToSetPosition>1.84</Fleck_Range_ToSetPosition>
+        <Fleck_Angle_ToSetPosition>72</Fleck_Angle_ToSetPosition>
+        <!--这个是是否跟随飞行角度·用来制作尾焰-->
+        <Fleck_If_FollowBaseThingAngle>True</Fleck_If_FollowBaseThingAngle>
+        <!--这个是特效贴图旋转角度-->
+        <Fleck_Rotation>-180~180</Fleck_Rotation>
+        <!--这个是特效飞行方向-->
+        <!--<Fleck_Angle>-180~180</Fleck_Angle>-->
+        <Fleck_Angle>0</Fleck_Angle>
+        <!--这个是特效大小-->
+        <Fleck_Scale>1.2</Fleck_Scale>
+        <!--这个是特效飞行速度-->
+        <Fleck_Speed>2~3</Fleck_Speed>
+      </li>
+    </comps>
+    <uiOrder>400</uiOrder>
+  </ThingDef>
+  <!--跨地图-->
+  <ThingDef ParentName="SkyfallerBase">
+    <defName>MYDE_AF_Skyfalller_FWCraft_Bombardment_CrossMapThing</defName>
+    <label>“Eclipse”FH-203 (Leaving)</label>
+    <thingClass>MYDE_AerocraftFramework.Skyfaller_Aerocraft_Leaving</thingClass>
+    <altitudeLayer>Skyfaller</altitudeLayer>
+    <graphicData>
+      <texPath>AerocraftFramework/FWCraft_Bombardment/Base</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <shaderType>CutoutFlying</shaderType>
+      <drawSize>3</drawSize>
+    </graphicData>
+    <skyfaller>
+      <movementType>Decelerate</movementType>
+      <reversed>true</reversed>
+      <shadow>Things/Skyfaller/SkyfallerShadowDropPod</shadow>
+      <shadowSize>(6, 6)</shadowSize>
+      <anticipationSound>DropPod_Leaving</anticipationSound>
+      <anticipationSoundTicks>-10</anticipationSoundTicks>
+      <ticksToImpactRange>
+        <min>-40</min>
+        <max>-15</max>
+      </ticksToImpactRange>
+    </skyfaller>
+  </ThingDef>
+  <WorldObjectDef>
+    <defName>MYDE_AF_WorldObject_FWCraft_Bombardment_CrossMapThing</defName>
+    <label>“Eclipse”FH-203</label>
+    <description>“Eclipse”FH-203</description>
+    <worldObjectClass>MYDE_AerocraftFramework.WorldObject_CrossMapThing_Flying</worldObjectClass>
+    <texture>AerocraftFramework/FWCraft_Bombardment/UI</texture>
+    <expandingIconTexture>AerocraftFramework/FWCraft_Bombardment/UI</expandingIconTexture>
+    <useDynamicDrawer>true</useDynamicDrawer>
+    <expandingIcon>true</expandingIcon>
+    <expandingIconPriority>60</expandingIconPriority>
+    <rotateGraphicWhenTraveling>true</rotateGraphicWhenTraveling>
+    <expandMore>true</expandMore>
+    <allowCaravanIncidentsWhichGenerateMap>true</allowCaravanIncidentsWhichGenerateMap>
+  </WorldObjectDef>
+  <!--===============航空母舰-->
+  <ThingDef ParentName="MYDE_AerocraftFramework_XmlParent">
+    <defName>MYDE_AF_FWCraft_AerocraftCarrier</defName>
+    <label>“Pivot”NL-706</label>
+    <description>The "Pivot" NL-706 is a manned aerocraft carrier designed for deploying and commanding unmanned drone combat groups. Equipped with the ability to quickly produce and deploy drone, based on the unique construction of weapon systems, it can add and replace the vast majority of weapons to the aerocraft, achieving multi target parallel operations. Integrate replaceable weapon groups. Provide strong firepower support for combat.</description>
+    <thingClass>MYDE_AerocraftFramework.Building_Aerocraft_AsBaseThing</thingClass>
+    <uiIconPath>AerocraftFramework/FWCraft_AerocraftCarrier/UI</uiIconPath>
+    <graphicData>
+      <texPath>AerocraftFramework/FWCraft_AerocraftCarrier/UI</texPath>
+      <drawSize>(7,7)</drawSize>
+    </graphicData>
+    <statBases>
+      <MaxHitPoints>4000</MaxHitPoints>
+      <WorkToBuild>54000</WorkToBuild>
+      <Mass>80</Mass>
+      <Beauty>5</Beauty>
+      <!--这个是精准度-->
+      <ShootingAccuracyTurret>0.98</ShootingAccuracyTurret>
+    </statBases>
+    <costList>
+      <Steel>1500</Steel>
+      <Plasteel>450</Plasteel>
+      <ComponentIndustrial>80</ComponentIndustrial>
+      <ComponentSpacer>10</ComponentSpacer>
+      <Chemfuel>300</Chemfuel>
+    </costList>
+    <constructionSkillPrerequisite>10</constructionSkillPrerequisite>
+    <minifiedDef>MYDE_AerocraftFramework_MinifiedThing</minifiedDef>
+    <thingCategories>
+      <li>MYDE_AerocraftFramework_Root</li>
+    </thingCategories>
+    <researchPrerequisites>
+      <li>MYDE_AF_Research_AdvancedAerocraf</li>
+    </researchPrerequisites>
+    <designationCategory>MYDE_AerocraftFramework_DesignationCategory</designationCategory>
+    <size>(5,5)</size>
+    <inspectorTabs>
+      <!--这个是原版用来显示装载物资的标签-->
+      <li>ITab_ContentsTransporter</li>
+    </inspectorTabs>
+    <comps>
+      <!--原版燃料-->
+      <li Class="CompProperties_Refuelable">
+        <outOfFuelMessage>Needs Fuel</outOfFuelMessage>
+        <fuelFilter>
+          <thingDefs>
+            <li>Chemfuel</li>
+          </thingDefs>
+        </fuelFilter>
+        <fuelCapacity>1200</fuelCapacity>
+        <fuelMultiplier>1</fuelMultiplier>
+        <initialFuelPercent>0.1</initialFuelPercent>
+        <autoRefuelPercent>1</autoRefuelPercent>
+        <showFuelGizmo>true</showFuelGizmo>
+        <minimumFueledThreshold>1</minimumFueledThreshold>
+        <consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
+        <targetFuelLevelConfigurable>true</targetFuelLevelConfigurable>
+        <initialConfigurableTargetFuelLevel>1200</initialConfigurableTargetFuelLevel>
+      </li>
+      <!--本体的渲染+阴影-->
+      <li Class="MYDE_AerocraftFramework.CompProperties_Base_Thing">
+        <!--是否渲染-->
+        <If_Draw_Base>True</If_Draw_Base>
+        <!--飞行的大小变化2=飞行到最高点时大小为1+2 = 3-->
+        <Draw_ScaleIncreaseFactor_WhenFlying>0.5</Draw_ScaleIncreaseFactor_WhenFlying>
+        <!--本体的图片路径-->
+        <Draw_Base_TexturePath>AerocraftFramework/FWCraft_AerocraftCarrier/Base</Draw_Base_TexturePath>
+        <!--本体的大小-->
+        <Draw_Base_Scale>7</Draw_Base_Scale>
+        <!--本体的图层高度-->
+        <Draw_Base_ExtraAltitudeLayerNum>0.3</Draw_Base_ExtraAltitudeLayerNum>
+        <!--是否制作“所有”阴影-->
+        <If_NeedDrawAllShadow>True</If_NeedDrawAllShadow>
+        <!--是否制作本体阴影-->
+        <If_DrawShadow_Base>true</If_DrawShadow_Base>
+        <!--本体阴影大小-->
+        <Draw_Shadow_Base_Scale>5.25</Draw_Shadow_Base_Scale>
+        <!--阴影高度乘数（3 = 飞行到最高点时阴影距离本体长度为3*基础长度）-->
+        <Draw_Shadow_Base_HeightFactor>5</Draw_Shadow_Base_HeightFactor>
+        <!--阴影图层高度-->
+        <Draw_Shadow_Base_ExtraAltitudeLayerNum>-0.5</Draw_Shadow_Base_ExtraAltitudeLayerNum>
+        <!--阴影透明度-->
+        <Draw_Shadow_Base_Transparency>0.5</Draw_Shadow_Base_Transparency>
+      </li>
+      <!--主武器渲染+阴影-->
+      <li Class="MYDE_AerocraftFramework.CompProperties_Base_Weapon">
+        <!--默认枪械-->
+        <WeaponDef>MYDE_AF_UniversalWeapon_MiniGun</WeaponDef>
+        <!--是否渲染-->
+        <If_Draw_Gun>False</If_Draw_Gun>
+        <!--枪的大小-->
+        <Draw_Gun_Scale>1</Draw_Gun_Scale>
+        <!--枪的图层高度-->
+        <Draw_Gun_ExtraAltitudeLayerNum>0.2</Draw_Gun_ExtraAltitudeLayerNum>
+        <!--是否制作枪械阴影-->
+        <If_DrawShadow_Gun>False</If_DrawShadow_Gun>
+        <!--枪械阴影大小-->
+        <Draw_Shadow_Gun_Scale>0.75</Draw_Shadow_Gun_Scale>
+        <!--枪械阴影图层高度-->
+        <Draw_Shadow_Gun_ExtraAltitudeLayerNum>-0.6</Draw_Shadow_Gun_ExtraAltitudeLayerNum>
+        <!--枪械阴影透明度-->
+        <Draw_Shadow_Gun_Transparency>0.5</Draw_Shadow_Gun_Transparency>
+      </li>
+      <!--移动方式-->
+      <li Class="MYDE_AerocraftFramework.CompProperties_MoveToTargetAndHover">
+        <!--碰撞检测的最大移动距离-->
+        <Check_CollideMoveRangeMax>10</Check_CollideMoveRangeMax>
+        <!--起飞需要的预热时间-->
+        <Move_WarmUpTickMax>2</Move_WarmUpTickMax>
+        <!--是否需要转向，False则省略飞行器转向过程-->
+        <If_NeedTurnWhenMoving>True</If_NeedTurnWhenMoving>
+        <!--是否是滑跃起飞-->
+        <If_NeedGlidingWhenTakeOff>True</If_NeedGlidingWhenTakeOff>
+        <!--滑跃起飞的长度-->
+        <Gliding_Range>30</Gliding_Range>
+        <!--滑跃起飞所需的时间（如果是固定翼机，则起飞预热应比较小）-->
+        <GlidingTakeOffOrDownTickMax>90</GlidingTakeOffOrDownTickMax>
+        <!--最大移动速度+转向时的移动速度-->
+        <MoveSpeed_Max>0.3</MoveSpeed_Max>
+        <MoveSpeed_Turning>0.15</MoveSpeed_Turning>
+        <!--默认盘旋设置 True为开 False为关-->
+        <Default_HoverSet>True</Default_HoverSet>
+        <!--是否显示盘旋图标（如果为False，则不显示盘旋图标，无法控制是否盘旋）-->
+        <If_ShowHover_Icon>False</If_ShowHover_Icon>
+        <!--起飞降落的开关文字+介绍-->
+        <TakeOffAndLanding_Icon_On_Label>Take off</TakeOffAndLanding_Icon_On_Label>
+        <TakeOffAndLanding_Icon_Off_Label>Landing</TakeOffAndLanding_Icon_Off_Label>
+        <TakeOffAndLanding_Icon_Description>Switching between takeoff and landing, the “Pivot”NL-706 belongs to a fixed wing aerocraft and requires an unobstructed distance of more than 30 grids to launch and land. It can only attack during flight. After takeoff, move it with the right mouse button, right-click on Non-Player faction object to forcibly attack the target, right-click on our faction object to switch to follow mode.</TakeOffAndLanding_Icon_Description>
+        <!--起飞降落的贴图路径-->
+        <TakeOffAndLanding_Icon_On_IconPath>AerocraftFramework/Icon/Up</TakeOffAndLanding_Icon_On_IconPath>
+        <TakeOffAndLanding_Icon_Off_IconPath>AerocraftFramework/Icon/Down</TakeOffAndLanding_Icon_Off_IconPath>
+        <!--盘旋的角速度+转向速度-->
+        <AngleChangePerTick_Hover>1</AngleChangePerTick_Hover>
+        <AngleChangePerTick_Turning>2</AngleChangePerTick_Turning>
+        <!--每Tick消耗燃料量 1 = 60燃料/秒 0.015 = 0.9燃料/秒-->
+        <FuelConsumePerTick>0.015</FuelConsumePerTick>
+      </li>
+      <!--摧毁自爆-->
+      <li Class="MYDE_AerocraftFramework.CompProperties_DoExplosion_BySomeWays">
+        <!--被摧毁时是否自爆-->
+        <If_DoExplosion_WhenDestroy>True</If_DoExplosion_WhenDestroy>
+        <!--生命值归0的时候是否沿路径坠毁后自爆+坠毁距离-->
+        <If_Drop_WhenHitpointZero>True</If_Drop_WhenHitpointZero>
+        <Drop_Range>30</Drop_Range>
+        <!--这个是伤害，写多少就造成多少伤害，不是CompProperties_Explosive的乘数，其他的所有字段都跟原版的CompProperties_Explosive相同-->
+        <damageAmountBase>50</damageAmountBase>
+        <explosiveRadius>6.9</explosiveRadius>
+        <explosiveDamageType>Bomb</explosiveDamageType>
+      </li>
+      <!--生成额外武器·无人机生产-->
+      <li Class="MYDE_AerocraftFramework.CompProperties_GetExtraWeapon">
+        <!--武器的Def+偏移长度+角度-->
+        <ExtraWeaponDef>MYDE_AF_FWCraft_AerocraftCarrier_ExtraWeapon_SpawnDrone</ExtraWeaponDef>
+        <ExtraWeapon_Range>1.25</ExtraWeapon_Range>
+        <ExtraWeapon_Angle>187</ExtraWeapon_Angle>
+      </li>
+      <li Class="MYDE_AerocraftFramework.CompProperties_GetExtraWeapon">
+        <!--武器的Def+偏移长度+角度-->
+        <ExtraWeaponDef>MYDE_AF_FWCraft_AerocraftCarrier_ExtraWeapon_SpawnDrone</ExtraWeaponDef>
+        <ExtraWeapon_Range>0.7</ExtraWeapon_Range>
+        <ExtraWeapon_Angle>212</ExtraWeapon_Angle>
+      </li>
+      <li Class="MYDE_AerocraftFramework.CompProperties_GetExtraWeapon">
+        <!--武器的Def+偏移长度+角度-->
+        <ExtraWeaponDef>MYDE_AF_FWCraft_AerocraftCarrier_ExtraWeapon_SpawnDrone</ExtraWeaponDef>
+        <ExtraWeapon_Range>0.7</ExtraWeapon_Range>
+        <ExtraWeapon_Angle>330</ExtraWeapon_Angle>
+      </li>
+      <li Class="MYDE_AerocraftFramework.CompProperties_GetExtraWeapon">
+        <!--武器的Def+偏移长度+角度-->
+        <ExtraWeaponDef>MYDE_AF_FWCraft_AerocraftCarrier_ExtraWeapon_SpawnDrone</ExtraWeaponDef>
+        <ExtraWeapon_Range>1.25</ExtraWeapon_Range>
+        <ExtraWeapon_Angle>353</ExtraWeapon_Angle>
+      </li>
+      <!--生成额外武器·武器组-->
+      <li Class="MYDE_AerocraftFramework.CompProperties_GetExtraWeapon">
+        <!--武器的Def+偏移长度+角度-->
+        <ExtraWeaponDef>MYDE_AF_FWCraft_AerocraftCarrier_ExtraWeapon_WeaponGroup</ExtraWeaponDef>
+        <ExtraWeapon_Range>1.4</ExtraWeapon_Range>
+        <ExtraWeapon_Angle>250</ExtraWeapon_Angle>
+      </li>
+      <li Class="MYDE_AerocraftFramework.CompProperties_GetExtraWeapon">
+        <!--武器的Def+偏移长度+角度-->
+        <ExtraWeaponDef>MYDE_AF_FWCraft_AerocraftCarrier_ExtraWeapon_WeaponGroup</ExtraWeaponDef>
+        <ExtraWeapon_Range>1.4</ExtraWeapon_Range>
+        <ExtraWeapon_Angle>288</ExtraWeapon_Angle>
+      </li>
+      <!--载人-->
+      <li Class="MYDE_AerocraftFramework.CompProperties_CarryPawn">
+        <!--最大载人量-->
+        <CarryPawnNumMax>12</CarryPawnNumMax>
+        <!--是否将当前武器替换为被载人的武器-->
+        <If_ChangeWeaponByPawnWeaponWhenCarry>False</If_ChangeWeaponByPawnWeaponWhenCarry>
+        <!--是否显示快速搭载图标（如果为False，则不显示快速搭载按钮）-->
+        <If_ShowFastLordGizmos>True</If_ShowFastLordGizmos>
+        <!--载人的文字+图标路径-->
+        <Gizmos_CarryPawn_Label>Fast loading</Gizmos_CarryPawn_Label>
+        <Gizmos_CarryPawn_Description>Fast loading colonizers within the surrounding 7x7 range</Gizmos_CarryPawn_Description>
+        <Gizmos_CarryPawn_IconPath>AerocraftFramework/FWCraft_AerocraftCarrier/CarryPawn</Gizmos_CarryPawn_IconPath>
+        <!--快速搭载的最大载人范围-->
+        <CarryPawn_MaxRange>3</CarryPawn_MaxRange>
+      </li>
+      <!--替换武器-->
+      <li Class="MYDE_AerocraftFramework.CompProperties_ReplaceCurrentWeapon"></li>
+      <!--跨地图（第一个为原版的装载功能）-->
+      <li Class="CompProperties_Transporter">
+        <restEffectiveness>0.8</restEffectiveness>
+        <max1PerGroup>true</max1PerGroup>
+        <massCapacity>1500</massCapacity>
+      </li>
+      <li Class="MYDE_AerocraftFramework.CompProperties_CanCrossMap">
+        <!--本地图离开的Def+大世界的Def-->
+        <LeavingThingDef>MYDE_AF_Skyfalller_FWCraft_AerocraftCarrier_CrossMapThing</LeavingThingDef>
+        <WorldObjectDef>MYDE_AF_WorldObject_FWCraft_AerocraftCarrier_CrossMapThing</WorldObjectDef>
+        <!--大世界的Def的移动速度-->
+        <TravelSpeed>0.0005</TravelSpeed>
+        <!--燃料消耗乘数，10是每格10消耗，算上来回需要20燃料每格，原版空投舱近似于每格2燃料消耗，来回4燃料-->
+        <FuelConsumeBase>10</FuelConsumeBase>
+        <!--跨地图按钮的文字+贴图路径-->
+        <CrossMap_Label>Cross Map</CrossMap_Label>
+        <CrossMap_Description>Cross map, no open space can be selected as the target location. To avoid situations where it is impossible to return, please ensure that there is sufficient fuel for round-trip travel</CrossMap_Description>
+        <CrossMap_IconPath>AerocraftFramework/Icon/CrossMap</CrossMap_IconPath>
+        <!--跨地图按钮的文字+贴图路径-->
+        <DefaultThing_ToRefuel>Chemfuel</DefaultThing_ToRefuel>
+      </li>
+      <!--装载并发射迫击炮-->
+      <li Class="MYDE_AerocraftFramework.CompProperties_CanLoadShell">
+        <!--最大载弹量-->
+        <LoadShell_Max>90</LoadShell_Max>
+        <!--射程+偏移范围-->
+        <LaunchShell_Range>40</LaunchShell_Range>
+        <LaunchShell_ForceRadius>3</LaunchShell_ForceRadius>
+        <!--单次发射消耗充能+总充能-->
+        <LaunchShell_ConsumeTickPerLaunch>150</LaunchShell_ConsumeTickPerLaunch>
+        <LaunchShell_ReloadTickMax>900</LaunchShell_ReloadTickMax>
+        <!--发射炮弹的文字+图标+冷却中的贴图路径-->
+        <LaunchShell_Label>Launch</LaunchShell_Label>
+        <LaunchShell_Description>Launch current shell</LaunchShell_Description>
+        <LaunchShell_False_IconPath>AerocraftFramework/Nothing/Nothing</LaunchShell_False_IconPath>
+        <!--投弹的文字-->
+        <DropShell_Label>Drop shell</DropShell_Label>
+        <DropShell_Description>Fast Droping shell to around position</DropShell_Description>
+      </li>
+      <!--特效生成-->
+      <li Class="MYDE_AerocraftFramework.CompProperties_SpawnFleck">
+        <!--生成的特效-->
+        <FleckDef>MYDE_AF_Fleck_HeatGlow_Intense</FleckDef>
+        <!--这个是播放特效的间隔-->
+        <Fleck_MakeFleckTickMax>1</Fleck_MakeFleckTickMax>
+        <!--这个是播放多少次特效-->
+        <Fleck_MakeFleckNum_Origin>3</Fleck_MakeFleckNum_Origin>
+        <Fleck_MakeFleckNum_Max>0</Fleck_MakeFleckNum_Max>
+        <!--这个是位置调整-->
+        <Fleck_Range_ToSetPosition>1.2</Fleck_Range_ToSetPosition>
+        <Fleck_Angle_ToSetPosition>60</Fleck_Angle_ToSetPosition>
+        <!--这个是是否跟随飞行角度·用来制作尾焰-->
+        <Fleck_If_FollowBaseThingAngle>True</Fleck_If_FollowBaseThingAngle>
+        <!--这个是特效贴图旋转角度-->
+        <Fleck_Rotation>-180~180</Fleck_Rotation>
+        <!--这个是特效飞行方向-->
+        <!--<Fleck_Angle>-180~180</Fleck_Angle>-->
+        <Fleck_Angle>0</Fleck_Angle>
+        <!--这个是特效大小-->
+        <Fleck_Scale>2</Fleck_Scale>
+        <!--这个是特效飞行速度-->
+        <Fleck_Speed>2~3</Fleck_Speed>
+      </li>
+      <li Class="MYDE_AerocraftFramework.CompProperties_SpawnFleck">
+        <!--生成的特效-->
+        <FleckDef>MYDE_AF_Fleck_HeatGlow_Intense</FleckDef>
+        <!--这个是播放特效的间隔-->
+        <Fleck_MakeFleckTickMax>1</Fleck_MakeFleckTickMax>
+        <!--这个是播放多少次特效-->
+        <Fleck_MakeFleckNum_Origin>3</Fleck_MakeFleckNum_Origin>
+        <Fleck_MakeFleckNum_Max>0</Fleck_MakeFleckNum_Max>
+        <!--这个是位置调整-->
+        <Fleck_Range_ToSetPosition>1.2</Fleck_Range_ToSetPosition>
+        <Fleck_Angle_ToSetPosition>120</Fleck_Angle_ToSetPosition>
+        <!--这个是是否跟随飞行角度·用来制作尾焰-->
+        <Fleck_If_FollowBaseThingAngle>True</Fleck_If_FollowBaseThingAngle>
+        <!--这个是特效贴图旋转角度-->
+        <Fleck_Rotation>-180~180</Fleck_Rotation>
+        <!--这个是特效飞行方向-->
+        <!--<Fleck_Angle>-180~180</Fleck_Angle>-->
+        <Fleck_Angle>0</Fleck_Angle>
+        <!--这个是特效大小-->
+        <Fleck_Scale>2</Fleck_Scale>
+        <!--这个是特效飞行速度-->
+        <Fleck_Speed>2~3</Fleck_Speed>
+      </li>
+    </comps>
+    <uiOrder>500</uiOrder>
+  </ThingDef>
+  <!--武器·无人机生产装置-->
+  <ThingDef ParentName="MYDE_AerocraftFramework_XmlParent">
+    <defName>MYDE_AF_FWCraft_AerocraftCarrier_ExtraWeapon_SpawnDrone</defName>
+    <label>Drone production equipment</label>
+    <description>Drone production equipment</description>
+    <thingClass>MYDE_AerocraftFramework.Building_Aerocraft_AsWeapon</thingClass>
+    <statBases>
+      <MaxHitPoints>500</MaxHitPoints>
+      <WorkToBuild>1000</WorkToBuild>
+      <Mass>5</Mass>
+      <Beauty>5</Beauty>
+      <!--这个是精准度-->
+      <ShootingAccuracyTurret>0.9</ShootingAccuracyTurret>
+    </statBases>
+    <size>(1,1)</size>
+    <comps>
+      <!--本体的渲染+阴影-->
+      <li Class="MYDE_AerocraftFramework.CompProperties_Base_Thing">
+        <!--是否渲染-->
+        <If_Draw_Base>False</If_Draw_Base>
+        <!--是否制作阴影+阴影最大最下长度+阴影角度-->
+        <If_NeedDrawAllShadow>False</If_NeedDrawAllShadow>
+      </li>
+      <!--主武器渲染+阴影-->
+      <li Class="MYDE_AerocraftFramework.CompProperties_Base_Weapon">
+        <!--枪械-->
+        <WeaponDef>MYDE_AF_FWCraft_AerocraftCarrier_ExtraWeapon_Weapon_SpawnDrone</WeaponDef>
+        <!--是否渲染-->
+        <If_Draw_Gun>False</If_Draw_Gun>
+      </li>
+      <!--原版燃料-->
+      <li Class="CompProperties_Refuelable">
+        <outOfFuelMessage>Needs Fuel</outOfFuelMessage>
+        <fuelFilter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </fuelFilter>
+        <fuelCapacity>600</fuelCapacity>
+        <fuelMultiplier>1</fuelMultiplier>
+        <initialFuelPercent>0.1</initialFuelPercent>
+        <autoRefuelPercent>1</autoRefuelPercent>
+        <showFuelGizmo>true</showFuelGizmo>
+        <minimumFueledThreshold>1</minimumFueledThreshold>
+        <consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
+        <targetFuelLevelConfigurable>true</targetFuelLevelConfigurable>
+        <initialConfigurableTargetFuelLevel>600</initialConfigurableTargetFuelLevel>
+      </li>
+    </comps>
+    <building>
+      <deconstructible>false</deconstructible>
+    </building>
+  </ThingDef>
+  <ThingDef ParentName="BaseWeaponTurret">
+    <defName>MYDE_AF_FWCraft_AerocraftCarrier_ExtraWeapon_Weapon_SpawnDrone</defName>
+    <label>Drone production equipment</label>
+    <description>Drone production equipment</description>
+    <graphicData>
+      <texPath>AerocraftFramework/RotorCraft_SinglePropeller/Base</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <statBases>
+      <RangedWeapon_Cooldown>9.5</RangedWeapon_Cooldown>
+      <AccuracyTouch>0.7</AccuracyTouch>
+      <AccuracyShort>0.5</AccuracyShort>
+      <AccuracyMedium>0.25</AccuracyMedium>
+      <AccuracyLong>0.18</AccuracyLong>
+    </statBases>
+    <comps>
+      <li Class="MYDE_AerocraftFramework.CompProperties_LinkToVerbSpawnr">
+        <SpawnDef>MYDE_AF_RotorCraft_SinglePropeller_Base</SpawnDef>
+        <SpawnNum>1</SpawnNum>
+        <SpawnRadius>0</SpawnRadius>
+        <If_DefaultFollow>False</If_DefaultFollow>
+        <If_AutoSelectAfterSpawn>False</If_AutoSelectAfterSpawn>
+      </li>
+    </comps>
+    <verbs>
+      <li>
+        <verbClass>MYDE_AerocraftFramework.Verb_Spawn_Aerocraft_WithCasterFaction</verbClass>
+        <onlyManualCast>False</onlyManualCast>
+        <hasStandardCommand>true</hasStandardCommand>
+        <warmupTime>0.5</warmupTime>
+        <label>Deploy Drone</label>
+        <violent>false</violent>
+        <targetable>True</targetable>
+        <range>45</range>
+        <commandIcon>AerocraftFramework/RotorCraft_SinglePropeller/UI</commandIcon>
+        <consumeFuelPerShot>50</consumeFuelPerShot>
+        <targetParams>
+          <canTargetLocations>true</canTargetLocations>
+        </targetParams>
+      </li>
+    </verbs>
+  </ThingDef>
+  <!--武器·武器组-->
+  <ThingDef ParentName="MYDE_AerocraftFramework_XmlParent">
+    <defName>MYDE_AF_FWCraft_AerocraftCarrier_ExtraWeapon_WeaponGroup</defName>
+    <label>Weapon Group</label>
+    <description>Weapon Group,Can be replaced with any weapon.</description>
+    <thingClass>MYDE_AerocraftFramework.Building_Aerocraft_AsWeapon</thingClass>
+    <statBases>
+      <MaxHitPoints>500</MaxHitPoints>
+      <WorkToBuild>1000</WorkToBuild>
+      <Mass>5</Mass>
+      <Beauty>5</Beauty>
+      <!--这个是精准度-->
+      <ShootingAccuracyTurret>0.99</ShootingAccuracyTurret>
+    </statBases>
+    <size>(1,1)</size>
+    <comps>
+      <!--本体的渲染+阴影-->
+      <li Class="MYDE_AerocraftFramework.CompProperties_Base_Thing">
+        <!--是否渲染-->
+        <If_Draw_Base>False</If_Draw_Base>
+        <!--是否制作阴影+阴影最大最下长度+阴影角度-->
+        <If_NeedDrawAllShadow>False</If_NeedDrawAllShadow>
+      </li>
+      <!--主武器渲染+阴影-->
+      <li Class="MYDE_AerocraftFramework.CompProperties_Base_Weapon">
+        <!--枪械-->
+        <WeaponDef>MYDE_AF_UniversalWeapon_MiniGun</WeaponDef>
+        <!--是否渲染-->
+        <If_Draw_Gun>False</If_Draw_Gun>
+      </li>
+      <!--替换武器-->
+      <li Class="MYDE_AerocraftFramework.CompProperties_ReplaceCurrentWeapon">
+        <If_CanShowGizmosToReplace>True</If_CanShowGizmosToReplace>
+      </li>
+    </comps>
+    <building>
+      <deconstructible>false</deconstructible>
+    </building>
+  </ThingDef>
+  <!--跨地图-->
+  <ThingDef ParentName="SkyfallerBase">
+    <defName>MYDE_AF_Skyfalller_FWCraft_AerocraftCarrier_CrossMapThing</defName>
+    <label>“Pivot”NL-706 (Leaving)</label>
+    <thingClass>MYDE_AerocraftFramework.Skyfaller_Aerocraft_Leaving</thingClass>
+    <altitudeLayer>Skyfaller</altitudeLayer>
+    <graphicData>
+      <texPath>AerocraftFramework/FWCraft_AerocraftCarrier/Base</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <shaderType>CutoutFlying</shaderType>
+      <drawSize>7</drawSize>
+    </graphicData>
+    <skyfaller>
+      <movementType>Decelerate</movementType>
+      <reversed>true</reversed>
+      <shadow>Things/Skyfaller/SkyfallerShadowDropPod</shadow>
+      <shadowSize>(6, 6)</shadowSize>
+      <anticipationSound>DropPod_Leaving</anticipationSound>
+      <anticipationSoundTicks>-10</anticipationSoundTicks>
+      <ticksToImpactRange>
+        <min>-40</min>
+        <max>-15</max>
+      </ticksToImpactRange>
+    </skyfaller>
+  </ThingDef>
+  <WorldObjectDef>
+    <defName>MYDE_AF_WorldObject_FWCraft_AerocraftCarrier_CrossMapThing</defName>
+    <label>“Pivot”NL-706</label>
+    <description>“Pivot”NL-706</description>
+    <worldObjectClass>MYDE_AerocraftFramework.WorldObject_CrossMapThing_Flying</worldObjectClass>
+    <texture>AerocraftFramework/FWCraft_AerocraftCarrier/UI</texture>
+    <expandingIconTexture>AerocraftFramework/FWCraft_AerocraftCarrier/UI</expandingIconTexture>
+    <useDynamicDrawer>true</useDynamicDrawer>
+    <expandingIcon>true</expandingIcon>
+    <expandingIconPriority>60</expandingIconPriority>
+    <rotateGraphicWhenTraveling>true</rotateGraphicWhenTraveling>
+    <expandMore>true</expandMore>
+    <allowCaravanIncidentsWhichGenerateMap>true</allowCaravanIncidentsWhichGenerateMap>
+  </WorldObjectDef>
+</Defs>

@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <ThingCategoryDef>
+    <defName>MYDE_AerocraftFramework_Root</defName>
+    <label>Aerocraft</label>
+    <!--飞行器-->
+    <parent>Root</parent>
+  </ThingCategoryDef>
+  <!--最小化的东西·用来显示空白的图标-->
+  <ThingDef ParentName="MinifiedThing">
+    <defName>MYDE_AerocraftFramework_MinifiedThing</defName>
+    <label>MYDE_AerocraftFramework_MinifiedThing</label>
+    <thingClass>MYDE_AerocraftFramework.MinifiedThing_ChangeByAerocraftFramework</thingClass>
+    <statBases>
+      <Mass>5</Mass>
+    </statBases>
+  </ThingDef>
+  <!--设计界面-->
+  <DesignationCategoryDef>
+    <defName>MYDE_AerocraftFramework_DesignationCategory</defName>
+    <label>Aerocraft</label>
+    <order>10</order>
+    <specialDesignatorClasses>
+      <li>Designator_Cancel</li>
+      <li>Designator_Deconstruct</li>
+    </specialDesignatorClasses>
+  </DesignationCategoryDef>
+  <!--研究界面-->
+  <ResearchTabDef>
+    <defName>MYDE_AerocraftFramework_ResearchTab</defName>
+    <!--飞行器-->
+    <label>Aerocraft</label>
+  </ResearchTabDef>
+</Defs>

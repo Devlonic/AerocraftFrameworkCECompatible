@@ -1,0 +1,233 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <!--基础武器-->
+  <ThingDef ParentName="MYDE_AerocraftFramework_WeaponBase_XmlParent">
+    <defName>MYDE_AF_UniversalWeapon_BaseGun</defName>
+    <label>Basic gun</label>
+    <description>Basic weapon, with weapon performance equivalent to a small automatic machine gun tower</description>
+    <graphicData>
+      <texPath>AerocraftFramework/UniversalWeapon/BaseGun</texPath>
+    </graphicData>
+    <statBases>
+      <AccuracyTouch>0.77</AccuracyTouch>
+      <AccuracyShort>0.70</AccuracyShort>
+      <AccuracyMedium>0.45</AccuracyMedium>
+      <AccuracyLong>0.24</AccuracyLong>
+      <RangedWeapon_Cooldown>4.3</RangedWeapon_Cooldown>
+      <Mass>5</Mass>
+    </statBases>
+    <verbs>
+      <li>
+        <verbClass>Verb_Shoot</verbClass>
+        <defaultProjectile>Bullet_MiniTurret</defaultProjectile>
+        <warmupTime>0.5</warmupTime>
+        <range>28.9</range>
+        <ticksBetweenBurstShots>8</ticksBetweenBurstShots>
+        <burstShotCount>2</burstShotCount>
+        <soundCast>GunShotA</soundCast>
+        <soundCastTail>GunTail_Light</soundCastTail>
+        <muzzleFlashScale>9</muzzleFlashScale>
+        <consumeFuelPerShot>1</consumeFuelPerShot>
+      </li>
+    </verbs>
+    <costList>
+      <Steel>20</Steel>
+    </costList>
+  </ThingDef>
+  <!--武器安装·速射机枪-->
+  <ThingDef ParentName="MYDE_AerocraftFramework_AddableWeapon_XmlParent">
+    <defName>MYDE_AF_AddableWeapon_MiniGun</defName>
+    <label>Weapon·Minigun</label>
+    <description>Installing Minigun for Aerocraft</description>
+    <thingClass>Building</thingClass>
+    <graphicData>
+      <texPath>AerocraftFramework/UniversalWeapon/MiniGun</texPath>
+    </graphicData>
+    <uiIconPath>AerocraftFramework/UniversalWeapon/MiniGun</uiIconPath>
+    <constructionSkillPrerequisite>5</constructionSkillPrerequisite>
+    <researchPrerequisites>
+      <li>MultibarrelWeapons</li>
+    </researchPrerequisites>
+    <comps>
+      <li Class="MYDE_AerocraftFramework.CompProperties_AddableWeapon_Add">
+        <AddableWeaponDef>MYDE_AF_UniversalWeapon_MiniGun</AddableWeaponDef>
+      </li>
+    </comps>
+    <costList>
+      <Steel>160</Steel>
+      <ComponentIndustrial>20</ComponentIndustrial>
+    </costList>
+  </ThingDef>
+  <ThingDef ParentName="MYDE_AerocraftFramework_WeaponBase_XmlParent">
+    <defName>MYDE_AF_UniversalWeapon_MiniGun</defName>
+    <label>Minigun</label>
+    <description>Minigun</description>
+    <graphicData>
+      <texPath>AerocraftFramework/UniversalWeapon/MiniGun</texPath>
+    </graphicData>
+    <soundInteract>Interact_Rifle</soundInteract>
+    <weaponClasses>
+      <li>RangedHeavy</li>
+    </weaponClasses>
+    <statBases>
+      <Mass>10</Mass>
+      <AccuracyTouch>0.15</AccuracyTouch>
+      <AccuracyShort>0.25</AccuracyShort>
+      <AccuracyMedium>0.25</AccuracyMedium>
+      <AccuracyLong>0.18</AccuracyLong>
+      <RangedWeapon_Cooldown>4.3</RangedWeapon_Cooldown>
+    </statBases>
+    <verbs>
+      <li>
+        <verbClass>Verb_Shoot</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <defaultProjectile>Bullet_Minigun</defaultProjectile>
+        <warmupTime>0.5</warmupTime>
+        <range>30.9</range>
+        <burstShotCount>25</burstShotCount>
+        <ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+        <soundCast>Shot_Minigun</soundCast>
+        <soundCastTail>GunTail_Medium</soundCastTail>
+        <muzzleFlashScale>9</muzzleFlashScale>
+      </li>
+    </verbs>
+    <costList>
+      <Steel>160</Steel>
+      <ComponentIndustrial>20</ComponentIndustrial>
+    </costList>
+  </ThingDef>
+  <!--武器安装·狙击枪-->
+  <ThingDef ParentName="MYDE_AerocraftFramework_AddableWeapon_XmlParent">
+    <defName>MYDE_AF_AddableWeapon_SniperGun</defName>
+    <label>Weapon·Sniper rife</label>
+    <description>Installing Sniper rife for Aerocraft</description>
+    <thingClass>Building</thingClass>
+    <graphicData>
+      <texPath>AerocraftFramework/UniversalWeapon/SniperGun</texPath>
+    </graphicData>
+    <uiIconPath>AerocraftFramework/UniversalWeapon/SniperGun</uiIconPath>
+    <constructionSkillPrerequisite>5</constructionSkillPrerequisite>
+    <researchPrerequisites>
+      <li>PrecisionRifling</li>
+    </researchPrerequisites>
+    <costList>
+      <Steel>60</Steel>
+      <ComponentIndustrial>8</ComponentIndustrial>
+    </costList>
+    <comps>
+      <li Class="MYDE_AerocraftFramework.CompProperties_AddableWeapon_Add">
+        <AddableWeaponDef>MYDE_AF_UniversalWeapon_SniperGun</AddableWeaponDef>
+      </li>
+    </comps>
+  </ThingDef>
+  <ThingDef ParentName="MYDE_AerocraftFramework_WeaponBase_XmlParent">
+    <defName>MYDE_AF_UniversalWeapon_SniperGun</defName>
+    <label>Sniper rife</label>
+    <description>Sniper rife</description>
+    <graphicData>
+      <texPath>AerocraftFramework/UniversalWeapon/SniperGun</texPath>
+    </graphicData>
+    <soundInteract>Interact_Rifle</soundInteract>
+    <weaponClasses>
+      <li>LongShots</li>
+      <li>RangedHeavy</li>
+    </weaponClasses>
+    <statBases>
+      <Mass>4</Mass>
+      <AccuracyTouch>0.50</AccuracyTouch>
+      <AccuracyShort>0.70</AccuracyShort>
+      <AccuracyMedium>0.86</AccuracyMedium>
+      <AccuracyLong>1</AccuracyLong>
+      <RangedWeapon_Cooldown>5.3</RangedWeapon_Cooldown>
+    </statBases>
+    <costList>
+      <Steel>60</Steel>
+      <ComponentIndustrial>8</ComponentIndustrial>
+    </costList>
+    <verbs>
+      <li>
+        <verbClass>Verb_Shoot</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <defaultProjectile>Bullet_SniperRifle</defaultProjectile>
+        <warmupTime>0.5</warmupTime>
+        <range>44.9</range>
+        <soundCast>Shot_SniperRifle</soundCast>
+        <soundCastTail>GunTail_Heavy</soundCastTail>
+        <muzzleFlashScale>9</muzzleFlashScale>
+      </li>
+    </verbs>
+  </ThingDef>
+  <!--武器安装·榴弹-->
+  <ThingDef ParentName="MYDE_AerocraftFramework_AddableWeapon_XmlParent">
+    <defName>MYDE_AF_AddableWeapon_GrenadeGun</defName>
+    <label>Weapon·Grenade gun</label>
+    <description>Installing Grenade gun for Aerocraft</description>
+    <thingClass>Building</thingClass>
+    <graphicData>
+      <texPath>AerocraftFramework/UniversalWeapon/GrenadeGun</texPath>
+    </graphicData>
+    <uiIconPath>AerocraftFramework/UniversalWeapon/GrenadeGun</uiIconPath>
+    <constructionSkillPrerequisite>5</constructionSkillPrerequisite>
+    <researchPrerequisites>
+      <li>PrecisionRifling</li>
+    </researchPrerequisites>
+    <costList>
+      <Steel>75</Steel>
+      <Chemfuel>80</Chemfuel>
+    </costList>
+    <comps>
+      <li Class="MYDE_AerocraftFramework.CompProperties_AddableWeapon_Add">
+        <AddableWeaponDef>MYDE_AF_UniversalWeapon_GrenadeGun</AddableWeaponDef>
+      </li>
+    </comps>
+  </ThingDef>
+  <ThingDef ParentName="MYDE_AerocraftFramework_WeaponBase_XmlParent">
+    <defName>MYDE_AF_UniversalWeapon_GrenadeGun</defName>
+    <label>Grenade gun</label>
+    <description>Grenade gun</description>
+    <graphicData>
+      <texPath>AerocraftFramework/UniversalWeapon/GrenadeGun</texPath>
+    </graphicData>
+    <soundInteract>Interact_Grenade</soundInteract>
+    <statBases>
+      <Mass>4</Mass>
+      <RangedWeapon_Cooldown>3.1</RangedWeapon_Cooldown>
+    </statBases>
+    <costList>
+      <Steel>20</Steel>
+      <Chemfuel>80</Chemfuel>
+    </costList>
+    <verbs>
+      <li>
+        <verbClass>Verb_LaunchProjectile</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <range>29.9</range>
+        <forcedMissRadius>1.9</forcedMissRadius>
+        <warmupTime>0.5</warmupTime>
+        <noiseRadius>4</noiseRadius>
+        <ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+        <soundCast>ThrowGrenade</soundCast>
+        <targetParams>
+          <canTargetLocations>true</canTargetLocations>
+        </targetParams>
+        <defaultProjectile>MYDE_AF_UniversalWeapon_GrenadeGun_Projectile</defaultProjectile>
+        <rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+      </li>
+    </verbs>
+  </ThingDef>
+  <ThingDef ParentName="BaseGrenadeProjectile">
+    <defName>MYDE_AF_UniversalWeapon_GrenadeGun_Projectile</defName>
+    <label>Grenade</label>
+    <thingClass>Projectile_Explosive</thingClass>
+    <graphicData>
+      <texPath>Things/Projectile/Grenade</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile>
+      <explosionRadius>1.9</explosionRadius>
+      <damageDef>Bomb</damageDef>
+      <explosionDelay>0</explosionDelay>
+      <speed>30</speed>
+    </projectile>
+  </ThingDef>
+</Defs>

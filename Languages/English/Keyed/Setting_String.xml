@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!--Mod设置-->
+  <AerocraftFramework_Setting_Label>Aerocraft Framework</AerocraftFramework_Setting_Label>
+  <AerocraftFramework_Setting_Initialization>Initialization</AerocraftFramework_Setting_Initialization>
+  <AerocraftFramework_Setting_True>On</AerocraftFramework_Setting_True>
+  <AerocraftFramework_Setting_False>Off</AerocraftFramework_Setting_False>
+  <AerocraftFramework_Setting_If_CheckMapBoundary>Detect map edge for forced turnbacks</AerocraftFramework_Setting_If_CheckMapBoundary>
+  <AerocraftFramework_Setting_If_DrawShadow>Draw shadow</AerocraftFramework_Setting_If_DrawShadow>
+  <AerocraftFramework_Setting_Draw_Shadow_HeighRange_Min>Shortest shadow offset distance under illumination</AerocraftFramework_Setting_Draw_Shadow_HeighRange_Min>
+  <AerocraftFramework_Setting_Draw_Shadow_HeighRange_Max>Shadow offset distance at maximum illumination</AerocraftFramework_Setting_Draw_Shadow_HeighRange_Max>
+  <AerocraftFramework_Setting_Draw_Shadow_Angle>Shadow offset angle</AerocraftFramework_Setting_Draw_Shadow_Angle>
+  <AerocraftFramework_Setting_If_CanFireOnlyFlying>Only fire during flight</AerocraftFramework_Setting_If_CanFireOnlyFlying>
+  <AerocraftFramework_Setting_If_CanControlNonPlayer>(Debug) can control any aerocraft</AerocraftFramework_Setting_If_CanControlNonPlayer>
+</LanguageData>
