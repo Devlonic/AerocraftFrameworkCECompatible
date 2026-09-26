@@ -65,6 +65,10 @@ Other bugs of the original that show up in normal play:
   Ukrainian translation.
 - **Bombs** accept CE mortar shells; bombs and fire foam shells fly as CE projectiles; weapon mounts no longer
   hit their own aircraft.
+- **Bombing run**: click a target and the aircraft flies over it and drops a stick of bombs along its approach;
+  shift-click the start of a line and click its end to bomb evenly along the line (a fixed-wing aircraft lines up
+  before the line first). The targeter shows where each bomb falls and its blast radius; right click sets the bombs
+  per run; every selected bomber makes the run. Another order, landing or running out of bombs ends it.
 - Pilots count as colonists (no game over while everyone is in the air).
 
 ## Installation
@@ -143,7 +147,8 @@ and quests and removes other hostiles from the home map (a raid downs the coloni
 - colonists reload every empty gun automatically; a manual order switches the ammo type;
 - a helicopter with pilots takes off, cannot be reloaded in the air, shoots and hits an enemy, flies, lands,
   refuses to follow itself;
-- colonists load bombs, a bomb is dropped in flight, the support aircraft fires a fire foam shell;
+- colonists load bombs, a bomb is dropped in flight, bombing runs on a point and along a line drop their bombs
+  over the targets, the support aircraft fires a fire foam shell;
 - boarding by job, a save/load round trip and the load of a legacy save with a nested follow target;
 - a flight to an enemy settlement and back with pilots and mounts; the crew counts as colonists there, and the
   map stays open when the settlement is defeated with only the crew on it;

@@ -84,5 +84,17 @@
 	<AerocraftFramework_ShellBayFull>bomb bay full</AerocraftFramework_ShellBayFull>
 	<AerocraftFramework_ShellNotUsable>{0} cannot be dropped</AerocraftFramework_ShellNotUsable>
 	<AerocraftFramework_ShellsOnBoard>Bombs on board: {0} / {1}</AerocraftFramework_ShellsOnBoard>
+	<AerocraftFramework_BombRun_Label>Bombing run</AerocraftFramework_BombRun_Label>
+	<AerocraftFramework_BombRun_Desc>Click a target: the aircraft flies over it and drops {0} bomb(s) along its approach.\nShift+click the start of a line, then click its end: the bombs fall evenly along the line.\n\nRight click: bombs per run. With several bombers selected, each one makes the run.</AerocraftFramework_BombRun_Desc>
+	<AerocraftFramework_BombRun_PerRun>Bombs per run: {0}</AerocraftFramework_BombRun_PerRun>
+	<AerocraftFramework_BombRun_All>all</AerocraftFramework_BombRun_All>
+	<AerocraftFramework_BombRun_MouseTarget>Click: bomb here. Shift+click: start of a line.</AerocraftFramework_BombRun_MouseTarget>
+	<AerocraftFramework_BombRun_MouseLineEnd>Click the end of the line.</AerocraftFramework_BombRun_MouseLineEnd>
+	<AerocraftFramework_BombRun_Cancel_Label>Cancel the bombing run</AerocraftFramework_BombRun_Cancel_Label>
+	<AerocraftFramework_BombRun_Cancel_Desc>Keep the remaining bombs; the aircraft flies on to the point it was heading for.</AerocraftFramework_BombRun_Cancel_Desc>
+	<AerocraftFramework_BombRun_Status>Bombing run: {0} bomb(s) still to drop</AerocraftFramework_BombRun_Status>
+	<AerocraftFramework_BombRun_Aborted>{0}: bombing run aborted ({1}).</AerocraftFramework_BombRun_Aborted>
+	<AerocraftFramework_BombRun_Busy>the aircraft is taking off or landing</AerocraftFramework_BombRun_Busy>
+	<AerocraftFramework_BombRun_CannotReach>it could not get over the target</AerocraftFramework_BombRun_CannotReach>
 
 </LanguageData>

@@ -145,6 +145,18 @@
 	<AerocraftFramework_ShellBayFull>бомбовий відсік повний</AerocraftFramework_ShellBayFull>
 	<AerocraftFramework_ShellNotUsable>{0} не можна скинути</AerocraftFramework_ShellNotUsable>
 	<AerocraftFramework_ShellsOnBoard>Бомб на борту: {0} / {1}</AerocraftFramework_ShellsOnBoard>
+	<AerocraftFramework_BombRun_Label>Бомбардування</AerocraftFramework_BombRun_Label>
+	<AerocraftFramework_BombRun_Desc>Клацніть ціль: апарат пролетить над нею і скине бомб: {0} (серією вздовж курсу заходу).\nShift+клік: початок лінії, потім клік: її кінець. Бомби ляжуть рівно вздовж лінії.\n\nПравий клік: скільки бомб за захід. Якщо виділено кілька бомбардувальників, захід робить кожен.</AerocraftFramework_BombRun_Desc>
+	<AerocraftFramework_BombRun_PerRun>Бомб за захід: {0}</AerocraftFramework_BombRun_PerRun>
+	<AerocraftFramework_BombRun_All>усі</AerocraftFramework_BombRun_All>
+	<AerocraftFramework_BombRun_MouseTarget>Клік: бомбити тут. Shift+клік: початок лінії.</AerocraftFramework_BombRun_MouseTarget>
+	<AerocraftFramework_BombRun_MouseLineEnd>Клацніть кінець лінії.</AerocraftFramework_BombRun_MouseLineEnd>
+	<AerocraftFramework_BombRun_Cancel_Label>Скасувати бомбардування</AerocraftFramework_BombRun_Cancel_Label>
+	<AerocraftFramework_BombRun_Cancel_Desc>Решта бомб лишається на борту; апарат долітає до точки, куди прямував.</AerocraftFramework_BombRun_Cancel_Desc>
+	<AerocraftFramework_BombRun_Status>Бомбардування: ще скинути {0}</AerocraftFramework_BombRun_Status>
+	<AerocraftFramework_BombRun_Aborted>{0}: бомбардування перервано ({1}).</AerocraftFramework_BombRun_Aborted>
+	<AerocraftFramework_BombRun_Busy>апарат злітає або сідає</AerocraftFramework_BombRun_Busy>
+	<AerocraftFramework_BombRun_CannotReach>не вдалося вийти на ціль</AerocraftFramework_BombRun_CannotReach>
 
 	<!-- ============ Переліт ============ -->
 	<AerocraftFramework_ChoseWorldTargetError>Виберіть об'єкт на карті світу.</AerocraftFramework_ChoseWorldTargetError>

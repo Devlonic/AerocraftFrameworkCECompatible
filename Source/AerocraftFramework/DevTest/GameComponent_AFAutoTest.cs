@@ -37,6 +37,9 @@ namespace MYDE_AerocraftFramework
         private Building_Aerocraft_Base testTurret;
         private ThingDef testAmmo;
         private Map defeatedMap;
+        private int bombRunShells;
+        private IntVec3 bombRunTarget;
+        private float bombRunClosest;
         private readonly HashSet<Building_Aerocraft_AsBaseThing> reportedLost = new HashSet<Building_Aerocraft_AsBaseThing>();
         private int counter;
         private string legacyAircraftId;
@@ -701,6 +704,20 @@ namespace MYDE_AerocraftFramework
                     {
                         return;
                     }
+                    // Away from the colonists who loaded the bombs before dropping one below itself.
+                    IntVec3? dropSpot = SafeBombCell(map, subject.Position, 12f, 25f);
+                    if (dropSpot != null)
+                    {
+                        subject.Set_TargetVPos(dropSpot.Value.ToVector3Shifted());
+                    }
+                    counter = 9;
+                    stepStartTick = Find.TickManager.TicksGame;
+                    break;
+                case 9:
+                    if (!subject.HaveGoToTarget && StepTicks < 3000)
+                    {
+                        return;
+                    }
                     Comp_CanLoadShell bay2 = subject.TryGetComp<Comp_CanLoadShell>();
                     int before = bay2.TotalShells;
                     Check(bay2.CanActivate().Accepted, "bombs can be dropped in flight: " + bay2.CanActivate().Reason);
@@ -722,6 +739,87 @@ namespace MYDE_AerocraftFramework
                     {
                         return;
                     }
+                    // Bombing run on a point, away from colonists and aircraft.
+                    Comp_CanLoadShell runBay = subject.TryGetComp<Comp_CanLoadShell>();
+                    IntVec3? point = SafeBombCell(map, subject.Position, 12f, 25f);
+                    if (point == null)
+                    {
+                        Note("No safe cell for a bombing run");
+                        counter = 8;
+                        break;
+                    }
+                    runBay.BombsPerRun = 2;
+                    bombRunShells = runBay.TotalShells;
+                    bombRunTarget = point.Value;
+                    bombRunClosest = float.MaxValue;
+                    AcceptanceReport started = runBay.StartBombRun(point.Value, null);
+                    Check(started.Accepted && runBay.BombRunActive && runBay.BombRunCells.Count == 2, $"bombing run on {point.Value} ordered ({started.Reason})");
+                    counter = 5;
+                    stepStartTick = Find.TickManager.TicksGame;
+                    break;
+                case 5:
+                case 6:
+                    Comp_CanLoadShell runningBay = subject.TryGetComp<Comp_CanLoadShell>();
+                    bombRunClosest = Mathf.Min(bombRunClosest, (subject.DrawPos - bombRunTarget.ToVector3Shifted()).MagnitudeHorizontal());
+                    if (counter == 5 && StepTicks == 10)
+                    {
+                        Find.Selector.ClearSelection();
+                        Find.Selector.Select(subject, playSound: false);
+                    }
+                    if (counter == 5 && StepTicks >= 10 && StepTicks < 60)
+                    {
+                        // The camera moves on the next frame: follow the aircraft until the picture is taken.
+                        Find.CameraDriver.JumpToCurrentMapLoc(subject.DrawPos);
+                    }
+                    if (counter == 5 && StepTicks == 40)
+                    {
+                        CaptureScreen("bombrun");
+                    }
+                    else if (counter == 5 && StepTicks == 60)
+                    {
+                        Find.Selector.ClearSelection();
+                    }
+                    if (runningBay.BombRunActive && StepTicks < 5000)
+                    {
+                        return;
+                    }
+                    string kind = counter == 5 ? "point" : "line";
+                    Check(!runningBay.BombRunActive && runningBay.TotalShells == bombRunShells - 2,
+                        $"bombing run on a {kind}: {bombRunShells - runningBay.TotalShells} bombs dropped in {StepTicks} ticks");
+                    Check(bombRunClosest <= 3f, $"the aircraft flew over the {kind} target (closest {bombRunClosest:F1} cells)");
+                    if (counter == 6)
+                    {
+                        counter = 7;
+                        stepStartTick = Find.TickManager.TicksGame;
+                        break;
+                    }
+                    // Carpet bombing along a short line.
+                    IntVec3? lineStart = SafeBombCell(map, subject.Position, 12f, 25f);
+                    IntVec3? lineEnd = lineStart == null ? null : SafeBombCell(map, lineStart.Value, 5f, 8f);
+                    if (lineEnd == null)
+                    {
+                        Note("No safe line for a bombing run");
+                        counter = 7;
+                        break;
+                    }
+                    bombRunShells = runningBay.TotalShells;
+                    bombRunTarget = lineStart.Value;
+                    bombRunClosest = float.MaxValue;
+                    AcceptanceReport lineStarted = runningBay.StartBombRun(lineStart.Value, lineEnd.Value);
+                    Check(lineStarted.Accepted && runningBay.BombRunCells.First() == lineStart.Value && runningBay.BombRunCells.Last() == lineEnd.Value,
+                        $"bombing run along {lineStart.Value} - {lineEnd.Value} ordered ({lineStarted.Reason})");
+                    counter = 6;
+                    stepStartTick = Find.TickManager.TicksGame;
+                    break;
+                case 7:
+                    // The last bombs land before the aircraft does.
+                    if (StepTicks < 600)
+                    {
+                        return;
+                    }
+                    counter = 8;
+                    break;
+                case 8:
                     subject.Change_Down();
                     counter = 3;
                     stepStartTick = Find.TickManager.TicksGame;
@@ -739,6 +837,22 @@ namespace MYDE_AerocraftFramework
                     }
                     break;
             }
+        }
+
+        /// <summary>A standable cell at the given distance with no pawn or aircraft within 12 cells.</summary>
+        private IntVec3? SafeBombCell(Map map, IntVec3 center, float minDistance, float maxDistance)
+        {
+            List<IntVec3> occupied = map.mapPawns.AllPawnsSpawned.Select(p => p.Position)
+                .Concat(aircraft.Where(a => a.Spawned && a.Map == map).Select(a => a.Position)).ToList();
+            foreach (IntVec3 cell in GenRadial.RadialCellsAround(center, maxDistance, useCenter: false))
+            {
+                if (cell.InBounds(map) && !cell.InNoBuildEdgeArea(map) && cell.DistanceTo(center) >= minDistance && cell.Standable(map)
+                    && occupied.All(o => !o.InHorDistOf(cell, 12f)))
+                {
+                    return cell;
+                }
+            }
+            return null;
         }
 
         // ------------------------------------------------------------------ 7: boarding
