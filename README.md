@@ -122,7 +122,8 @@ tools\Run-AutoTest.ps1 -DataDir C:\Temp\af-test-vanilla -NoCombatExtended
 ```
 
 It uses its own data folder (your config and saves are not touched), starts a quick test game with Harmony, the
-DLCs, CE (optional), Vehicle Framework, RimThunder Core, this mod and Gruppa Krovi, and checks:
+DLCs, CE (optional), Vehicle Framework, RimThunder Core, this mod and Gruppa Krovi, turns off random incidents
+(a raid on the test map downs the colonists it needs), and checks:
 
 - every aircraft def (framework and addons) spawns with its weapon, mounts and links;
 - colonists reload every empty gun automatically; a manual order switches the ammo type;

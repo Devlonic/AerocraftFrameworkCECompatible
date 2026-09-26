@@ -11,7 +11,15 @@ namespace MYDE_AerocraftFramework
     [StaticConstructorOnStartup]
     public class Gizmo_AerocraftAmmo : Gizmo
     {
-        private const int MaxRows = 4;
+        private const float Padding = 5f;
+        private const float RowHeight = 16f;
+        private const float ColumnWidth = 170f;
+        private const float ColumnGap = 6f;
+        private const int MaxColumns = 3;
+
+        private static readonly Texture2D BarBackground = SolidColorMaterials.NewSolidColorTexture(new Color(0.18f, 0.18f, 0.18f));
+        private static readonly Color EmptyCountColor = new Color(1f, 0.45f, 0.4f);
+
         private readonly Building_Aerocraft_AsBaseThing aircraft;
 
         public Gizmo_AerocraftAmmo(Building_Aerocraft_AsBaseThing aircraft)
@@ -37,37 +45,45 @@ namespace MYDE_AerocraftFramework
             }
         }
 
-        public override float GetWidth(float maxWidth) => Mathf.Min(210f, maxWidth);
+        /// <summary>Rows that fit under the title line.</summary>
+        private static int RowsPerColumn => Mathf.Max(1, Mathf.FloorToInt((Height - 2f * Padding - RowHeight) / RowHeight));
+
+        private static int ColumnsFor(int entryCount) => Mathf.Clamp(Mathf.CeilToInt((float)entryCount / RowsPerColumn), 1, MaxColumns);
+
+        public override float GetWidth(float maxWidth)
+        {
+            int columns = ColumnsFor(Entries(aircraft).Count());
+            return Mathf.Min(2f * Padding + columns * ColumnWidth + (columns - 1) * ColumnGap, maxWidth);
+        }
 
         public override GizmoResult GizmoOnGUI(Vector2 topLeft, float maxWidth, GizmoRenderParms parms)
         {
-            Rect rect = new Rect(topLeft.x, topLeft.y, GetWidth(maxWidth), 75f);
-            Widgets.DrawWindowBackground(rect);
-            Rect inner = rect.ContractedBy(5f);
             List<(Building_Aerocraft_Base turret, Thing gun, int current, int capacity)> entries = Entries(aircraft).ToList();
+            Rect rect = new Rect(topLeft.x, topLeft.y, GetWidth(maxWidth), Height);
+            Widgets.DrawWindowBackground(rect);
+            Widgets.DrawHighlightIfMouseover(rect);
+            Rect inner = rect.ContractedBy(Padding);
+            int rows = RowsPerColumn;
+            int columns = Mathf.Clamp(Mathf.FloorToInt((inner.width + ColumnGap) / (ColumnWidth + ColumnGap) + 0.01f), 1, ColumnsFor(entries.Count));
+            float columnWidth = (inner.width - (columns - 1) * ColumnGap) / columns;
+            int shown = Mathf.Min(entries.Count, rows * columns);
+
             Text.Font = GameFont.Tiny;
-            Text.Anchor = TextAnchor.UpperLeft;
-            Widgets.Label(new Rect(inner.x, inner.y, inner.width, 14f), "AerocraftFramework_Gizmo_Ammo".Translate());
-            float rowHeight = 13f;
-            float y = inner.y + 15f;
-            int shown = Mathf.Min(entries.Count, MaxRows);
+            Rect titleRect = new Rect(inner.x, inner.y, inner.width, RowHeight);
+            Text.Anchor = TextAnchor.MiddleLeft;
+            Widgets.Label(TextRect(titleRect), "AerocraftFramework_Gizmo_Ammo".Translate());
+            if (entries.Count > shown)
+            {
+                Text.Anchor = TextAnchor.MiddleRight;
+                Widgets.Label(TextRect(titleRect), "+" + (entries.Count - shown));
+            }
             for (int i = 0; i < shown; i++)
             {
-                (Building_Aerocraft_Base turret, Thing gun, int current, int capacity) = entries[i];
-                Rect labelRect = new Rect(inner.x, y, inner.width * 0.45f, rowHeight);
-                Rect barRect = new Rect(inner.x + inner.width * 0.47f, y + 1f, inner.width * 0.53f, rowHeight - 2f);
-                Widgets.Label(labelRect, gun.def.LabelCap.ToString().Truncate(labelRect.width));
-                float percent = (float)current / capacity;
-                Widgets.FillableBar(barRect, percent, percent < 0.25f ? MYDE_TexButton.AmmoLowBar : MYDE_TexButton.AmmoFullBar, MYDE_TexButton.EmptyBar, doBorder: false);
-                Text.Anchor = TextAnchor.MiddleCenter;
-                Widgets.Label(barRect, current + "/" + capacity);
-                Text.Anchor = TextAnchor.UpperLeft;
-                y += rowHeight;
+                var (_, gun, current, capacity) = entries[i];
+                Rect row = new Rect(inner.x + i / rows * (columnWidth + ColumnGap), titleRect.yMax + i % rows * RowHeight, columnWidth, RowHeight);
+                DrawEntry(row, gun, current, capacity);
             }
-            if (entries.Count > MaxRows)
-            {
-                Widgets.Label(new Rect(inner.x, y, inner.width, rowHeight), "+" + (entries.Count - MaxRows));
-            }
+            Text.Anchor = TextAnchor.UpperLeft;
             Text.Font = GameFont.Small;
             string tip = "AerocraftFramework_Gizmo_Ammo_Tip".Translate() + "\n\n" + string.Join("\n", entries.Select(e => Building_Aerocraft_Base.GunStatusLine(e.gun)));
             TooltipHandler.TipRegion(rect, tip);
@@ -78,6 +94,35 @@ namespace MYDE_AerocraftFramework
                 return new GizmoResult(GizmoState.Interacted);
             }
             return new GizmoResult(Mouse.IsOver(rect) ? GizmoState.Mouseover : GizmoState.Clear);
+        }
+
+        /// <summary>One weapon: a bar over the whole row, the weapon on the left and the rounds on the right.</summary>
+        private static void DrawEntry(Rect row, Thing gun, int current, int capacity)
+        {
+            float percent = Mathf.Clamp01((float)current / capacity);
+            Rect bar = new Rect(row.x, row.y + 1f, row.width, row.height - 2f);
+            Widgets.FillableBar(bar, percent, percent < 0.25f ? MYDE_TexButton.AmmoLowBar : MYDE_TexButton.AmmoFullBar, BarBackground, doBorder: false);
+
+            Rect textRect = TextRect(new Rect(row.x + 4f, row.y, row.width - 8f, row.height));
+            string count = current + "/" + capacity;
+            Text.Anchor = TextAnchor.MiddleRight;
+            GUI.color = current == 0 ? EmptyCountColor : Color.white;
+            Widgets.Label(textRect, count);
+            GUI.color = Color.white;
+
+            Rect labelRect = new Rect(textRect.x, textRect.y, textRect.width - Text.CalcSize(count).x - 6f, textRect.height);
+            Text.Anchor = TextAnchor.MiddleLeft;
+            Widgets.Label(labelRect, gun.def.LabelCap.ToString().Truncate(labelRect.width));
+        }
+
+        /// <summary>
+        /// A label rect at least one line of the tiny font high, centred on <paramref name="rect"/>: rows are
+        /// shorter than a line, and a rect shorter than the line clips the text.
+        /// </summary>
+        private static Rect TextRect(Rect rect)
+        {
+            float height = Mathf.Max(rect.height, Text.LineHeightOf(GameFont.Tiny));
+            return new Rect(rect.x, rect.center.y - height / 2f, rect.width, height);
         }
 
         /// <summary>Orders colonists to reload every weapon of the aircraft that is not full.</summary>

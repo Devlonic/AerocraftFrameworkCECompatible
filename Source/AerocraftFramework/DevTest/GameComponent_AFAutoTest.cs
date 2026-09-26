@@ -170,6 +170,12 @@ namespace MYDE_AerocraftFramework
 
         private void RunStep()
         {
+            // No raids or other incidents: they down the colonists the steps rely on. Loading a save restores them.
+            if (Find.Storyteller.storytellerComps.Count > 0)
+            {
+                Find.Storyteller.storytellerComps.Clear();
+                Find.Storyteller.incidentQueue.Clear();
+            }
             switch (step)
             {
                 case -1:
@@ -248,6 +254,10 @@ namespace MYDE_AerocraftFramework
             foreach (Pawn pawn in map.mapPawns.FreeColonistsSpawned)
             {
                 PrepareColonist(pawn);
+            }
+            foreach (Pawn hostile in map.mapPawns.AllPawnsSpawned.Where(p => p.HostileTo(Faction.OfPlayer)).ToList())
+            {
+                hostile.Destroy();
             }
             CellRect area = CellRect.CenteredOn(map.Center, 60).ClipInsideMap(map);
             ClearArea(map, area);
@@ -893,7 +903,7 @@ namespace MYDE_AerocraftFramework
             }
             uiFrames = 0;
             uiCaptured = false;
-            Building_Aerocraft_AsBaseThing craft = aircraft.Where(a => a.Spawned).OrderByDescending(a => a.AllExtraWeapon.Count).FirstOrDefault();
+            Building_Aerocraft_AsBaseThing craft = aircraft.Where(a => a.Spawned).OrderByDescending(a => Magazines(a).Count).ThenByDescending(a => a.AllExtraWeapon.Count).FirstOrDefault();
             switch (uiStage++)
             {
                 case 0:
@@ -902,7 +912,14 @@ namespace MYDE_AerocraftFramework
                     Find.WindowStack.Add(uiWindow);
                     break;
                 case 1:
-                    Note($"UI: aircraft tab and gizmos of {craft?.def.defName}");
+                    // An empty and an almost empty magazine, so that the ammo gizmo shows every state.
+                    List<Thing> magazines = craft == null ? new List<Thing>() : Magazines(craft);
+                    for (int i = 0; i < magazines.Count && i < 2; i++)
+                    {
+                        AerocraftCompat.Ammo.TryGetMagazine(magazines[i], out _, out int capacity);
+                        AerocraftCompat.Ammo.DebugSetMagazine(magazines[i], i == 0 ? 0 : Mathf.Max(1, capacity / 10));
+                    }
+                    Note($"UI: aircraft tab and gizmos of {craft?.def.defName} ({magazines.Count} magazines)");
                     Find.Selector.ClearSelection();
                     Find.Selector.Select(craft, playSound: false);
                     CameraJumper.TryJump(craft);
@@ -938,6 +955,11 @@ namespace MYDE_AerocraftFramework
                     Next(13);
                     return;
             }
+        }
+
+        private static List<Thing> Magazines(Building_Aerocraft_AsBaseThing craft)
+        {
+            return craft.AllTurrets.Select(t => t.Gun_Now).Where(g => g != null && AerocraftCompat.Ammo.TryGetMagazine(g, out _, out int capacity) && capacity > 0).ToList();
         }
 
         /// <summary>Saves a screenshot next to the report (for looking at the UI after a run).</summary>
