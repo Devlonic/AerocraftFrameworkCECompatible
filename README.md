@@ -32,6 +32,11 @@ Other bugs of the original that show up in normal play:
   wrote a full copy of itself into the save, recursively, at every save: a 125 MB save with 1500 nested copies
   and `deep-saved twice` errors. It is now a reference, and legacy nested nodes are skipped on load.
 - Letting a pawn out never removed it from the aircraft; destroying an aircraft spawned the same pawn again.
+- Pawns on board were kept in a plain list, so the game did not know they were on the map. They vanished from
+  the colonist bar, and a map with only aircraft crews left was closed with the aircraft and its crew on it: a
+  town that capitulated to Occupation & Annexation, a defeated settlement, a caravan battlefield. The original
+  only kept enemy settlement and site maps open. The aircraft now holds its crew like a cryptosleep casket holds its
+  sleeper (the save format is unchanged), and no map is closed while a player aircraft is on it.
 - Deconstruction refunded nothing (the destroy mode was ignored).
 - Switching weapons could lose the original weapon, or leave the turret with none.
 - Extra weapon mounts were orphaned when the aircraft was destroyed or uninstalled.
@@ -131,7 +136,8 @@ DLCs, CE (optional), Vehicle Framework, RimThunder Core, this mod and Gruppa Kro
   refuses to follow itself;
 - colonists load bombs, a bomb is dropped in flight, the support aircraft fires a fire foam shell;
 - boarding by job, a save/load round trip and the load of a legacy save with a nested follow target;
-- a flight to an enemy settlement and back with pilots and mounts;
+- a flight to an enemy settlement and back with pilots and mounts; the crew counts as colonists there, and the
+  map stays open when the settlement is defeated with only the crew on it;
 - the settings window, the aircraft tab and the dialogs draw without errors;
 - deconstruction and destruction let the pilots out.
 

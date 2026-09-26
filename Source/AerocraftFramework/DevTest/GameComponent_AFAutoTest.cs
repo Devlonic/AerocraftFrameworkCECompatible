@@ -36,6 +36,7 @@ namespace MYDE_AerocraftFramework
         private Thing testGun;
         private Building_Aerocraft_Base testTurret;
         private ThingDef testAmmo;
+        private Map defeatedMap;
         private int counter;
         private string legacyAircraftId;
         private int homeTile = -1;
@@ -710,7 +711,15 @@ namespace MYDE_AerocraftFramework
             {
                 case 0:
                     subject = aircraft.FirstOrDefault(a => a.Spawned && a.TryGetComp<Comp_CarryPawn>() != null && a.ListPawn.Count == 0);
-                    Pawn pawn = HomeMap.mapPawns.FreeColonistsSpawned.First();
+                    // A healthy adult who can walk there: quick test colonists can be children or unable to work, and
+                    // the bomb dropped in step 6 may have hurt the colonists who loaded it.
+                    Pawn pawn = HomeMap.mapPawns.FreeColonistsSpawned
+                        .Where(p => !p.Downed && !p.InMentalState && !p.IsBurning() && !p.health.HasHediffsNeedingTend() && p.DevelopmentalStage.Adult()
+                            && p.CanReach(subject, PathEndMode.Touch, Danger.Deadly))
+                        .OrderBy(p => p.Position.DistanceToSquared(subject.Position))
+                        .FirstOrDefault() ?? HomeMap.mapPawns.FreeColonistsSpawned.First();
+                    Note($"  {subject.def.defName} at {subject.Position} ({subject.OccupiedRect()}), {subject.FlightStatusLabel}; colonists: "
+                        + string.Join(", ", HomeMap.mapPawns.FreeColonistsSpawned.Select(p => $"{p.LabelShort}@{p.Position} {p.CurJobDef?.defName} reach={p.CanReach(subject, PathEndMode.Touch, Danger.Deadly)}")));
                     Job job = JobMaker.MakeJob(MYDE_JobDefOf.MYDE_AerocraftFramework_Job_Enter_Building_Aerocraft_AsBaseThing, subject);
                     Check(pawn.jobs.TryTakeOrderedJob(job, JobTag.Misc), $"{pawn} ordered to board {subject.def.defName}");
                     testGun = pawn;
@@ -720,7 +729,14 @@ namespace MYDE_AerocraftFramework
                     Pawn boarding = (Pawn)testGun;
                     if (subject.ListPawn.Contains(boarding) || StepTicks > 3000)
                     {
+                        if (!subject.ListPawn.Contains(boarding))
+                        {
+                            Note($"  {boarding}@{boarding.PositionHeld}, aircraft at {subject.Position}: job {boarding.CurJobDef?.defName ?? "-"}, spawned {boarding.Spawned}, downed {boarding.Downed}, mental {boarding.MentalStateDef?.defName ?? "-"}, stage {boarding.DevelopmentalStage}, "
+                                + $"can reach {boarding.Spawned && boarding.CanReach(subject, PathEndMode.Touch, Danger.Deadly)}, can board '{subject.CanBoard(boarding).Reason}' ({subject.CanBoard(boarding).Accepted}), status {subject.FlightStatusLabel}");
+                        }
                         Check(subject.ListPawn.Contains(boarding) && !boarding.Spawned, $"{boarding} boarded {subject.def.defName}");
+                        Check(boarding.ParentHolder == subject && boarding.MapHeld == HomeMap && HomeMap.mapPawns.FreeColonists.Contains(boarding),
+                            $"{boarding} is still a colonist of the map while on board (colonist bar)");
                         Next(8);
                     }
                     break;
@@ -762,6 +778,8 @@ namespace MYDE_AerocraftFramework
             Check(lost.Count == 0 && now.Count == savedSummary.Count, $"{now.Count} aircraft identical after save/load (weapons, magazines, pilots, bombs)");
             Check(aircraft.All(a => a.AllTurrets.All(t => t.AllGuns.All(g => AerocraftCompat.Ammo.IsLinkedTo(g, t)))), "ammo users re-linked to their turrets after loading");
             Check(aircraft.All(a => a.AllExtraWeapon.All(m => (m as Building_Aerocraft_AsWeapon)?.Building_Aerocraft_AsBaseThing == a)), "weapon mounts re-linked after loading");
+            List<Pawn> crews = aircraft.Where(a => a.Spawned).SelectMany(a => a.ListPawn).ToList();
+            Check(crews.Count > 0 && aircraft.Where(a => a.Spawned).All(a => a.ListPawn.All(p => p.ParentHolder == a && a.Map.mapPawns.AllPawns.Contains(p))), $"{crews.Count} pawns on board are held by their aircraft after loading");
 
             // Legacy save: the original mod deep-saved FollowTargetThing, nesting the aircraft into itself.
             legacyAircraftId = aircraft.First(a => a.Spawned).ThingID;
@@ -840,6 +858,8 @@ namespace MYDE_AerocraftFramework
                         Check(subject.Spawned && subject.Map != HomeMap, $"landed on {subject.Map?.Parent?.Label}");
                         Check(subject.ListPawn.Count == int.Parse(savedSummary[0]), "pilots arrived with it");
                         Check(subject.AllExtraWeapon.All(m => m.Spawned && m.Map == subject.Map), "mounts arrived with it");
+                        Check(subject.Spawned && subject.ListPawn.All(p => p.MapHeld == subject.Map && subject.Map.mapPawns.FreeColonists.Contains(p)), "the crew counts as colonists of the settlement map");
+                        Check(subject.Spawned && subject.Map.mapPawns.AnyPawnBlockingMapRemoval, "the crew keeps the settlement map open");
                         counter = 2;
                         stepStartTick = Find.TickManager.TicksGame;
                     }
@@ -852,6 +872,47 @@ namespace MYDE_AerocraftFramework
                 case 2:
                     if (StepTicks < 300)
                     {
+                        return;
+                    }
+                    if (subject.Map?.Parent is Settlement defeated)
+                    {
+                        // What Occupation & Annexation does when a town capitulates, and the game when a settlement is
+                        // defeated: the map gets a new parent that closes it once no colonist is left on it.
+                        Map settlementMap = subject.Map;
+                        defeatedMap = settlementMap;
+                        // The defenders are dead or have surrendered; they must not shoot the aircraft down meanwhile.
+                        foreach (Thing defender in settlementMap.listerThings.AllThings.Where(t => t.Spawned && (t is Pawn || t is Building_Turret) && t.HostileTo(Faction.OfPlayer)).ToList())
+                        {
+                            defender.Destroy();
+                        }
+                        DestroyedSettlement ruins = (DestroyedSettlement)WorldObjectMaker.MakeWorldObject(WorldObjectDefOf.DestroyedSettlement);
+                        ruins.Tile = defeated.Tile;
+                        ruins.SetFaction(defeated.Faction);
+                        Find.WorldObjects.Add(ruins);
+                        settlementMap.info.parent = ruins;
+                        defeated.Destroy();
+                        Note($"{defeated.Label} defeated with only the crew of {subject.def.defName} on the map");
+                        counter = 5;
+                        stepStartTick = Find.TickManager.TicksGame;
+                        return;
+                    }
+                    counter = 6;
+                    break;
+                case 5:
+                    if (StepTicks < 120)
+                    {
+                        return;
+                    }
+                    Check(subject.Spawned && subject.Map == defeatedMap && subject.Map.Parent is DestroyedSettlement && Find.Maps.Contains(subject.Map),
+                        $"the map of a defeated settlement stays open while the crew is on it (map open {Find.Maps.Contains(defeatedMap)}, aircraft spawned {subject.Spawned}, destroyed {subject.Destroyed}, "
+                        + $"crew {string.Join(" ", subject.ListPawn.Select(p => p.LabelShort + (p.Dead ? "(dead)" : "")))})");
+                    counter = 6;
+                    break;
+                case 6:
+                    if (!subject.Spawned)
+                    {
+                        Fail("the aircraft is still on the settlement map");
+                        Next(12);
                         return;
                     }
                     Comp_CanCrossMap back = subject.TryGetComp<Comp_CanCrossMap>();

@@ -22,6 +22,23 @@ namespace MYDE_AerocraftFramework
         }
     }
 
+    /// <summary>
+    /// No map is closed while a player aircraft is on it, even one without a crew: closing it would delete the
+    /// aircraft. This is what every map parent that closes its map when the colonists are gone asks (a settlement,
+    /// a destroyed or an occupied one, a site, a caravan battlefield); the patches below only cover two of them.
+    /// </summary>
+    [HarmonyPatch(typeof(MapPawns), nameof(MapPawns.AnyPawnBlockingMapRemoval), MethodType.Getter)]
+    internal static class Patch_MapPawns_AnyPawnBlockingMapRemoval
+    {
+        private static void Postfix(Map ___map, ref bool __result)
+        {
+            if (!__result && MapHasPlayerAerocraft.Check(___map))
+            {
+                __result = true;
+            }
+        }
+    }
+
     /// <summary>An enemy settlement map is kept while a player aircraft is on it.</summary>
     [HarmonyPatch(typeof(Settlement), nameof(Settlement.ShouldRemoveMapNow))]
     internal static class Patch_Settlement_ShouldRemoveMapNow

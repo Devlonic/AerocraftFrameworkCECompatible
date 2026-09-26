@@ -17,7 +17,7 @@ namespace MYDE_AerocraftFramework
     /// Public field names and save keys are kept from the original mod.
     /// </summary>
     [StaticConstructorOnStartup]
-    public class Building_Aerocraft_AsBaseThing : Building_Aerocraft_Base
+    public class Building_Aerocraft_AsBaseThing : Building_Aerocraft_Base, IThingHolder
     {
         public CompPowerBattery CompPowerBattery;
 
@@ -68,8 +68,18 @@ namespace MYDE_AerocraftFramework
         public int Drop_Range;
         public bool If_DropingNow;
 
-        /// <summary>Pilots and passengers sitting in the aircraft (despawned).</summary>
-        public List<Pawn> ListPawn = new List<Pawn>();
+        /// <summary>
+        /// Pilots and passengers sitting in the aircraft (despawned). This is the list of <see cref="innerPawns"/>:
+        /// read it, but board and let out through <see cref="DoSomething_CarryPawn"/> and <see cref="ReleasePawn"/>.
+        /// </summary>
+        public List<Pawn> ListPawn;
+
+        /// <summary>
+        /// Holds the pilots like a cryptosleep casket holds its sleeper. The original kept them in a plain list, so
+        /// the game did not know they were on the map: they vanished from the colonist bar, and a map that has
+        /// only aircraft crews left (an occupied or destroyed settlement) was closed with the aircraft on it.
+        /// </summary>
+        private readonly ThingOwner<Pawn> innerPawns;
 
         /// <summary>Pawns of the transporter cargo, kept aside while flying between maps.</summary>
         public List<Pawn> ListCompTransporterPawn = new List<Pawn>();
@@ -90,7 +100,20 @@ namespace MYDE_AerocraftFramework
         private List<Pawn> pilotWeaponOwners = new List<Pawn>();
         private List<Thing> pilotWeapons = new List<Thing>();
 
+        public Building_Aerocraft_AsBaseThing()
+        {
+            innerPawns = new ThingOwner<Pawn>(this, oneStackOnly: false, LookMode.Deep);
+            ListPawn = innerPawns.InnerListForReading;
+        }
+
         public override Graphic Graphic => NothingTexture;
+
+        public ThingOwner GetDirectlyHeldThings() => innerPawns;
+
+        public void GetChildHolders(List<IThingHolder> outChildren)
+        {
+            ThingOwnerUtility.AppendThingHoldersFromThings(outChildren, GetDirectlyHeldThings());
+        }
 
         public bool Is_Uping => Move_WarmUpTick > 0 && Move_WarmUpTick <= Move_WarmUpTickMax && If_UpOrDown;
 
@@ -264,13 +287,12 @@ namespace MYDE_AerocraftFramework
             Scribe_Values.Look(ref If_DropingNow, "If_DropingNow", false);
             Scribe_Values.Look(ref CarryPawnNumMax, "CarryPawnNumMax", 0);
             Scribe_Values.Look(ref If_ChangeWeaponByPawnWeaponWhenCarry, "If_ChangeWeaponByPawnWeaponWhenCarry", false);
-            Scribe_Collections.Look(ref ListPawn, "ListPawn", LookMode.Deep);
+            LookPawns();
             Scribe_Collections.Look(ref ListCompTransporterPawn, "ListCompTransporterPawn", LookMode.Deep);
             Scribe_Collections.Look(ref pilotWeaponOwners, "pilotWeaponOwners", LookMode.Reference);
             Scribe_Collections.Look(ref pilotWeapons, "pilotWeapons", LookMode.Reference);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
-                ListPawn = ListPawn ?? new List<Pawn>();
                 ListPawn.RemoveAll(p => p == null);
                 ListCompTransporterPawn = ListCompTransporterPawn ?? new List<Pawn>();
                 ListCompTransporterPawn.RemoveAll(p => p == null);
@@ -284,6 +306,31 @@ namespace MYDE_AerocraftFramework
                 if (FollowTargetThing == this)
                 {
                     FollowTargetThing = null;
+                }
+            }
+        }
+
+        /// <summary>
+        /// The pawns keep the original save format (a deep-saved list under "ListPawn"), so saves stay compatible
+        /// both ways; on load they are put back into the container, as <see cref="ThingOwner{T}"/> does itself.
+        /// </summary>
+        private void LookPawns()
+        {
+            List<Pawn> pawns = ListPawn;
+            Scribe_Collections.Look(ref pawns, "ListPawn", LookMode.Deep);
+            if (Scribe.mode == LoadSaveMode.LoadingVars && pawns != ListPawn)
+            {
+                ListPawn.Clear();
+                if (pawns != null)
+                {
+                    foreach (Pawn pawn in pawns)
+                    {
+                        if (pawn != null)
+                        {
+                            ListPawn.Add(pawn);
+                            pawn.holdingOwner = innerPawns;
+                        }
+                    }
                 }
             }
         }
@@ -1355,7 +1402,7 @@ namespace MYDE_AerocraftFramework
 
         public void DoSomething_CarryPawn(Pawn Pawn)
         {
-            if (Pawn == null || ListPawn.Contains(Pawn))
+            if (Pawn == null || innerPawns.Contains(Pawn))
             {
                 return;
             }
@@ -1364,6 +1411,8 @@ namespace MYDE_AerocraftFramework
                 AerocraftUtility.ThrowText(this, "AerocraftFramework_MaxInnerPawn".Translate());
                 return;
             }
+            Map previousMap = Pawn.MapHeld;
+            IntVec3 previousCell = Pawn.PositionHeld;
             ThingWithComps weapon = null;
             if (If_ChangeWeaponByPawnWeaponWhenCarry && Pawn.equipment?.Primary != null && Pawn.equipment.Primary.def.IsRangedWeapon)
             {
@@ -1381,7 +1430,21 @@ namespace MYDE_AerocraftFramework
                 Find.Selector.Deselect(Pawn);
                 Pawn.DeSpawn(DestroyMode.Vanish);
             }
-            ListPawn.Add(Pawn);
+            // Also takes a pawn out of whatever held it before (a carrier, a transporter).
+            if (!innerPawns.TryAddOrTransfer(Pawn, canMergeWithExistingStacks: false))
+            {
+                Log.Error($"[Aerocraft Framework] Could not put {Pawn} into {this}.");
+                if (!Pawn.Spawned && Pawn.holdingOwner == null && previousMap != null)
+                {
+                    GenSpawn.Spawn(Pawn, previousCell, previousMap);
+                }
+                if (weapon != null && Pawn.equipment != null)
+                {
+                    Pawn.equipment.AddEquipment(weapon);
+                }
+                return;
+            }
+            Find.ColonistBar?.MarkColonistsDirty();
             if (weapon != null)
             {
                 Change_NowWeapon(weapon);
@@ -1409,7 +1472,7 @@ namespace MYDE_AerocraftFramework
 
         public bool ReleasePawn(Pawn pawn, bool drafted)
         {
-            if (pawn == null || !Spawned || !ListPawn.Contains(pawn))
+            if (pawn == null || !Spawned || !innerPawns.Contains(pawn))
             {
                 return false;
             }
@@ -1418,7 +1481,7 @@ namespace MYDE_AerocraftFramework
             {
                 cell = Position;
             }
-            ListPawn.Remove(pawn);
+            innerPawns.Remove(pawn);
             GenSpawn.Spawn(pawn, cell, map);
             ReturnPilotWeapon(pawn);
             if (drafted && pawn.drafter != null && pawn.IsColonistPlayerControlled && !pawn.Downed)
