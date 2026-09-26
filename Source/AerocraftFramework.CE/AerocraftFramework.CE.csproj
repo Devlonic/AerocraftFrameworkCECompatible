@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- Combat Extended module. Loaded by the game only when CE is active (see LoadFolders.xml). -->
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>disable</Nullable>
+    <RootNamespace>MYDE_AerocraftFramework</RootNamespace>
+    <AssemblyName>AerocraftFramework.CE</AssemblyName>
+    <Version>2.0.0</Version>
+    <OutputPath>..\..\1.5\CombatExtended\Assemblies\</OutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+    <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <!-- Combat Extended for RimWorld 1.5 (15.6.x). Override with -p:CombatExtendedDll=... if it lives elsewhere. -->
+    <RimWorldDir Condition="'$(RimWorldDir)' == ''">D:\Games\Steam\steamapps\common\RimWorld</RimWorldDir>
+    <CombatExtendedDll Condition="'$(CombatExtendedDll)' == ''">$(RimWorldDir)\Mods\CombatExtended\Assemblies\CombatExtended.dll</CombatExtendedDll>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Krafs.Rimworld.Ref" Version="1.5.4409" />
+    <PackageReference Include="Lib.Harmony" Version="2.3.3" ExcludeAssets="runtime" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AerocraftFramework\AerocraftFramework.csproj">
+      <Private>false</Private>
+    </ProjectReference>
+    <Reference Include="CombatExtended">
+      <HintPath>$(CombatExtendedDll)</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+</Project>
