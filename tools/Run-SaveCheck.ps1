@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
     Loads one of your saves in a copy of your RimWorld configuration and checks the aircraft in it.
 
@@ -9,12 +9,14 @@
 
 .EXAMPLE
     .\tools\Run-SaveCheck.ps1 -Save testreload -DataDir C:\Temp\af-savecheck
+    .\tools\Run-SaveCheck.ps1 -Save repaired -SaveFile C:\Temp\testreload_repaired.rws -DataDir C:\Temp\af-savecheck
 #>
 param(
     [string]$RimWorldDir = "D:\Games\Steam\steamapps\common\RimWorld",
     [string]$UserDataDir = (Join-Path $env:USERPROFILE "AppData\LocalLow\Ludeon Studios\RimWorld by Ludeon Studios"),
     [Parameter(Mandatory = $true)][string]$Save,
     [Parameter(Mandatory = $true)][string]$DataDir,
+    [string]$SaveFile,
     [int]$TimeoutMinutes = 40
 )
 
@@ -25,7 +27,8 @@ New-Item -ItemType Directory -Force -Path $config, $saves | Out-Null
 
 Copy-Item (Join-Path $UserDataDir "Config\ModsConfig.xml") $config -Force
 Get-ChildItem (Join-Path $UserDataDir "Config") -Filter "Mod_*.xml" | Copy-Item -Destination $config -Force
-Copy-Item (Join-Path $UserDataDir "Saves\$Save.rws") $saves -Force
+if (-not $SaveFile) { $SaveFile = Join-Path $UserDataDir "Saves\$Save.rws" }
+Copy-Item $SaveFile (Join-Path $saves "$Save.rws") -Force
 
 @"
 <?xml version="1.0" encoding="utf-8"?>
@@ -61,3 +64,4 @@ if (Test-Path $report) {
 }
 Write-Host "No report (see $gameLog)" -ForegroundColor Red
 exit 2
+

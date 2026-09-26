@@ -46,6 +46,7 @@ namespace MYDE_AerocraftFramework
         private int uiFrames;
         private int uiStage;
         private int uiErrorsAtStart;
+        private bool uiCaptured;
         private Window uiWindow;
 
         public GameComponent_AFAutoTest(Game game)
@@ -870,9 +871,14 @@ namespace MYDE_AerocraftFramework
 
         private void UiSmokeTest()
         {
-            const int FramesPerStage = 30;
+            const int FramesPerStage = 60;
             if (uiStage > 0)
             {
+                if (!uiCaptured && uiFrames >= FramesPerStage / 2)
+                {
+                    uiCaptured = true;
+                    CaptureScreen("ui_" + uiStage);
+                }
                 if (uiFrames < FramesPerStage)
                 {
                     return;
@@ -886,6 +892,7 @@ namespace MYDE_AerocraftFramework
                 Current.Game.CurrentMap = HomeMap;
             }
             uiFrames = 0;
+            uiCaptured = false;
             Building_Aerocraft_AsBaseThing craft = aircraft.Where(a => a.Spawned).OrderByDescending(a => a.AllExtraWeapon.Count).FirstOrDefault();
             switch (uiStage++)
             {
@@ -898,6 +905,7 @@ namespace MYDE_AerocraftFramework
                     Note($"UI: aircraft tab and gizmos of {craft?.def.defName}");
                     Find.Selector.ClearSelection();
                     Find.Selector.Select(craft, playSound: false);
+                    CameraJumper.TryJump(craft);
                     InspectPaneUtility.OpenTab(typeof(ITab_Aerocraft_Weapon));
                     break;
                 case 2:
@@ -929,6 +937,17 @@ namespace MYDE_AerocraftFramework
                     uiStage = 0;
                     Next(13);
                     return;
+            }
+        }
+
+        /// <summary>Saves a screenshot next to the report (for looking at the UI after a run).</summary>
+        private void CaptureScreen(string name)
+        {
+            if (GenCommandLine.TryGetCommandLineArg("af_report", out string report))
+            {
+                string path = Path.Combine(Path.GetDirectoryName(report), name + ".png");
+                ScreenCapture.CaptureScreenshot(path);
+                Note("screenshot " + path);
             }
         }
 
