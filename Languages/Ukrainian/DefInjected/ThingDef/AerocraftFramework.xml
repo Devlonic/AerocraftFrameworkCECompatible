@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+	<MYDE_AF_FWCraft_Bombardment.label>«Затемнення» FH-203</MYDE_AF_FWCraft_Bombardment.label>
+	<MYDE_AF_FWCraft_Bombardment.description>«Затемнення» FH-203 — пілотований бомбардувальник короткого зльоту й посадки. Несе мінометні снаряди як бомби: метає їх у ціль або скидає під себе. Основну зброю можна замінити майже на будь-яку. Годиться для бомбардувань і далеких перевезень.</MYDE_AF_FWCraft_Bombardment.description>
+	<MYDE_AF_FWCraft_Bombardment.comps.CompRefuelable.outOfFuelMessage>Потрібне пальне</MYDE_AF_FWCraft_Bombardment.comps.CompRefuelable.outOfFuelMessage>
+	<MYDE_AF_FWCraft_Bombardment.comps.Comp_MoveToTargetAndHover.TakeOffAndLanding_Icon_On_Label>Злетіти</MYDE_AF_FWCraft_Bombardment.comps.Comp_MoveToTargetAndHover.TakeOffAndLanding_Icon_On_Label>
+	<MYDE_AF_FWCraft_Bombardment.comps.Comp_MoveToTargetAndHover.TakeOffAndLanding_Icon_Off_Label>Сісти</MYDE_AF_FWCraft_Bombardment.comps.Comp_MoveToTargetAndHover.TakeOffAndLanding_Icon_Off_Label>
+	<MYDE_AF_FWCraft_Bombardment.comps.Comp_MoveToTargetAndHover.TakeOffAndLanding_Icon_Description>Перемикає зліт і посадку. «Затемнення» FH-203 — літак: для зльоту й посадки потрібна вільна смуга завдовжки 20 клітинок у вибраному напрямку. Стріляє лише в польоті. У польоті керується правою кнопкою миші: клік по землі — летіти туди, по чужому об'єкту — атакувати його, по своєму — супроводжувати.</MYDE_AF_FWCraft_Bombardment.comps.Comp_MoveToTargetAndHover.TakeOffAndLanding_Icon_Description>
+	<MYDE_AF_FWCraft_Bombardment.comps.Comp_CarryPawn.Gizmos_CarryPawn_Label>Швидка посадка</MYDE_AF_FWCraft_Bombardment.comps.Comp_CarryPawn.Gizmos_CarryPawn_Label>
+	<MYDE_AF_FWCraft_Bombardment.comps.Comp_CarryPawn.Gizmos_CarryPawn_Description>Миттєво посадити на борт колоністів у квадраті 5×5 навколо апарата.</MYDE_AF_FWCraft_Bombardment.comps.Comp_CarryPawn.Gizmos_CarryPawn_Description>
+	<MYDE_AF_FWCraft_Bombardment.comps.Comp_CanCrossMap.CrossMap_Label>Переліт</MYDE_AF_FWCraft_Bombardment.comps.Comp_CanCrossMap.CrossMap_Label>
+	<MYDE_AF_FWCraft_Bombardment.comps.Comp_CanCrossMap.CrossMap_Description>Переліт на іншу клітинку світу. Ціллю може бути лише об'єкт на карті світу (поселення, база, місце події), а не порожня місцевість. Щоб не застрягти, майте пальне на дорогу туди й назад: внутрішнє коло — безпечна дальність з поверненням.</MYDE_AF_FWCraft_Bombardment.comps.Comp_CanCrossMap.CrossMap_Description>
+	<MYDE_AF_FWCraft_Bombardment.comps.Comp_CanLoadShell.LaunchShell_Label>Метнути бомбу</MYDE_AF_FWCraft_Bombardment.comps.Comp_CanLoadShell.LaunchShell_Label>
+	<MYDE_AF_FWCraft_Bombardment.comps.Comp_CanLoadShell.LaunchShell_Description>Метнути поточну бомбу в обрану точку в межах дальності.</MYDE_AF_FWCraft_Bombardment.comps.Comp_CanLoadShell.LaunchShell_Description>
+	<MYDE_AF_FWCraft_Bombardment.comps.Comp_CanLoadShell.DropShell_Label>Скинути під себе</MYDE_AF_FWCraft_Bombardment.comps.Comp_CanLoadShell.DropShell_Label>
+	<MYDE_AF_FWCraft_Bombardment.comps.Comp_CanLoadShell.DropShell_Description>Швидко скинути поточну бомбу під апарат.</MYDE_AF_FWCraft_Bombardment.comps.Comp_CanLoadShell.DropShell_Description>
+	<MYDE_AF_Skyfalller_FWCraft_Bombardment_CrossMapThing.label>«Затемнення» FH-203 (відлітає)</MYDE_AF_Skyfalller_FWCraft_Bombardment_CrossMapThing.label>
+	<MYDE_AF_FWCraft_AerocraftCarrier.label>«Опора» NL-706</MYDE_AF_FWCraft_AerocraftCarrier.label>
+	<MYDE_AF_FWCraft_AerocraftCarrier.description>«Опора» NL-706 — пілотований авіаносець, що запускає й веде групи безпілотних дронів. Сам виробляє дрони, має змінні збройові блоки й може нести бомби.</MYDE_AF_FWCraft_AerocraftCarrier.description>
+	<MYDE_AF_FWCraft_AerocraftCarrier.comps.CompRefuelable.outOfFuelMessage>Потрібне пальне</MYDE_AF_FWCraft_AerocraftCarrier.comps.CompRefuelable.outOfFuelMessage>
+	<MYDE_AF_FWCraft_AerocraftCarrier.comps.Comp_MoveToTargetAndHover.TakeOffAndLanding_Icon_On_Label>Злетіти</MYDE_AF_FWCraft_AerocraftCarrier.comps.Comp_MoveToTargetAndHover.TakeOffAndLanding_Icon_On_Label>
+	<MYDE_AF_FWCraft_AerocraftCarrier.comps.Comp_MoveToTargetAndHover.TakeOffAndLanding_Icon_Off_Label>Сісти</MYDE_AF_FWCraft_AerocraftCarrier.comps.Comp_MoveToTargetAndHover.TakeOffAndLanding_Icon_Off_Label>
+	<MYDE_AF_FWCraft_AerocraftCarrier.comps.Comp_MoveToTargetAndHover.TakeOffAndLanding_Icon_Description>Перемикає зліт і посадку. «Опора» NL-706 — літак: для зльоту й посадки потрібна вільна смуга завдовжки 30 клітинок у вибраному напрямку. Стріляє лише в польоті. У польоті керується правою кнопкою миші: клік по землі — летіти туди, по чужому об'єкту — атакувати його, по своєму — супроводжувати.</MYDE_AF_FWCraft_AerocraftCarrier.comps.Comp_MoveToTargetAndHover.TakeOffAndLanding_Icon_Description>
+	<MYDE_AF_FWCraft_AerocraftCarrier.comps.Comp_CarryPawn.Gizmos_CarryPawn_Label>Швидка посадка</MYDE_AF_FWCraft_AerocraftCarrier.comps.Comp_CarryPawn.Gizmos_CarryPawn_Label>
+	<MYDE_AF_FWCraft_AerocraftCarrier.comps.Comp_CarryPawn.Gizmos_CarryPawn_Description>Миттєво посадити на борт колоністів у квадраті 7×7 навколо апарата.</MYDE_AF_FWCraft_AerocraftCarrier.comps.Comp_CarryPawn.Gizmos_CarryPawn_Description>
+	<MYDE_AF_FWCraft_AerocraftCarrier.comps.Comp_CanCrossMap.CrossMap_Label>Переліт</MYDE_AF_FWCraft_AerocraftCarrier.comps.Comp_CanCrossMap.CrossMap_Label>
+	<MYDE_AF_FWCraft_AerocraftCarrier.comps.Comp_CanCrossMap.CrossMap_Description>Переліт на іншу клітинку світу. Ціллю може бути лише об'єкт на карті світу (поселення, база, місце події), а не порожня місцевість. Щоб не застрягти, майте пальне на дорогу туди й назад: внутрішнє коло — безпечна дальність з поверненням.</MYDE_AF_FWCraft_AerocraftCarrier.comps.Comp_CanCrossMap.CrossMap_Description>
+	<MYDE_AF_FWCraft_AerocraftCarrier.comps.Comp_CanLoadShell.LaunchShell_Label>Метнути бомбу</MYDE_AF_FWCraft_AerocraftCarrier.comps.Comp_CanLoadShell.LaunchShell_Label>
+	<MYDE_AF_FWCraft_AerocraftCarrier.comps.Comp_CanLoadShell.LaunchShell_Description>Метнути поточну бомбу в обрану точку в межах дальності.</MYDE_AF_FWCraft_AerocraftCarrier.comps.Comp_CanLoadShell.LaunchShell_Description>
+	<MYDE_AF_FWCraft_AerocraftCarrier.comps.Comp_CanLoadShell.DropShell_Label>Скинути під себе</MYDE_AF_FWCraft_AerocraftCarrier.comps.Comp_CanLoadShell.DropShell_Label>
+	<MYDE_AF_FWCraft_AerocraftCarrier.comps.Comp_CanLoadShell.DropShell_Description>Швидко скинути поточну бомбу під апарат.</MYDE_AF_FWCraft_AerocraftCarrier.comps.Comp_CanLoadShell.DropShell_Description>
+	<MYDE_AF_FWCraft_AerocraftCarrier_ExtraWeapon_SpawnDrone.label>Модуль виробництва дронів</MYDE_AF_FWCraft_AerocraftCarrier_ExtraWeapon_SpawnDrone.label>
+	<MYDE_AF_FWCraft_AerocraftCarrier_ExtraWeapon_SpawnDrone.description>Модуль виробництва дронів</MYDE_AF_FWCraft_AerocraftCarrier_ExtraWeapon_SpawnDrone.description>
+	<MYDE_AF_FWCraft_AerocraftCarrier_ExtraWeapon_SpawnDrone.comps.CompRefuelable.outOfFuelMessage>Потрібне пальне</MYDE_AF_FWCraft_AerocraftCarrier_ExtraWeapon_SpawnDrone.comps.CompRefuelable.outOfFuelMessage>
+	<MYDE_AF_FWCraft_AerocraftCarrier_ExtraWeapon_Weapon_SpawnDrone.label>Модуль виробництва дронів</MYDE_AF_FWCraft_AerocraftCarrier_ExtraWeapon_Weapon_SpawnDrone.label>
+	<MYDE_AF_FWCraft_AerocraftCarrier_ExtraWeapon_Weapon_SpawnDrone.description>Модуль виробництва дронів</MYDE_AF_FWCraft_AerocraftCarrier_ExtraWeapon_Weapon_SpawnDrone.description>
+	<MYDE_AF_FWCraft_AerocraftCarrier_ExtraWeapon_Weapon_SpawnDrone.verbs.0.label>Запустити дрон</MYDE_AF_FWCraft_AerocraftCarrier_ExtraWeapon_Weapon_SpawnDrone.verbs.0.label>
+	<MYDE_AF_FWCraft_AerocraftCarrier_ExtraWeapon_WeaponGroup.label>Збройовий блок</MYDE_AF_FWCraft_AerocraftCarrier_ExtraWeapon_WeaponGroup.label>
+	<MYDE_AF_FWCraft_AerocraftCarrier_ExtraWeapon_WeaponGroup.description>Збройовий блок: у нього можна встановити будь-яку зброю.</MYDE_AF_FWCraft_AerocraftCarrier_ExtraWeapon_WeaponGroup.description>
+	<MYDE_AF_Skyfalller_FWCraft_AerocraftCarrier_CrossMapThing.label>«Опора» NL-706 (відлітає)</MYDE_AF_Skyfalller_FWCraft_AerocraftCarrier_CrossMapThing.label>
+	<MYDE_AF_RotorCraft_FourPropeller_Base.label>«Мародер» RF-01</MYDE_AF_RotorCraft_FourPropeller_Base.label>
+	<MYDE_AF_RotorCraft_FourPropeller_Base.description>«Мародер» RF-01 — пілотований квадрокоптер вертикального зльоту й посадки з розподіленою тягою. Має кулемет і ракетний блок, основну зброю можна замінити. Годиться для спецоперацій, евакуації поранених і перевезення вантажів.</MYDE_AF_RotorCraft_FourPropeller_Base.description>
+	<MYDE_AF_RotorCraft_FourPropeller_Base.comps.CompRefuelable.outOfFuelMessage>Потрібне пальне</MYDE_AF_RotorCraft_FourPropeller_Base.comps.CompRefuelable.outOfFuelMessage>
+	<MYDE_AF_RotorCraft_FourPropeller_Base.comps.Comp_MoveToTargetAndHover.Hover_Icon_On_Label>Барражування: увімк.</MYDE_AF_RotorCraft_FourPropeller_Base.comps.Comp_MoveToTargetAndHover.Hover_Icon_On_Label>
+	<MYDE_AF_RotorCraft_FourPropeller_Base.comps.Comp_MoveToTargetAndHover.Hover_Icon_Off_Label>Барражування: вимк.</MYDE_AF_RotorCraft_FourPropeller_Base.comps.Comp_MoveToTargetAndHover.Hover_Icon_Off_Label>
+	<MYDE_AF_RotorCraft_FourPropeller_Base.comps.Comp_MoveToTargetAndHover.Hover_Icon_Description>Увімкнути або вимкнути барражування (кружляння на місці) апарата.</MYDE_AF_RotorCraft_FourPropeller_Base.comps.Comp_MoveToTargetAndHover.Hover_Icon_Description>
+	<MYDE_AF_RotorCraft_FourPropeller_Base.comps.Comp_MoveToTargetAndHover.TakeOffAndLanding_Icon_On_Label>Злетіти</MYDE_AF_RotorCraft_FourPropeller_Base.comps.Comp_MoveToTargetAndHover.TakeOffAndLanding_Icon_On_Label>
+	<MYDE_AF_RotorCraft_FourPropeller_Base.comps.Comp_MoveToTargetAndHover.TakeOffAndLanding_Icon_Off_Label>Сісти</MYDE_AF_RotorCraft_FourPropeller_Base.comps.Comp_MoveToTargetAndHover.TakeOffAndLanding_Icon_Off_Label>
+	<MYDE_AF_RotorCraft_FourPropeller_Base.comps.Comp_MoveToTargetAndHover.TakeOffAndLanding_Icon_Description>Перемикає зліт і посадку. «Мародер» RF-01 — гвинтокрил: злітає й сідає вертикально будь-де. Стріляє лише в польоті. У польоті керується правою кнопкою миші: клік по землі — летіти туди, по чужому об'єкту — атакувати його, по своєму — супроводжувати.</MYDE_AF_RotorCraft_FourPropeller_Base.comps.Comp_MoveToTargetAndHover.TakeOffAndLanding_Icon_Description>
+	<MYDE_AF_RotorCraft_FourPropeller_Base.comps.Comp_CarryPawn.Gizmos_CarryPawn_Label>Швидка посадка</MYDE_AF_RotorCraft_FourPropeller_Base.comps.Comp_CarryPawn.Gizmos_CarryPawn_Label>
+	<MYDE_AF_RotorCraft_FourPropeller_Base.comps.Comp_CarryPawn.Gizmos_CarryPawn_Description>Миттєво посадити на борт колоністів у квадраті 5×5 навколо апарата.</MYDE_AF_RotorCraft_FourPropeller_Base.comps.Comp_CarryPawn.Gizmos_CarryPawn_Description>
+	<MYDE_AF_RotorCraft_FourPropeller_Base.comps.Comp_CanCrossMap.CrossMap_Label>Переліт</MYDE_AF_RotorCraft_FourPropeller_Base.comps.Comp_CanCrossMap.CrossMap_Label>
+	<MYDE_AF_RotorCraft_FourPropeller_Base.comps.Comp_CanCrossMap.CrossMap_Description>Переліт на іншу клітинку світу. Ціллю може бути лише об'єкт на карті світу (поселення, база, місце події), а не порожня місцевість. Щоб не застрягти, майте пальне на дорогу туди й назад: внутрішнє коло — безпечна дальність з поверненням.</MYDE_AF_RotorCraft_FourPropeller_Base.comps.Comp_CanCrossMap.CrossMap_Description>
+	<MYDE_AF_RotorCraft_FourPropeller_ExtraWeapon_MachineGun.label>Кулемет</MYDE_AF_RotorCraft_FourPropeller_ExtraWeapon_MachineGun.label>
+	<MYDE_AF_RotorCraft_FourPropeller_ExtraWeapon_MachineGun.description>Кулемет</MYDE_AF_RotorCraft_FourPropeller_ExtraWeapon_MachineGun.description>
+	<MYDE_AF_RotorCraft_FourPropeller_ExtraWeapon_MachineGun_Weapon.label>Кулемет</MYDE_AF_RotorCraft_FourPropeller_ExtraWeapon_MachineGun_Weapon.label>
+	<MYDE_AF_RotorCraft_FourPropeller_ExtraWeapon_MachineGun_Weapon.description>Кулемет</MYDE_AF_RotorCraft_FourPropeller_ExtraWeapon_MachineGun_Weapon.description>
+	<MYDE_AF_RotorCraft_FourPropeller_ExtraWeapon_MachineGun_Weapon_Projectile.label>Куля кулемета</MYDE_AF_RotorCraft_FourPropeller_ExtraWeapon_MachineGun_Weapon_Projectile.label>
+	<MYDE_AF_RotorCraft_FourPropeller_ExtraWeapon_Rocket.label>Ракета</MYDE_AF_RotorCraft_FourPropeller_ExtraWeapon_Rocket.label>
+	<MYDE_AF_RotorCraft_FourPropeller_ExtraWeapon_Rocket.description>Ракета</MYDE_AF_RotorCraft_FourPropeller_ExtraWeapon_Rocket.description>
+	<MYDE_AF_RotorCraft_FourPropeller_ExtraWeapon_Rocket_Weapon.label>Ракета</MYDE_AF_RotorCraft_FourPropeller_ExtraWeapon_Rocket_Weapon.label>
+	<MYDE_AF_RotorCraft_FourPropeller_ExtraWeapon_Rocket_Weapon.description>Ракета</MYDE_AF_RotorCraft_FourPropeller_ExtraWeapon_Rocket_Weapon.description>
+	<MYDE_AF_RotorCraft_FourPropeller_ExtraWeapon_Rocket_Weapon_Projectile.label>Ракета</MYDE_AF_RotorCraft_FourPropeller_ExtraWeapon_Rocket_Weapon_Projectile.label>
+	<MYDE_AF_Skyfalller_RotorCraft_FourPropeller_CrossMapThing.label>«Мародер» RF-01 (відлітає)</MYDE_AF_Skyfalller_RotorCraft_FourPropeller_CrossMapThing.label>
+	<MYDE_AF_RotorCraft_TwinPropeller_Base.label>«Патруль» RT-63</MYDE_AF_RotorCraft_TwinPropeller_Base.label>
+	<MYDE_AF_RotorCraft_TwinPropeller_Base.description>«Патруль» RT-63 — безпілотний двогвинтовий апарат вертикального зльоту й посадки з акумулятором замість пального. Висока маневреність, режим автоматичного пошуку ворогів; зброю можна замінити.</MYDE_AF_RotorCraft_TwinPropeller_Base.description>
+	<MYDE_AF_RotorCraft_TwinPropeller_Base.comps.Comp_MoveToTargetAndHover.Hover_Icon_On_Label>Барражування: увімк.</MYDE_AF_RotorCraft_TwinPropeller_Base.comps.Comp_MoveToTargetAndHover.Hover_Icon_On_Label>
+	<MYDE_AF_RotorCraft_TwinPropeller_Base.comps.Comp_MoveToTargetAndHover.Hover_Icon_Off_Label>Барражування: вимк.</MYDE_AF_RotorCraft_TwinPropeller_Base.comps.Comp_MoveToTargetAndHover.Hover_Icon_Off_Label>
+	<MYDE_AF_RotorCraft_TwinPropeller_Base.comps.Comp_MoveToTargetAndHover.Hover_Icon_Description>Увімкнути або вимкнути барражування (кружляння на місці) апарата.</MYDE_AF_RotorCraft_TwinPropeller_Base.comps.Comp_MoveToTargetAndHover.Hover_Icon_Description>
+	<MYDE_AF_RotorCraft_TwinPropeller_Base.comps.Comp_MoveToTargetAndHover.TakeOffAndLanding_Icon_On_Label>Злетіти</MYDE_AF_RotorCraft_TwinPropeller_Base.comps.Comp_MoveToTargetAndHover.TakeOffAndLanding_Icon_On_Label>
+	<MYDE_AF_RotorCraft_TwinPropeller_Base.comps.Comp_MoveToTargetAndHover.TakeOffAndLanding_Icon_Off_Label>Сісти</MYDE_AF_RotorCraft_TwinPropeller_Base.comps.Comp_MoveToTargetAndHover.TakeOffAndLanding_Icon_Off_Label>
+	<MYDE_AF_RotorCraft_TwinPropeller_Base.comps.Comp_MoveToTargetAndHover.TakeOffAndLanding_Icon_Description>Перемикає зліт і посадку. «Патруль» RT-63 — гвинтокрил: злітає й сідає вертикально будь-де. Стріляє лише в польоті. У польоті керується правою кнопкою миші: клік по землі — летіти туди, по чужому об'єкту — атакувати його, по своєму — супроводжувати.</MYDE_AF_RotorCraft_TwinPropeller_Base.comps.Comp_MoveToTargetAndHover.TakeOffAndLanding_Icon_Description>
+	<MYDE_AF_RotorCraft_TwinPropeller_Base.comps.Comp_AutoFindTarget.FindTarget_Icon_On_Label>Пошук ворогів: увімк.</MYDE_AF_RotorCraft_TwinPropeller_Base.comps.Comp_AutoFindTarget.FindTarget_Icon_On_Label>
+	<MYDE_AF_RotorCraft_TwinPropeller_Base.comps.Comp_AutoFindTarget.FindTarget_Icon_Off_Label>Пошук ворогів: вимк.</MYDE_AF_RotorCraft_TwinPropeller_Base.comps.Comp_AutoFindTarget.FindTarget_Icon_Off_Label>
+	<MYDE_AF_RotorCraft_TwinPropeller_Base.comps.Comp_AutoFindTarget.FindTarget_Icon_Description>Коли увімкнено, кожні 30 секунд апарат шукає цілі на мапі й, якщо зараз нікого не атакує, сам летить до найближчого ворога.</MYDE_AF_RotorCraft_TwinPropeller_Base.comps.Comp_AutoFindTarget.FindTarget_Icon_Description>
+	<MYDE_AF_RotorCraft_SinglePropeller_Base.label>«Самопожертва» RC-X</MYDE_AF_RotorCraft_SinglePropeller_Base.label>
+	<MYDE_AF_RotorCraft_SinglePropeller_Base.description>«Самопожертва» RC-X — одноразовий дрон-камікадзе. Швидко долітає до цілі й підриває себе; через деякий час після запуску самоліквідовується.</MYDE_AF_RotorCraft_SinglePropeller_Base.description>
+	<MYDE_AF_RotorCraft_SinglePropeller_Base.comps.Comp_MoveToTargetAndHover.Hover_Icon_On_Label>Барражування: увімк.</MYDE_AF_RotorCraft_SinglePropeller_Base.comps.Comp_MoveToTargetAndHover.Hover_Icon_On_Label>
+	<MYDE_AF_RotorCraft_SinglePropeller_Base.comps.Comp_MoveToTargetAndHover.Hover_Icon_Off_Label>Барражування: вимк.</MYDE_AF_RotorCraft_SinglePropeller_Base.comps.Comp_MoveToTargetAndHover.Hover_Icon_Off_Label>
+	<MYDE_AF_RotorCraft_SinglePropeller_Base.comps.Comp_MoveToTargetAndHover.Hover_Icon_Description>Увімкнути або вимкнути барражування (кружляння на місці) апарата.</MYDE_AF_RotorCraft_SinglePropeller_Base.comps.Comp_MoveToTargetAndHover.Hover_Icon_Description>
+	<MYDE_AF_RotorCraft_SinglePropeller_Base.comps.Comp_MoveToTargetAndHover.TakeOffAndLanding_Icon_On_Label>Злетіти</MYDE_AF_RotorCraft_SinglePropeller_Base.comps.Comp_MoveToTargetAndHover.TakeOffAndLanding_Icon_On_Label>
+	<MYDE_AF_RotorCraft_SinglePropeller_Base.comps.Comp_MoveToTargetAndHover.TakeOffAndLanding_Icon_Off_Label>Сісти</MYDE_AF_RotorCraft_SinglePropeller_Base.comps.Comp_MoveToTargetAndHover.TakeOffAndLanding_Icon_Off_Label>
+	<MYDE_AF_RotorCraft_SinglePropeller_Base.comps.Comp_MoveToTargetAndHover.TakeOffAndLanding_Icon_Description>Перемикає зліт і посадку. «Самопожертва» RC-X — гвинтокрил: злітає й сідає вертикально будь-де. Стріляє лише в польоті. У польоті керується правою кнопкою миші: клік по землі — летіти туди, по чужому об'єкту — атакувати його, по своєму — супроводжувати.</MYDE_AF_RotorCraft_SinglePropeller_Base.comps.Comp_MoveToTargetAndHover.TakeOffAndLanding_Icon_Description>
+	<MYDE_AF_RotorCraft_SinglePropeller_Base.comps.Comp_DoExplosion_BySomeWays.ForceDoExplosion_Label>Самознищення</MYDE_AF_RotorCraft_SinglePropeller_Base.comps.Comp_DoExplosion_BySomeWays.ForceDoExplosion_Label>
+	<MYDE_AF_RotorCraft_SinglePropeller_Base.comps.Comp_DoExplosion_BySomeWays.ForceDoExplosion_Description>Після вибору цілі апарат летить до неї й підриває себе. Поки він летить, наказ можна скасувати правою кнопкою миші.</MYDE_AF_RotorCraft_SinglePropeller_Base.comps.Comp_DoExplosion_BySomeWays.ForceDoExplosion_Description>
+	<MYDE_AF_RotorCraft_SinglePropeller_Base.comps.Comp_DoExplosion_BySomeWays.ShowCountDownToExplosion_Label>Самоліквідація через</MYDE_AF_RotorCraft_SinglePropeller_Base.comps.Comp_DoExplosion_BySomeWays.ShowCountDownToExplosion_Label>
+	<MYDE_AF_RotorCraft_SinglePropeller_Base.comps.Comp_AutoFindTarget.FindTarget_Icon_On_Label>Пошук ворогів: увімк.</MYDE_AF_RotorCraft_SinglePropeller_Base.comps.Comp_AutoFindTarget.FindTarget_Icon_On_Label>
+	<MYDE_AF_RotorCraft_SinglePropeller_Base.comps.Comp_AutoFindTarget.FindTarget_Icon_Off_Label>Пошук ворогів: вимк.</MYDE_AF_RotorCraft_SinglePropeller_Base.comps.Comp_AutoFindTarget.FindTarget_Icon_Off_Label>
+	<MYDE_AF_RotorCraft_SinglePropeller_Base.comps.Comp_AutoFindTarget.FindTarget_Icon_Description>Коли увімкнено, кожні 30 секунд апарат шукає цілі на мапі й, якщо зараз нікого не атакує, сам летить до найближчого ворога.</MYDE_AF_RotorCraft_SinglePropeller_Base.comps.Comp_AutoFindTarget.FindTarget_Icon_Description>
+	<MYDE_AF_Apparel_SinglePropellerPack.label>Ранець дронів</MYDE_AF_Apparel_SinglePropellerPack.label>
+	<MYDE_AF_Apparel_SinglePropellerPack.description>Ранець для запуску дронів-камікадзе «Самопожертва» RC-X.</MYDE_AF_Apparel_SinglePropellerPack.description>
+	<MYDE_AF_Apparel_SinglePropellerPack.verbs.0.label>Запустити дрон</MYDE_AF_Apparel_SinglePropellerPack.verbs.0.label>
+	<MYDE_AF_RotorCraft_AssistiveCraft_Base.label>«Щит» RA-S</MYDE_AF_RotorCraft_AssistiveCraft_Base.label>
+	<MYDE_AF_RotorCraft_AssistiveCraft_Base.description>«Щит» RA-S — апарат підтримки: створює захисний щит, освітлює місцевість прожектором і гасить пожежі вогнегасними снарядами. Основну зброю можна замінити.</MYDE_AF_RotorCraft_AssistiveCraft_Base.description>
+	<MYDE_AF_RotorCraft_AssistiveCraft_Base.comps.CompRefuelable.outOfFuelMessage>Потрібне пальне</MYDE_AF_RotorCraft_AssistiveCraft_Base.comps.CompRefuelable.outOfFuelMessage>
+	<MYDE_AF_RotorCraft_AssistiveCraft_Base.comps.Comp_MoveToTargetAndHover.Hover_Icon_On_Label>Барражування: увімк.</MYDE_AF_RotorCraft_AssistiveCraft_Base.comps.Comp_MoveToTargetAndHover.Hover_Icon_On_Label>
+	<MYDE_AF_RotorCraft_AssistiveCraft_Base.comps.Comp_MoveToTargetAndHover.Hover_Icon_Off_Label>Барражування: вимк.</MYDE_AF_RotorCraft_AssistiveCraft_Base.comps.Comp_MoveToTargetAndHover.Hover_Icon_Off_Label>
+	<MYDE_AF_RotorCraft_AssistiveCraft_Base.comps.Comp_MoveToTargetAndHover.Hover_Icon_Description>Увімкнути або вимкнути барражування (кружляння на місці) апарата.</MYDE_AF_RotorCraft_AssistiveCraft_Base.comps.Comp_MoveToTargetAndHover.Hover_Icon_Description>
+	<MYDE_AF_RotorCraft_AssistiveCraft_Base.comps.Comp_MoveToTargetAndHover.TakeOffAndLanding_Icon_On_Label>Злетіти</MYDE_AF_RotorCraft_AssistiveCraft_Base.comps.Comp_MoveToTargetAndHover.TakeOffAndLanding_Icon_On_Label>
+	<MYDE_AF_RotorCraft_AssistiveCraft_Base.comps.Comp_MoveToTargetAndHover.TakeOffAndLanding_Icon_Off_Label>Сісти</MYDE_AF_RotorCraft_AssistiveCraft_Base.comps.Comp_MoveToTargetAndHover.TakeOffAndLanding_Icon_Off_Label>
+	<MYDE_AF_RotorCraft_AssistiveCraft_Base.comps.Comp_MoveToTargetAndHover.TakeOffAndLanding_Icon_Description>Перемикає зліт і посадку. «Щит» RA-S — гвинтокрил: злітає й сідає вертикально будь-де. Стріляє лише в польоті. У польоті керується правою кнопкою миші: клік по землі — летіти туди, по чужому об'єкту — атакувати його, по своєму — супроводжувати.</MYDE_AF_RotorCraft_AssistiveCraft_Base.comps.Comp_MoveToTargetAndHover.TakeOffAndLanding_Icon_Description>
+	<MYDE_AF_RotorCraft_AssistiveCraft_Base.comps.Comp_ShootSomethingManual.ShootSomething_Label>Вогнегасний снаряд</MYDE_AF_RotorCraft_AssistiveCraft_Base.comps.Comp_ShootSomethingManual.ShootSomething_Label>
+	<MYDE_AF_RotorCraft_AssistiveCraft_Base.comps.Comp_ShootSomethingManual.ShootSomething_Description>Вогнегасний снаряд</MYDE_AF_RotorCraft_AssistiveCraft_Base.comps.Comp_ShootSomethingManual.ShootSomething_Description>
+	<MYDE_AF_RotorCraft_AssistiveCraft_Light.label>Прожектор</MYDE_AF_RotorCraft_AssistiveCraft_Light.label>
+	<MYDE_AerocraftFramework_MinifiedThing.label>запакований літальний апарат</MYDE_AerocraftFramework_MinifiedThing.label>
+	<MYDE_AF_UniversalWeapon_BaseGun.label>Базова гармата</MYDE_AF_UniversalWeapon_BaseGun.label>
+	<MYDE_AF_UniversalWeapon_BaseGun.description>Базове озброєння апарата; за характеристиками — як мала автоматична турель.</MYDE_AF_UniversalWeapon_BaseGun.description>
+	<MYDE_AF_AddableWeapon_MiniGun.label>Зброя: мініган</MYDE_AF_AddableWeapon_MiniGun.label>
+	<MYDE_AF_AddableWeapon_MiniGun.description>Комплект для встановлення мінігана на літальний апарат. Будується прямо на апараті, що стоїть на землі.</MYDE_AF_AddableWeapon_MiniGun.description>
+	<MYDE_AF_UniversalWeapon_MiniGun.label>Мініган</MYDE_AF_UniversalWeapon_MiniGun.label>
+	<MYDE_AF_UniversalWeapon_MiniGun.description>Мініган</MYDE_AF_UniversalWeapon_MiniGun.description>
+	<MYDE_AF_AddableWeapon_SniperGun.label>Зброя: снайперська гвинтівка</MYDE_AF_AddableWeapon_SniperGun.label>
+	<MYDE_AF_AddableWeapon_SniperGun.description>Комплект для встановлення снайперської гвинтівки на літальний апарат. Будується прямо на апараті, що стоїть на землі.</MYDE_AF_AddableWeapon_SniperGun.description>
+	<MYDE_AF_UniversalWeapon_SniperGun.label>Снайперська гвинтівка</MYDE_AF_UniversalWeapon_SniperGun.label>
+	<MYDE_AF_UniversalWeapon_SniperGun.description>Снайперська гвинтівка</MYDE_AF_UniversalWeapon_SniperGun.description>
+	<MYDE_AF_AddableWeapon_GrenadeGun.label>Зброя: гранатомет</MYDE_AF_AddableWeapon_GrenadeGun.label>
+	<MYDE_AF_AddableWeapon_GrenadeGun.description>Комплект для встановлення гранатомета на літальний апарат. Будується прямо на апараті, що стоїть на землі.</MYDE_AF_AddableWeapon_GrenadeGun.description>
+	<MYDE_AF_UniversalWeapon_GrenadeGun.label>Гранатомет</MYDE_AF_UniversalWeapon_GrenadeGun.label>
+	<MYDE_AF_UniversalWeapon_GrenadeGun.description>Гранатомет</MYDE_AF_UniversalWeapon_GrenadeGun.description>
+	<MYDE_AF_UniversalWeapon_GrenadeGun_Projectile.label>Граната</MYDE_AF_UniversalWeapon_GrenadeGun_Projectile.label>
+</LanguageData>

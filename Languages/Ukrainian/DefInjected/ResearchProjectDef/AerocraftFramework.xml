@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+	<MYDE_AF_Research_PrimaryAerocraft.label>Легкі літальні апарати</MYDE_AF_Research_PrimaryAerocraft.label>
+	<MYDE_AF_Research_PrimaryAerocraft.description>Легкі дрони та базова авіаційна зброя.</MYDE_AF_Research_PrimaryAerocraft.description>
+	<MYDE_AF_Research_IntermediateAerocraft.label>Середні літальні апарати</MYDE_AF_Research_IntermediateAerocraft.label>
+	<MYDE_AF_Research_IntermediateAerocraft.description>Пілотовані гелікоптери, бомбардувальник і апарат підтримки.</MYDE_AF_Research_IntermediateAerocraft.description>
+	<MYDE_AF_Research_AdvancedAerocraf.label>Важкі літальні апарати</MYDE_AF_Research_AdvancedAerocraf.label>
+	<MYDE_AF_Research_AdvancedAerocraf.description>Важкі апарати, зокрема авіаносець дронів.</MYDE_AF_Research_AdvancedAerocraf.description>
+	<MYDE_AF_Research_ArchotechAerocraft.label>Архотехнічні літальні апарати</MYDE_AF_Research_ArchotechAerocraft.label>
+	<MYDE_AF_Research_ArchotechAerocraft.description>Архотехнічні літальні апарати.</MYDE_AF_Research_ArchotechAerocraft.description>
+</LanguageData>

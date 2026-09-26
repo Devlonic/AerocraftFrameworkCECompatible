@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<!-- ============ Налаштування ============ -->
+	<AerocraftFramework_Setting_Label>Aerocraft Framework (авіація)</AerocraftFramework_Setting_Label>
+	<AerocraftFramework_Setting_Initialization>Скинути налаштування</AerocraftFramework_Setting_Initialization>
+	<AerocraftFramework_Setting_True>Увімк.</AerocraftFramework_Setting_True>
+	<AerocraftFramework_Setting_False>Вимк.</AerocraftFramework_Setting_False>
+	<AerocraftFramework_Setting_HeaderFlight>Політ</AerocraftFramework_Setting_HeaderFlight>
+	<AerocraftFramework_Setting_HeaderService>Дозаправка й перезарядка</AerocraftFramework_Setting_HeaderService>
+	<AerocraftFramework_Setting_HeaderShadow>Тіні</AerocraftFramework_Setting_HeaderShadow>
+	<AerocraftFramework_Setting_HeaderDebug>Налагодження</AerocraftFramework_Setting_HeaderDebug>
+	<AerocraftFramework_Setting_If_CheckMapBoundary>Розвертати апарати біля краю мапи</AerocraftFramework_Setting_If_CheckMapBoundary>
+	<AerocraftFramework_Setting_If_CheckMapBoundary_Tip>Апарат, що долетів до краю мапи, розвертається, а не губиться.</AerocraftFramework_Setting_If_CheckMapBoundary_Tip>
+	<AerocraftFramework_Setting_If_CanFireOnlyFlying>Стріляти лише в польоті</AerocraftFramework_Setting_If_CanFireOnlyFlying>
+	<AerocraftFramework_Setting_If_CanFireOnlyFlying_Tip>Апарати на землі не стріляють. У польоті ближній бій їх не дістає, а вибухи завдають лише 20% шкоди.</AerocraftFramework_Setting_If_CanFireOnlyFlying_Tip>
+	<AerocraftFramework_Setting_If_AutoReload>Колоністи самі перезаряджають апарати (Combat Extended)</AerocraftFramework_Setting_If_AutoReload>
+	<AerocraftFramework_Setting_If_AutoReload_Tip>Носії (робота «Переносити») підносять набої до апаратів на землі та їхніх збройових блоків, щойно магазин неповний. Перезарядку завжди можна наказати вручну: кнопкою апарата, з вкладки «Апарат» або правим кліком.</AerocraftFramework_Setting_If_AutoReload_Tip>
+	<AerocraftFramework_Setting_If_ReloadAllWeapons>Перезаряджати й зброю, що лежить на борту</AerocraftFramework_Setting_If_ReloadAllWeapons>
+	<AerocraftFramework_Setting_If_ReloadAllWeapons_Tip>Запасна зброя в апараті теж перезаряджається, щоб він міг перейти на неї, коли поточна зброя спорожніє.</AerocraftFramework_Setting_If_ReloadAllWeapons_Tip>
+	<AerocraftFramework_Setting_If_ServiceOnlyInHomeArea>Заправляти й перезаряджати лише в домашній зоні</AerocraftFramework_Setting_If_ServiceOnlyInHomeArea>
+	<AerocraftFramework_Setting_If_ServiceOnlyInHomeArea_Tip>Оригінальний мод обслуговував апарати лише в домашній зоні. Апарати не розширюють домашню зону, тож апарат, що стояв за її межами, ніколи не заправлявся й не перезаряджався. Типово вимкнено.</AerocraftFramework_Setting_If_ServiceOnlyInHomeArea_Tip>
+	<AerocraftFramework_Setting_If_DrawShadow>Малювати тіні</AerocraftFramework_Setting_If_DrawShadow>
+	<AerocraftFramework_Setting_Draw_Shadow_HeighRange_Min>Найменше зміщення тіні (опівдні)</AerocraftFramework_Setting_Draw_Shadow_HeighRange_Min>
+	<AerocraftFramework_Setting_Draw_Shadow_HeighRange_Max>Найбільше зміщення тіні (вранці й увечері)</AerocraftFramework_Setting_Draw_Shadow_HeighRange_Max>
+	<AerocraftFramework_Setting_Draw_Shadow_Angle>Кут зміщення тіні</AerocraftFramework_Setting_Draw_Shadow_Angle>
+	<AerocraftFramework_Setting_If_CanControlNonPlayer>(Налагодження) керувати будь-якими апаратами</AerocraftFramework_Setting_If_CanControlNonPlayer>
+	<AerocraftFramework_Setting_If_DebugLogging>Докладний журнал</AerocraftFramework_Setting_If_DebugLogging>
+
+	<!-- ============ Апарат ============ -->
+	<AerocraftFramework_Status>Стан</AerocraftFramework_Status>
+	<AerocraftFramework_Status_Landed>на землі</AerocraftFramework_Status_Landed>
+	<AerocraftFramework_Status_Flying>у польоті</AerocraftFramework_Status_Flying>
+	<AerocraftFramework_Status_TakingOff>злітає</AerocraftFramework_Status_TakingOff>
+	<AerocraftFramework_Status_Landing>сідає</AerocraftFramework_Status_Landing>
+	<AerocraftFramework_Status_Crashing>падає</AerocraftFramework_Status_Crashing>
+	<AerocraftFramework_Stunned>Оглушено</AerocraftFramework_Stunned>
+	<AerocraftFramework_ShowRadiusofRange_Label>Дальність</AerocraftFramework_ShowRadiusofRange_Label>
+	<AerocraftFramework_ShowRadiusofRange_Description>Показувати дальність стрільби.</AerocraftFramework_ShowRadiusofRange_Description>
+	<AerocraftFramework_ShowRadiusofRange_SelectAll_Label>Вибрати всі</AerocraftFramework_ShowRadiusofRange_SelectAll_Label>
+	<AerocraftFramework_ShowRadiusofRange_SelectAll_Desc>Вибрати всі апарати цього типу вашої фракції на мапі.</AerocraftFramework_ShowRadiusofRange_SelectAll_Desc>
+	<AerocraftFramework_CurrentWeaponName>Зброя</AerocraftFramework_CurrentWeaponName>
+	<AerocraftFramework_ExtraWeaponName>Збройовий блок</AerocraftFramework_ExtraWeaponName>
+	<AerocraftFramework_GoBack_Label>Повернутися</AerocraftFramework_GoBack_Label>
+	<AerocraftFramework_GoBack_Desc>Повернутися туди, звідки апарат злетів, і сісти.</AerocraftFramework_GoBack_Desc>
+	<AerocraftFramework_NeedFuel>Потрібне пальне</AerocraftFramework_NeedFuel>
+	<AerocraftFramework_NeedEnergy>Потрібен заряд</AerocraftFramework_NeedEnergy>
+	<AerocraftFramework_SetAngle_Label>Повернути на {0}°</AerocraftFramework_SetAngle_Label>
+	<AerocraftFramework_SetAngle_Desc>Повернути апарат на землі</AerocraftFramework_SetAngle_Desc>
+	<AerocraftFramework_AsWeapon_IfBreakDown>Зламано</AerocraftFramework_AsWeapon_IfBreakDown>
+	<AerocraftFramework_AsWeapon_BrokenDown>зламано, потрібен ремонт</AerocraftFramework_AsWeapon_BrokenDown>
+	<AerocraftFramework_SelectBaseThing_Label>Вибрати апарат</AerocraftFramework_SelectBaseThing_Label>
+	<AerocraftFramework_SelectBaseThing_Desc>Вибрати апарат, на якому стоїть цей збройовий блок.</AerocraftFramework_SelectBaseThing_Desc>
+	<AerocraftFramework_PilotsNeeded>для польоту потрібно {0}</AerocraftFramework_PilotsNeeded>
+	<AerocraftFramework_RunwayBlocked>Злітна смуга зайнята (червоні клітинки).</AerocraftFramework_RunwayBlocked>
+	<AerocraftFramework_ReleaseAll_Label>Усім вийти</AerocraftFramework_ReleaseAll_Label>
+	<AerocraftFramework_ReleaseAll_Desc>Висадити всіх з апарата (призваними).</AerocraftFramework_ReleaseAll_Desc>
+	<AerocraftFramework_Recharging>Перезаряджається: {0}</AerocraftFramework_Recharging>
+
+	<!-- ============ Пілоти й пасажири ============ -->
+	<AerocraftFramework_InnerPawnNum>На борту</AerocraftFramework_InnerPawnNum>
+	<AerocraftFramework_MaxInnerPawn>На борту немає місця</AerocraftFramework_MaxInnerPawn>
+	<AerocraftFramework_EnterAerocraft>Сісти в</AerocraftFramework_EnterAerocraft>
+	<AerocraftFramework_CannotEnter>Не можна сісти</AerocraftFramework_CannotEnter>
+	<AerocraftFramework_AerocraftIsNotStatic>апарат не на землі</AerocraftFramework_AerocraftIsNotStatic>
+	<AerocraftFramework_NeedPawnToControl>Потрібні пілоти на борту</AerocraftFramework_NeedPawnToControl>
+	<AerocraftFramework_NeedPawnToControl_PawnNum>Потрібно</AerocraftFramework_NeedPawnToControl_PawnNum>
+
+	<!-- ============ Зброя ============ -->
+	<AerocraftFramework_ReplaceCurrentWeapon_Replace>Встановити свою зброю в</AerocraftFramework_ReplaceCurrentWeapon_Replace>
+	<AerocraftFramework_ReplaceCurrentWeapon_CurrentWeapon>зараз</AerocraftFramework_ReplaceCurrentWeapon_CurrentWeapon>
+	<AerocraftFramework_SelectPawnAndLetItReplace_Label>Встановити зброю</AerocraftFramework_SelectPawnAndLetItReplace_Label>
+	<AerocraftFramework_SelectPawnAndLetItReplace_Desc>Вибрати свого пішака зі стрілецькою зброєю: він встановить її на апарат. Попередня зброя лишиться на борту.</AerocraftFramework_SelectPawnAndLetItReplace_Desc>
+	<AerocraftFramework_AddWeapon>встановлено зброю</AerocraftFramework_AddWeapon>
+	<AerocraftFramework_NoAerocraftInPosition>Тут немає літального апарата</AerocraftFramework_NoAerocraftInPosition>
+
+	<!-- ============ Набої й перезарядка ============ -->
+	<AerocraftFramework_Reloading>Перезаряджається...</AerocraftFramework_Reloading>
+	<AerocraftFramework_ReloadingMote>Перезарядка: {0}</AerocraftFramework_ReloadingMote>
+	<AerocraftFramework_ReportReloading>перезаряджає {0} ({1}): {2}.</AerocraftFramework_ReportReloading>
+	<AerocraftFramework_OutOfAmmo>{0}: у зброї «{1}» скінчилися набої. Посадіть апарат, щоб колоністи його перезарядили.</AerocraftFramework_OutOfAmmo>
+	<AerocraftFramework_Service_NotLanded>апарат має стояти на землі</AerocraftFramework_Service_NotLanded>
+	<AerocraftFramework_Service_NotInHomeArea>апарат поза домашньою зоною (див. налаштування мода)</AerocraftFramework_Service_NotInHomeArea>
+	<AerocraftFramework_CannotReachOrReserved>не можна дістатися, або ним уже хтось займається</AerocraftFramework_CannotReachOrReserved>
+	<AerocraftFramework_NoColonistCanReload>Зараз ніхто з колоністів не може його перезарядити.</AerocraftFramework_NoColonistCanReload>
+	<AerocraftFramework_NothingToReload>Уся зброя заряджена.</AerocraftFramework_NothingToReload>
+	<AerocraftFramework_Command_ReloadNow>Перезарядити</AerocraftFramework_Command_ReloadNow>
+	<AerocraftFramework_Command_ReloadNow_Desc>Послати найближчого вільного колоніста перезарядити {0} вибраним типом набоїв.</AerocraftFramework_Command_ReloadNow_Desc>
+	<AerocraftFramework_FloatMenu_Reload>Перезарядити {0}: {1}</AerocraftFramework_FloatMenu_Reload>
+	<AerocraftFramework_Gizmo_Ammo>Боєзапас</AerocraftFramework_Gizmo_Ammo>
+	<AerocraftFramework_Gizmo_Ammo_Tip>Боєзапас усієї зброї апарата. Клацніть, щоб послати колоністів перезарядити все (апарат має стояти на землі).</AerocraftFramework_Gizmo_Ammo_Tip>
+
+	<!-- ============ Вкладка ============ -->
+	<AerocraftFramework_ITab>Апарат</AerocraftFramework_ITab>
+	<AerocraftFramework_ITab_InnerPawn>На борту</AerocraftFramework_ITab_InnerPawn>
+	<AerocraftFramework_ITab_CurrentWeapon>Поточна зброя</AerocraftFramework_ITab_CurrentWeapon>
+	<AerocraftFramework_ITab_InnerWeapon>Запасна зброя на борту</AerocraftFramework_ITab_InnerWeapon>
+	<AerocraftFramework_ITab_ExtraWeapon>Збройові блоки</AerocraftFramework_ITab_ExtraWeapon>
+	<AerocraftFramework_ITab_ExtraWeapon_Select>Вибрати цей збройовий блок</AerocraftFramework_ITab_ExtraWeapon_Select>
+	<AerocraftFramework_ITab_CurrentShell>наступна</AerocraftFramework_ITab_CurrentShell>
+	<AerocraftFramework_ITab_InnerShell>Бомби на борту</AerocraftFramework_ITab_InnerShell>
+	<AerocraftFramework_ITab_Pawn_Drop>Висадити</AerocraftFramework_ITab_Pawn_Drop>
+	<AerocraftFramework_ITab_Pawn_DropDrafted>Висадити призваним</AerocraftFramework_ITab_Pawn_DropDrafted>
+	<AerocraftFramework_ITab_Drop>Вивантажити на землю</AerocraftFramework_ITab_Drop>
+	<AerocraftFramework_ITab_Replace>Використовувати цю зброю</AerocraftFramework_ITab_Replace>
+	<AerocraftFramework_ITab_ReplaceToOrigin>Повернути штатну зброю</AerocraftFramework_ITab_ReplaceToOrigin>
+	<AerocraftFramework_ITab_Shell_Drop>Вивантажити одну на землю</AerocraftFramework_ITab_Shell_Drop>
+	<AerocraftFramework_ITab_Shell_Replace>Зробити наступною</AerocraftFramework_ITab_Shell_Replace>
+	<AerocraftFramework_ITab_Reload>Перезарядити</AerocraftFramework_ITab_Reload>
+	<AerocraftFramework_ITab_ChooseAmmo>Тип набоїв</AerocraftFramework_ITab_ChooseAmmo>
+	<AerocraftFramework_ITab_LandToReload>Посадіть апарат, щоб колоністи його перезарядили й заправили.</AerocraftFramework_ITab_LandToReload>
+	<AerocraftFramework_ITab_Shells>Бомби: {0} / {1}</AerocraftFramework_ITab_Shells>
+
+	<!-- ============ Бомби ============ -->
+	<AerocraftFramework_LoadShell_For>Для</AerocraftFramework_LoadShell_For>
+	<AerocraftFramework_LoadShell>Завантажити бомби</AerocraftFramework_LoadShell>
+	<AerocraftFramework_LoadShell_Desc>Послати найближчого вільного колоніста завантажити мінометні снаряди в бомбовий відсік.</AerocraftFramework_LoadShell_Desc>
+	<AerocraftFramework_NeedShell>Немає бомб: завантажте мінометні снаряди в апарат на землі (правий клік по ньому або «Завантажити бомби»).</AerocraftFramework_NeedShell>
+	<AerocraftFramework_NoFlying>Апарат не в польоті</AerocraftFramework_NoFlying>
+	<AerocraftFramework_ShellEmpty>порожньо</AerocraftFramework_ShellEmpty>
+	<AerocraftFramework_NoShellsAvailable>немає доступних снарядів</AerocraftFramework_NoShellsAvailable>
+	<AerocraftFramework_ShellBayFull>бомбовий відсік повний</AerocraftFramework_ShellBayFull>
+	<AerocraftFramework_ShellNotUsable>{0} не можна скинути</AerocraftFramework_ShellNotUsable>
+	<AerocraftFramework_ShellsOnBoard>Бомб на борту: {0} / {1}</AerocraftFramework_ShellsOnBoard>
+
+	<!-- ============ Переліт ============ -->
+	<AerocraftFramework_ChoseWorldTargetError>Виберіть об'єкт на карті світу.</AerocraftFramework_ChoseWorldTargetError>
+	<AerocraftFramework_OutOfRange>Задалеко</AerocraftFramework_OutOfRange>
+	<AerocraftFramework_TargetNotValid>Сюди не можна</AerocraftFramework_TargetNotValid>
+	<AerocraftFramework_NoBack>пального не вистачить назад</AerocraftFramework_NoBack>
+	<AerocraftFramework_FuelSurplus>пального лишиться</AerocraftFramework_FuelSurplus>
+	<AerocraftFramework_AerocraftArrived>прибув до {0}</AerocraftFramework_AerocraftArrived>
+	<AerocraftFramework_CommandAttackSettlement>Прилетіти на мапу</AerocraftFramework_CommandAttackSettlement>
+	<AerocraftFramework_NothingToLandAt>На цій клітинці немає куди сісти.</AerocraftFramework_NothingToLandAt>
+	<AerocraftFramework_Trade_Leave_Label>Висадити караван</AerocraftFramework_Trade_Leave_Label>
+	<AerocraftFramework_Trade_Leave_Desc>Пасажири з вантажного відсіку тимчасово виходять і утворюють караван: можна торгувати й виконувати мирні завдання.</AerocraftFramework_Trade_Leave_Desc>
+	<AerocraftFramework_Trade_GetOn_Label>Сісти в апарат</AerocraftFramework_Trade_GetOn_Label>
+	<AerocraftFramework_Trade_GetOn_Desc>Караван сідає в апарат</AerocraftFramework_Trade_GetOn_Desc>
+	<AerocraftFramework_TradeError>У вантажному відсіку немає колоністів.</AerocraftFramework_TradeError>
+	<AerocraftFramework_Refuel_Label>Заправитися</AerocraftFramework_Refuel_Label>
+	<AerocraftFramework_Refuel_Desc>Заправити апарат пальним із вантажного відсіку.</AerocraftFramework_Refuel_Desc>
+	<AerocraftFramework_Refuel_Message_A>Бак уже повний.</AerocraftFramework_Refuel_Message_A>
+	<AerocraftFramework_Refuel_Message_B>У вантажному відсіку немає придатного пального.</AerocraftFramework_Refuel_Message_B>
+	<AerocraftFramework_TradeError_CannotCarry>не може брати вантаж</AerocraftFramework_TradeError_CannotCarry>
+
+</LanguageData>
