@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
-  <AerocraftFramework_AerocraftArrived>抵達{0_label}</AerocraftFramework_AerocraftArrived>
+  <AerocraftFramework_AerocraftArrived>抵達{0}</AerocraftFramework_AerocraftArrived>
   <AerocraftFramework_CommandAttackSettlement>飛行器·進攻</AerocraftFramework_CommandAttackSettlement>
   <AerocraftFramework_Trade_Leave_Label>離開飛行器</AerocraftFramework_Trade_Leave_Label>
   <AerocraftFramework_Trade_Leave_Desc>飛行器內“裝載”的內容將暫時離開飛行器並生成遠行隊，從而能够進行貿易以及執行非戰鬥任務</AerocraftFramework_Trade_Leave_Desc>

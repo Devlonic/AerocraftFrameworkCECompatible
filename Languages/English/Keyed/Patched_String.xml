@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<!-- ============ Settings ============ -->
+	<AerocraftFramework_Setting_HeaderFlight>Flight</AerocraftFramework_Setting_HeaderFlight>
+	<AerocraftFramework_Setting_HeaderService>Refuelling and reloading</AerocraftFramework_Setting_HeaderService>
+	<AerocraftFramework_Setting_HeaderShadow>Shadows</AerocraftFramework_Setting_HeaderShadow>
+	<AerocraftFramework_Setting_HeaderDebug>Debug</AerocraftFramework_Setting_HeaderDebug>
+	<AerocraftFramework_Setting_If_CheckMapBoundary_Tip>An aircraft that reaches the edge of the map turns back instead of being lost.</AerocraftFramework_Setting_If_CheckMapBoundary_Tip>
+	<AerocraftFramework_Setting_If_CanFireOnlyFlying_Tip>Landed aircraft do not shoot. While flying, melee attacks cannot reach them and explosions deal 20% damage.</AerocraftFramework_Setting_If_CanFireOnlyFlying_Tip>
+	<AerocraftFramework_Setting_If_AutoReload>Colonists reload aircraft automatically (Combat Extended)</AerocraftFramework_Setting_If_AutoReload>
+	<AerocraftFramework_Setting_If_AutoReload_Tip>Haulers bring ammo to landed aircraft and their weapon mounts whenever a magazine is not full. You can always order a reload by hand from the aircraft's gizmos, its tab or a right click.</AerocraftFramework_Setting_If_AutoReload_Tip>
+	<AerocraftFramework_Setting_If_ReloadAllWeapons>Also reload weapons stored on board</AerocraftFramework_Setting_If_ReloadAllWeapons>
+	<AerocraftFramework_Setting_If_ReloadAllWeapons_Tip>Weapons kept in an aircraft besides the one in use are reloaded too, so the aircraft can switch to them when the current one runs dry.</AerocraftFramework_Setting_If_ReloadAllWeapons_Tip>
+	<AerocraftFramework_Setting_If_ServiceOnlyInHomeArea>Refuel and reload only inside the home area</AerocraftFramework_Setting_If_ServiceOnlyInHomeArea>
+	<AerocraftFramework_Setting_If_ServiceOnlyInHomeArea_Tip>The original mod only serviced aircraft inside the home area. Aircraft do not expand the home area, so an aircraft parked outside of it was never refuelled or reloaded. Off by default.</AerocraftFramework_Setting_If_ServiceOnlyInHomeArea_Tip>
+	<AerocraftFramework_Setting_If_DebugLogging>Debug logging</AerocraftFramework_Setting_If_DebugLogging>
+
+	<!-- ============ Status ============ -->
+	<AerocraftFramework_Status>Status</AerocraftFramework_Status>
+	<AerocraftFramework_Status_Landed>landed</AerocraftFramework_Status_Landed>
+	<AerocraftFramework_Status_Flying>flying</AerocraftFramework_Status_Flying>
+	<AerocraftFramework_Status_TakingOff>taking off</AerocraftFramework_Status_TakingOff>
+	<AerocraftFramework_Status_Landing>landing</AerocraftFramework_Status_Landing>
+	<AerocraftFramework_Status_Crashing>crashing</AerocraftFramework_Status_Crashing>
+	<AerocraftFramework_Stunned>Stunned</AerocraftFramework_Stunned>
+	<AerocraftFramework_AsWeapon_BrokenDown>broken down, repair it</AerocraftFramework_AsWeapon_BrokenDown>
+	<AerocraftFramework_PilotsNeeded>needs {0} to fly</AerocraftFramework_PilotsNeeded>
+	<AerocraftFramework_RunwayBlocked>The runway is blocked (red cells).</AerocraftFramework_RunwayBlocked>
+	<AerocraftFramework_NothingToLandAt>There is nothing to land at on this tile.</AerocraftFramework_NothingToLandAt>
+	<AerocraftFramework_ReleaseAll_Label>Everyone out</AerocraftFramework_ReleaseAll_Label>
+	<AerocraftFramework_ReleaseAll_Desc>Let every pawn out of the aircraft, drafted.</AerocraftFramework_ReleaseAll_Desc>
+	<AerocraftFramework_Recharging>Recharging: {0}</AerocraftFramework_Recharging>
+
+	<!-- ============ Ammo and reloading ============ -->
+	<AerocraftFramework_Reloading>Reloading...</AerocraftFramework_Reloading>
+	<AerocraftFramework_ReloadingMote>Reloading {0}</AerocraftFramework_ReloadingMote>
+	<AerocraftFramework_ReportReloading>reloading {0} ({1}) with {2}.</AerocraftFramework_ReportReloading>
+	<AerocraftFramework_OutOfAmmo>{0}: {1} is out of ammo. Land it so colonists can reload it.</AerocraftFramework_OutOfAmmo>
+	<AerocraftFramework_Service_NotLanded>the aircraft must be landed</AerocraftFramework_Service_NotLanded>
+	<AerocraftFramework_Service_NotInHomeArea>the aircraft is outside the home area (see the mod settings)</AerocraftFramework_Service_NotInHomeArea>
+	<AerocraftFramework_CannotReachOrReserved>cannot reach it, or someone else is using it</AerocraftFramework_CannotReachOrReserved>
+	<AerocraftFramework_NoColonistCanReload>No colonist can reload it now.</AerocraftFramework_NoColonistCanReload>
+	<AerocraftFramework_NothingToReload>Every weapon is loaded.</AerocraftFramework_NothingToReload>
+	<AerocraftFramework_Command_ReloadNow>Reload now</AerocraftFramework_Command_ReloadNow>
+	<AerocraftFramework_Command_ReloadNow_Desc>Send the closest free colonist to reload {0} with the selected ammo type.</AerocraftFramework_Command_ReloadNow_Desc>
+	<AerocraftFramework_FloatMenu_Reload>Reload {0} with {1}</AerocraftFramework_FloatMenu_Reload>
+	<AerocraftFramework_Gizmo_Ammo>Ammo</AerocraftFramework_Gizmo_Ammo>
+	<AerocraftFramework_Gizmo_Ammo_Tip>Ammo of all the weapons of this aircraft. Click to send colonists to reload them (the aircraft must be landed).</AerocraftFramework_Gizmo_Ammo_Tip>
+
+	<!-- ============ Tab ============ -->
+	<AerocraftFramework_ITab_Reload>Reload now</AerocraftFramework_ITab_Reload>
+	<AerocraftFramework_ITab_ChooseAmmo>Ammo type</AerocraftFramework_ITab_ChooseAmmo>
+	<AerocraftFramework_ITab_LandToReload>Land the aircraft so colonists can reload and refuel it.</AerocraftFramework_ITab_LandToReload>
+	<AerocraftFramework_ITab_Pawn_DropDrafted>Let out (drafted)</AerocraftFramework_ITab_Pawn_DropDrafted>
+	<AerocraftFramework_ITab_Shells>Bombs: {0} / {1}</AerocraftFramework_ITab_Shells>
+
+	<!-- ============ Bombs ============ -->
+	<AerocraftFramework_LoadShell_Desc>Send the closest free colonist to load mortar shells into the bomb bay.</AerocraftFramework_LoadShell_Desc>
+	<AerocraftFramework_NoShellsAvailable>no shells available</AerocraftFramework_NoShellsAvailable>
+	<AerocraftFramework_ShellBayFull>bomb bay full</AerocraftFramework_ShellBayFull>
+	<AerocraftFramework_ShellNotUsable>{0} cannot be dropped</AerocraftFramework_ShellNotUsable>
+	<AerocraftFramework_ShellsOnBoard>Bombs on board: {0} / {1}</AerocraftFramework_ShellsOnBoard>
+
+</LanguageData>

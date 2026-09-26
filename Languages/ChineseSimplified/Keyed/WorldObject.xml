@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
-  <AerocraftFramework_AerocraftArrived>抵达{0_label}</AerocraftFramework_AerocraftArrived>
+  <AerocraftFramework_AerocraftArrived>抵达{0}</AerocraftFramework_AerocraftArrived>
   <AerocraftFramework_CommandAttackSettlement>飞行器·进攻</AerocraftFramework_CommandAttackSettlement>
   <AerocraftFramework_Trade_Leave_Label>离开飞行器</AerocraftFramework_Trade_Leave_Label>
   <AerocraftFramework_Trade_Leave_Desc>飞行器内“装载”的内容将暂时离开飞行器并生成远行队，从而能够进行贸易以及执行非战斗任务</AerocraftFramework_Trade_Leave_Desc>

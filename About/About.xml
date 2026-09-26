@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+	<name>Aerocraft Framework (CE patched)</name>
+	<author>空曜 (original), Devloner (Combat Extended patch)</author>
+	<packageId>MYDE.AerocraftFramework</packageId>
+	<modVersion>2.0.0</modVersion>
+	<supportedVersions>
+		<li>1.5</li>
+	</supportedVersions>
+	<description>A patched build of Aerocraft Framework for RimWorld 1.5 that works with Combat Extended 15.6.
+
+It uses the same package id as the original, so addons that depend on Aerocraft Framework (RimThunder - Gruppa Krovi and others) keep working. When both are installed, the game gives this local copy the id and renames the workshop copy to MYDE.AerocraftFramework_steam; enable only this one.
+
+Fixed for Combat Extended:
+- colonists reload aircraft and their weapon mounts again: the original called a CE method that no longer exists, and every reload failed at the last moment;
+- the aircraft are registered in CE's turret registry, so CE's ammo gizmos and ammo type selection work on them;
+- no more "Verb caster is not a turret and does not have a WarmupStance" error spam;
+- bombers load CE mortar shells, and bombs, fire foam shells and explosions use CE projectiles;
+- rockets fired by weapon mounts no longer hit their own aircraft.
+
+Other fixes: a save could grow on every save (an aircraft following itself was deep-saved into itself), pilots could not be let out, deconstruction gave nothing back, weapons could get lost when switching, weapon kits logged errors, a dialog spammed the log, and many null reference errors.
+
+Interface: an aircraft tab with crew, weapons, ammo bars, reload and ammo type buttons, mounts and bombs; an ammo gizmo for the whole aircraft; "Reload now" and right-click reload orders; inspect lines with ammo and flight status; a clearer settings page; Ukrainian translation.
+
+Settings: auto reload, reloading of stored weapons, servicing only in the home area (off by default: aircraft do not expand the home area).</description>
+	<modDependencies>
+		<li>
+			<packageId>brrainz.harmony</packageId>
+			<displayName>Harmony</displayName>
+			<steamWorkshopUrl>steam://url/CommunityFilePage/2009463077</steamWorkshopUrl>
+			<downloadUrl>https://github.com/pardeike/HarmonyRimWorld/releases/latest</downloadUrl>
+		</li>
+	</modDependencies>
+	<loadAfter>
+		<li>brrainz.harmony</li>
+		<li>Ludeon.RimWorld</li>
+		<li>Ludeon.RimWorld.Royalty</li>
+		<li>Ludeon.RimWorld.Ideology</li>
+		<li>Ludeon.RimWorld.Biotech</li>
+		<li>Ludeon.RimWorld.Anomaly</li>
+		<li>CETeam.CombatExtended</li>
+		<li>IssacZhuang.MuzzleFlash</li>
+	</loadAfter>
+</ModMetaData>

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
   <!--=====武器替换-->
   <AerocraftFramework_ReplaceCurrentWeapon_Replace>Replace</AerocraftFramework_ReplaceCurrentWeapon_Replace>
@@ -7,8 +7,8 @@
   <AerocraftFramework_SelectPawnAndLetItReplace_Desc>Choose a weapon carrying Pawn from the same faction and replace it with his own weapon on the aerocraft</AerocraftFramework_SelectPawnAndLetItReplace_Desc>
   <!--=====炮弹装载-->
   <AerocraftFramework_LoadShell_For>For</AerocraftFramework_LoadShell_For>
-  <AerocraftFramework_LoadShell>Load shell</AerocraftFramework_LoadShell>
-  <AerocraftFramework_NeedShell>Requires any type of shell     (Right click on the Aerocraft to load shells)</AerocraftFramework_NeedShell>
+  <AerocraftFramework_LoadShell>Load bombs</AerocraftFramework_LoadShell>
+  <AerocraftFramework_NeedShell>No bombs on board: load mortar shells into the landed aircraft (right click it or use "Load bombs").</AerocraftFramework_NeedShell>
   <AerocraftFramework_NoFlying>Not in flight</AerocraftFramework_NoFlying>
   <AerocraftFramework_ShellEmpty>Empty</AerocraftFramework_ShellEmpty>
   <!--=====载人-->
@@ -17,7 +17,7 @@
   <AerocraftFramework_EnterAerocraft>Enter</AerocraftFramework_EnterAerocraft>
   <AerocraftFramework_CannotEnter>Unable to enter</AerocraftFramework_CannotEnter>
   <AerocraftFramework_AerocraftIsNotStatic>not stationary</AerocraftFramework_AerocraftIsNotStatic>
-  <AerocraftFramework_NeedPawnToControl>Need to have colonizer control</AerocraftFramework_NeedPawnToControl>
+  <AerocraftFramework_NeedPawnToControl>Needs pilots on board</AerocraftFramework_NeedPawnToControl>
   <AerocraftFramework_NeedPawnToControl_PawnNum>Required quantity</AerocraftFramework_NeedPawnToControl_PawnNum>
   <!--=====跨地图-->
   <AerocraftFramework_ChoseWorldTargetError>Aerocraft Framework: must select a valid target</AerocraftFramework_ChoseWorldTargetError>

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
-  <AerocraftFramework_AerocraftArrived>Arrived {0_label}</AerocraftFramework_AerocraftArrived>
+  <AerocraftFramework_AerocraftArrived>arrived at {0}</AerocraftFramework_AerocraftArrived>
   <AerocraftFramework_CommandAttackSettlement>Aerocraft·Attack</AerocraftFramework_CommandAttackSettlement>
   <AerocraftFramework_Trade_Leave_Label>Leave the Aerocraft</AerocraftFramework_Trade_Leave_Label>
   <AerocraftFramework_Trade_Leave_Desc>The 'Content' inside the Aerocraft will temporarily leave the Aerocraft and generate a Caravan, allowing for trade and non combat missions</AerocraftFramework_Trade_Leave_Desc>
