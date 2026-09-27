@@ -79,7 +79,8 @@ Other bugs of the original that show up in normal play:
   before the line first). The targeter shows where each bomb falls and its blast radius; right click sets the bombs
   per run; every selected bomber makes the run. Another order, landing or running out of bombs ends it.
 - **Strafing run**: the same targeting (a target, or shift-click a line); every weapon that reaches fires at a
-  point walking along the line, warming up on its start while the aircraft lines up. Several selected aircraft
+  point walking along the line, without the warm-up delay (they are aimed along the flight path; a CE machine
+  gun would otherwise need two seconds). Several selected aircraft
   strafe parallel lines.
 - **Troop drop**: a helicopter (an aircraft that takes off vertically) flies to the clicked spot, hovers, and
   everyone aboard but its crew ropes down one after another, drafted; downed pawns stay aboard. Several selected
@@ -118,6 +119,9 @@ tools\Repair-Save.ps1 -Path <Saves>\testreload.rws -Output <Saves>\testreload_re
 - *Also reload weapons stored on board* (on).
 - *Refuel and reload only inside the home area* (off; the original behaviour when on).
 - *EMP and stun force an aircraft to land* (off; the original behaviour when on).
+- *World flight speed* (x0.35): the defs use the speed of vanilla transport pods, faster than most aircraft of
+  Vehicle Framework; at x0.35 a Mi-24 flies about 10 tiles per 1000 ticks, like the Mosquito of Vanilla Vehicles
+  Expanded. The flight time shows when a destination is picked.
 - Flight, shadows and debug options of the original.
 
 ## Development
@@ -169,7 +173,8 @@ and quests and removes other hostiles from the home map (a raid downs the coloni
 - colonists load bombs, a bomb is dropped in flight, bombing runs on a point and along a line drop their bombs
   over the targets, the support aircraft fires a fire foam shell;
 - boarding by job, a save/load round trip and the load of a legacy save with a nested follow target;
-- a flight to an enemy settlement and back with pilots and mounts, off the map edge and in over it; the crew counts as colonists there, and the
+- a flight to an enemy settlement and back with pilots and mounts, off the map edge and in over it, taking the
+  predicted time over the world map; the crew counts as colonists there, and the
   map stays open when the settlement is defeated with only the crew on it;
 - medevac, troop drop and strafing with a helicopter (the Mi-24 with Gruppa Krovi): a colonist carries a downed
   one aboard, who does not count as a pilot; the troops rope down at the drop point, drafted, while the crew and

@@ -74,7 +74,35 @@ namespace MYDE_AerocraftFramework
             {
                 GenDraw.DrawWorldRadiusRing(originTile, SafeRange);
                 GenDraw.DrawWorldRadiusRing(originTile, NoBackRange);
-            }, target => TargetingLabelGetter(target, originTile, SafeRange, NoBackRange, Fuel, fuelConsumeBase));
+            }, target => TargetingLabelGetter(target, originTile, SafeRange, NoBackRange, Fuel, fuelConsumeBase, Props.TravelSpeed));
+        }
+
+        /// <summary>World speed in radians of arc per tick: the def's speed times the mod setting.</summary>
+        public static float EffectiveTravelSpeed(float travelSpeed)
+        {
+            return travelSpeed * MYDE_AerocraftFramework_Setting.CrossMapSpeedFactor;
+        }
+
+        /// <summary>Ticks of flight over the world map between two tiles.</summary>
+        public static int TravelTicks(int fromTile, int toTile, float travelSpeed)
+        {
+            float speed = EffectiveTravelSpeed(travelSpeed);
+            if (speed <= 0f || fromTile < 0 || toTile < 0)
+            {
+                return 0;
+            }
+            float distance = GenMath.SphericalDistance(Find.WorldGrid.GetTileCenter(fromTile).normalized, Find.WorldGrid.GetTileCenter(toTile).normalized);
+            return Mathf.CeilToInt(distance / speed);
+        }
+
+        public static string TargetingLabelGetter(GlobalTargetInfo Target, int OriginTile, int SafeLaunchDistance, int MaxLaunchDistance, float Fuel, float FuelConsumeSpeedBase, float travelSpeed)
+        {
+            string label = TargetingLabelGetter(Target, OriginTile, SafeLaunchDistance, MaxLaunchDistance, Fuel, FuelConsumeSpeedBase);
+            if (label.NullOrEmpty() || !Target.IsValid || Target.WorldObject == null || Find.WorldGrid.TraversalDistanceBetween(OriginTile, Target.Tile) > MaxLaunchDistance)
+            {
+                return label;
+            }
+            return label + "\n" + "AerocraftFramework_FlightTime".Translate(TravelTicks(OriginTile, Target.Tile, travelSpeed).ToStringTicksToPeriod());
         }
 
         public static string TargetingLabelGetter(GlobalTargetInfo Target, int OriginTile, int SafeLaunchDistance, int MaxLaunchDistance, float Fuel, float FuelConsumeSpeedBase)

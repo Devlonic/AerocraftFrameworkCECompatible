@@ -17,6 +17,9 @@
 	<AerocraftFramework_Setting_If_DebugLogging>Debug logging</AerocraftFramework_Setting_If_DebugLogging>
 	<AerocraftFramework_Setting_If_StunForcesLanding>EMP and stun force an aircraft to land</AerocraftFramework_Setting_If_StunForcesLanding>
 	<AerocraftFramework_Setting_If_StunForcesLanding_Tip>The original behaviour: any EMP or stun damage lands the aircraft, including the EMP that charged "ion" bullets of Combat Extended carry. Off: a stunned aircraft stays in the air and its weapons are silent while the stun lasts.</AerocraftFramework_Setting_If_StunForcesLanding_Tip>
+	<AerocraftFramework_FlightTime>Flight time: {0}</AerocraftFramework_FlightTime>
+	<AerocraftFramework_Setting_CrossMapSpeedFactor>World flight speed: x{0}</AerocraftFramework_Setting_CrossMapSpeedFactor>
+	<AerocraftFramework_Setting_CrossMapSpeedFactor_Tip>How fast aircraft fly over the world map. The aircraft of this framework were made as fast as vanilla transport pods, faster than most aircraft of Vehicle Framework; at x0.35 (the default) a Mi-24 flies about 10 tiles per 1000 ticks, like the Mosquito of Vanilla Vehicles Expanded. The flight time shows when you pick a destination.</AerocraftFramework_Setting_CrossMapSpeedFactor_Tip>
 
 	<!-- ============ Status ============ -->
 	<AerocraftFramework_Status>Status</AerocraftFramework_Status>

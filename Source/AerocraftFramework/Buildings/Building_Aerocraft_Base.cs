@@ -757,7 +757,7 @@ namespace MYDE_AerocraftFramework
         /// Moves the forced target without restarting a warm-up in progress, as <see cref="OrderAttack"/> would: a
         /// strafing run walks the fire along its line every few ticks.
         /// </summary>
-        public void RetargetForced(LocalTargetInfo target)
+        public void RetargetForced(LocalTargetInfo target, bool skipWarmup = false)
         {
             if (!target.IsValid)
             {
@@ -767,6 +767,12 @@ namespace MYDE_AerocraftFramework
             if (WarmupTicksLeft > 0)
             {
                 CurrentTargetInt = target;
+                if (skipWarmup)
+                {
+                    // Already aimed along the flight path: a CE gun would otherwise warm up for two or three
+                    // seconds and a short run would be over before its first shot.
+                    WarmupTicksLeft = 1;
+                }
             }
         }
 

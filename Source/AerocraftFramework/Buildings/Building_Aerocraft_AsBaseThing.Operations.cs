@@ -382,7 +382,7 @@ namespace MYDE_AerocraftFramework
             {
                 if (AerocraftWeaponOrders.CanAttack(turret, cell))
                 {
-                    turret.RetargetForced(cell);
+                    turret.RetargetForced(cell, skipWarmup: true);
                 }
             }
         }

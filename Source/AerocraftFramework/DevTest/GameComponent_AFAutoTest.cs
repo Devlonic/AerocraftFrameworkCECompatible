@@ -45,6 +45,8 @@ namespace MYDE_AerocraftFramework
         private bool opsStrafeAimed;
         private bool opsStrafeFired;
         private float departureMaxScale;
+        private int worldFlightStartTick;
+        private int worldFlightPredicted;
         private IntVec3 rocketTarget;
         private readonly Dictionary<Thing, IntVec3> rocketsInFlight = new Dictionary<Thing, IntVec3>();
         private readonly List<float> rocketImpacts = new List<float>();
@@ -1030,12 +1032,18 @@ namespace MYDE_AerocraftFramework
                         return;
                     }
                     Check(Flying != null, $"it flew off the map edge in {StepTicks} ticks, climbing (drawn up to x{departureMaxScale:F2})");
+                    worldFlightStartTick = Find.TickManager.TicksGame;
+                    worldFlightPredicted = Flying == null ? 0 : Comp_CanCrossMap.TravelTicks(Flying.Tile, Flying.DestinationTile, Flying.TravelSpeed);
                     counter = 1;
                     break;
                 case 1:
                     WorldObject_CrossMapThing_Flying flying = Flying;
                     if (flying != null && flying.arrived)
                     {
+                        int worldTicks = Find.TickManager.TicksGame - worldFlightStartTick;
+                        Check(worldFlightPredicted > 0 && Mathf.Abs(worldTicks - worldFlightPredicted) <= worldFlightPredicted * 0.1f + 5,
+                            $"the world flight took {worldTicks} ticks as predicted ({worldFlightPredicted}, speed x{MYDE_AerocraftFramework_Setting.CrossMapSpeedFactor:F2}): "
+                            + Comp_CanCrossMap.TargetingLabelGetter(new GlobalTargetInfo(Find.WorldObjects.MapParentAt(flying.DestinationTile)), homeTile, 999, 999, 0f, 0f, flying.TravelSpeed).Replace("\n", " "));
                         Check(flying.LinkToAerocraft == subject && flying.AllExtraWeapon.Count == int.Parse(savedSummary[1]), "the aircraft and its mounts are travelling");
                         flying.DoSomething_Attack();
                         Check(subject.Spawned && subject.Map != HomeMap, $"landed on {subject.Map?.Parent?.Label}");

@@ -63,7 +63,7 @@ namespace MYDE_AerocraftFramework
                     return 1f;
                 }
                 float distance = GenMath.SphericalDistance(start.normalized, end.normalized);
-                return distance == 0f ? 1f : TravelSpeed / distance;
+                return distance == 0f ? 1f : Comp_CanCrossMap.EffectiveTravelSpeed(TravelSpeed) / distance;
             }
         }
 
@@ -222,7 +222,7 @@ namespace MYDE_AerocraftFramework
             {
                 GenDraw.DrawWorldRadiusRing(Tile, SafeRange);
                 GenDraw.DrawWorldRadiusRing(Tile, NoBackRange);
-            }, target => Comp_CanCrossMap.TargetingLabelGetter(target, Tile, SafeRange, NoBackRange, Fuel, fuelConsumeBase));
+            }, target => Comp_CanCrossMap.TargetingLabelGetter(target, Tile, SafeRange, NoBackRange, Fuel, fuelConsumeBase, TravelSpeed));
         }
 
         public static string TargetingLabelGetter(GlobalTargetInfo Target, int OriginTile, int SafeLaunchDistance, int MaxLaunchDistance, float Fuel, float FuelConsumeSpeedBase)

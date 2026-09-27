@@ -15,6 +15,9 @@
 	<AerocraftFramework_Setting_If_CanFireOnlyFlying>Стріляти лише в польоті</AerocraftFramework_Setting_If_CanFireOnlyFlying>
 	<AerocraftFramework_Setting_If_StunForcesLanding>ЕМІ й оглушення змушують апарат сісти</AerocraftFramework_Setting_If_StunForcesLanding>
 	<AerocraftFramework_Setting_If_StunForcesLanding_Tip>Поведінка оригіналу: будь-яке ЕМІ чи оглушення садить апарат, зокрема ЕМІ, яке несуть зарядні «іонні» кулі Combat Extended. Вимкнено: оглушений апарат лишається в повітрі, а його зброя мовчить, поки триває оглушення.</AerocraftFramework_Setting_If_StunForcesLanding_Tip>
+	<AerocraftFramework_FlightTime>Час перельоту: {0}</AerocraftFramework_FlightTime>
+	<AerocraftFramework_Setting_CrossMapSpeedFactor>Швидкість перельоту по світу: ×{0}</AerocraftFramework_Setting_CrossMapSpeedFactor>
+	<AerocraftFramework_Setting_CrossMapSpeedFactor_Tip>Як швидко апарати летять світовою картою. У цьому фреймворку їх зробили швидкими, як ванільні транспортні капсули, швидшими за більшість літаків Vehicle Framework. При ×0,35 (за замовчуванням) Мі-24 пролітає близько 10 клітинок за 1000 тіків, як Mosquito з Vanilla Vehicles Expanded. Час перельоту видно, коли обираєте ціль.</AerocraftFramework_Setting_CrossMapSpeedFactor_Tip>
 	<AerocraftFramework_Setting_If_CanFireOnlyFlying_Tip>Апарати на землі не стріляють. У польоті ближній бій їх не дістає, а вибухи завдають лише 20% шкоди.</AerocraftFramework_Setting_If_CanFireOnlyFlying_Tip>
 	<AerocraftFramework_Setting_If_AutoReload>Колоністи самі перезаряджають апарати (Combat Extended)</AerocraftFramework_Setting_If_AutoReload>
 	<AerocraftFramework_Setting_If_AutoReload_Tip>Носії (робота «Переносити») підносять набої до апаратів на землі та їхніх збройових блоків, щойно магазин неповний. Перезарядку завжди можна наказати вручну: кнопкою апарата, з вкладки «Апарат» або правим кліком.</AerocraftFramework_Setting_If_AutoReload_Tip>
