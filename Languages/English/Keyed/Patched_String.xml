@@ -97,4 +97,31 @@
 	<AerocraftFramework_BombRun_Busy>the aircraft is taking off or landing</AerocraftFramework_BombRun_Busy>
 	<AerocraftFramework_BombRun_CannotReach>it could not get over the target</AerocraftFramework_BombRun_CannotReach>
 
+	<!-- ============ Strafing run ============ -->
+	<AerocraftFramework_Strafe_Label>Strafing run</AerocraftFramework_Strafe_Label>
+	<AerocraftFramework_Strafe_Desc>Click a target: the aircraft flies along a short line through it and every weapon that reaches fires at a point walking along the line.\nShift+click the start of a line, then click its end, to strafe that line.\n\nWeapons holding fire open fire for the run. With several aircraft selected, each one strafes a line beside the others.</AerocraftFramework_Strafe_Desc>
+	<AerocraftFramework_Strafe_NoWeapon>no weapon can fire</AerocraftFramework_Strafe_NoWeapon>
+	<AerocraftFramework_Strafe_Aborted>{0}: strafing run aborted ({1}).</AerocraftFramework_Strafe_Aborted>
+	<AerocraftFramework_Run_MapEdge>too close to the map edge, where aircraft turn back</AerocraftFramework_Run_MapEdge>
+	<AerocraftFramework_Strafe_Cancel_Label>Cancel the strafing run</AerocraftFramework_Strafe_Cancel_Label>
+	<AerocraftFramework_Strafe_Cancel_Desc>Stop the run: the weapons forget its points and pick their targets again.</AerocraftFramework_Strafe_Cancel_Desc>
+
+	<!-- ============ Troop drop ============ -->
+	<AerocraftFramework_TroopDrop_Label>Drop troops</AerocraftFramework_TroopDrop_Label>
+	<AerocraftFramework_TroopDrop_Desc>Click where to drop them: the aircraft flies there, hovers and everyone on board but its crew ({0}) ropes down, drafted, one after another. Downed pawns stay aboard.\n\nOnly aircraft that take off vertically can hover. The tab also lets single pawns rope down while it hovers.</AerocraftFramework_TroopDrop_Desc>
+	<AerocraftFramework_TroopDrop_Mouse>Click where to drop the troops.</AerocraftFramework_TroopDrop_Mouse>
+	<AerocraftFramework_TroopDrop_NotVtol>only aircraft that take off vertically can hover</AerocraftFramework_TroopDrop_NotVtol>
+	<AerocraftFramework_TroopDrop_NotHovering>it must hover in place first</AerocraftFramework_TroopDrop_NotHovering>
+	<AerocraftFramework_TroopDrop_NoTroops>nobody to drop: the crew ({0}) stays aboard and downed pawns cannot rope down</AerocraftFramework_TroopDrop_NoTroops>
+	<AerocraftFramework_TroopDrop_NoRoom>{0}: no open ground below to rope down onto (roofs or walls).</AerocraftFramework_TroopDrop_NoRoom>
+	<AerocraftFramework_TroopDrop_Downed>downed: land to let the pawn out</AerocraftFramework_TroopDrop_Downed>
+
+	<!-- ============ Medevac ============ -->
+	<AerocraftFramework_Medevac_Label>Evacuate the wounded</AerocraftFramework_Medevac_Label>
+	<AerocraftFramework_Medevac_Desc>Send the closest colonists to carry every downed colonist, slave, prisoner or guest within {0} cells aboard, as many as there are seats. Enemies are left.\n\nOn board the wounded do not bleed or worsen, as in a cryptosleep casket. At home, let them out: doctors take them to beds.\n\nOne by one: select a colonist and right click the aircraft.</AerocraftFramework_Medevac_Desc>
+	<AerocraftFramework_Medevac_CarryAboard>Carry {0} aboard {1}</AerocraftFramework_Medevac_CarryAboard>
+	<AerocraftFramework_Medevac_CannotCarry>{0} cannot carry anyone</AerocraftFramework_Medevac_CannotCarry>
+	<AerocraftFramework_Medevac_Nobody>Nobody can carry the wounded aboard now.</AerocraftFramework_Medevac_Nobody>
+	<AerocraftFramework_Medevac_NoWounded>no downed pawn within {0} cells</AerocraftFramework_Medevac_NoWounded>
+
 </LanguageData>

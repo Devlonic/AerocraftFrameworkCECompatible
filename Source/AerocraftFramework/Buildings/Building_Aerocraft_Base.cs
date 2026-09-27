@@ -753,6 +753,23 @@ namespace MYDE_AerocraftFramework
             SetHoldFire(!HoldFire);
         }
 
+        /// <summary>
+        /// Moves the forced target without restarting a warm-up in progress, as <see cref="OrderAttack"/> would: a
+        /// strafing run walks the fire along its line every few ticks.
+        /// </summary>
+        public void RetargetForced(LocalTargetInfo target)
+        {
+            if (!target.IsValid)
+            {
+                return;
+            }
+            forcedTarget = target;
+            if (WarmupTicksLeft > 0)
+            {
+                CurrentTargetInt = target;
+            }
+        }
+
         /// <summary>Hold fire for this turret only (the body's <see cref="ToggleHoldFire"/> also covers its mounts).</summary>
         public void SetHoldFire(bool holdFire)
         {

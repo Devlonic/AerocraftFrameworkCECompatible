@@ -474,11 +474,7 @@ namespace MYDE_AerocraftFramework
         private const float ExitDistance = 10f;
 
         /// <summary>A bomb is also released when the aircraft passes this close to its cell and moves away again.</summary>
-        private const float PassDistance = 4f;
-
-        /// <summary>How far before a line the aircraft lines up with it, when it comes in at an angle.</summary>
-        private const float LeadInDistance = 8f;
-        private const float LeadInAngle = 30f;
+        private const float PassDistance = AerocraftRunPlanner.PassDistance;
 
         public bool BombRunActive => bombRunCells.Count > 0 || bombRunExiting;
 
@@ -549,19 +545,7 @@ namespace MYDE_AerocraftFramework
         /// </summary>
         private static IntVec3 LeadInFor(Building_Aerocraft_AsBaseThing aircraft, List<IntVec3> cells)
         {
-            if (cells.Count < 2 || cells[0] == cells[cells.Count - 1])
-            {
-                return IntVec3.Invalid;
-            }
-            Vector3 start = cells[0].ToVector3Shifted();
-            Vector3 line = cells[cells.Count - 1].ToVector3Shifted() - start;
-            Vector3 approach = start - aircraft.DrawPos;
-            line.y = approach.y = 0f;
-            if (approach.magnitude < 1f || Vector3.Angle(approach, line) <= LeadInAngle)
-            {
-                return IntVec3.Invalid;
-            }
-            return (start - line.normalized * LeadInDistance).ToIntVec3().ClampInsideMap(aircraft.Map);
+            return cells.Count < 2 ? IntVec3.Invalid : AerocraftRunPlanner.LeadIn(aircraft.DrawPos, cells[0], cells[cells.Count - 1], aircraft.Map);
         }
 
         public void ClearBombRun()
@@ -599,7 +583,13 @@ namespace MYDE_AerocraftFramework
                 ClearBombRun();
                 return;
             }
-            // Another order (move, follow, go back, the map edge turning it round) ends the run quietly.
+            // The map edge turned the aircraft round (it sends it elsewhere and raises this flag).
+            if (aircraft.If_CheckInMapBoundaryPos && aircraft.TargetVPos != bombRunTarget)
+            {
+                AbortBombRun("AerocraftFramework_Run_MapEdge".Translate());
+                return;
+            }
+            // Another order (move, follow, go back) ends the run quietly.
             if (aircraft.TargetVPos != bombRunTarget || aircraft.FollowTargetThing != null || aircraft.If_GoBackNow)
             {
                 ClearBombRun();
@@ -671,7 +661,7 @@ namespace MYDE_AerocraftFramework
                 return;
             }
             // Fly on past the last bomb instead of circling over the explosions.
-            IntVec3 exit = MYDE_ModFront.GetVector3_By_AngleFlat(aircraft.DrawPos, ExitDistance, aircraft.Angle_Fly_Now).ToIntVec3().ClampInsideMap(aircraft.Map);
+            IntVec3 exit = AerocraftRunPlanner.ExitPoint(aircraft, ExitDistance);
             bombRunExiting = SendAircraftTo(exit.ToVector3Shifted());
         }
 

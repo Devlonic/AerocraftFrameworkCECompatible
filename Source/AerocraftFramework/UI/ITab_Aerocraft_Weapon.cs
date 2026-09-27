@@ -216,6 +216,10 @@ namespace MYDE_AerocraftFramework
             if (CanControl)
             {
                 AcceptanceReport canLeave = CanLeave(aircraft);
+                if (canLeave.Accepted && !aircraft.Is_Static && pawn.Downed)
+                {
+                    canLeave = "AerocraftFramework_TroopDrop_Downed".Translate();
+                }
                 if (RowButton(ref x, y, MYDE_TexButton.Down, "AerocraftFramework_ITab_Pawn_Drop".Translate(), canLeave.Accepted, canLeave.Reason))
                 {
                     aircraft.ReleasePawn(pawn, drafted: false);
@@ -242,7 +246,9 @@ namespace MYDE_AerocraftFramework
             }
             if (!aircraft.Is_Static)
             {
-                return "AerocraftFramework_AerocraftIsNotStatic".Translate();
+                // A hovering helicopter lets pawns rope down.
+                AcceptanceReport canRopeDown = aircraft.CanRopeDown;
+                return canRopeDown.Accepted ? canRopeDown : (AcceptanceReport)"AerocraftFramework_AerocraftIsNotStatic".Translate();
             }
             return true;
         }

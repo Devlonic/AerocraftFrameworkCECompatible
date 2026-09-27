@@ -18,4 +18,10 @@
     <driverClass>MYDE_AerocraftFramework.JobDriver_LoadShell</driverClass>
     <reportString>Load Shell</reportString>
   </JobDef>
+  <!--Carrying a wounded pawn aboard (Aerocraft Framework CE patched)-->
+  <JobDef>
+    <defName>MYDE_AF_CarryToAerocraft</defName>
+    <driverClass>MYDE_AerocraftFramework.JobDriver_CarryToAerocraft</driverClass>
+    <reportString>carrying TargetB aboard TargetA.</reportString>
+  </JobDef>
 </Defs>

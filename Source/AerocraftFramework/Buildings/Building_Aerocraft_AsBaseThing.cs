@@ -17,7 +17,7 @@ namespace MYDE_AerocraftFramework
     /// Public field names and save keys are kept from the original mod.
     /// </summary>
     [StaticConstructorOnStartup]
-    public class Building_Aerocraft_AsBaseThing : Building_Aerocraft_Base, IThingHolder
+    public partial class Building_Aerocraft_AsBaseThing : Building_Aerocraft_Base, IThingHolder
     {
         public CompPowerBattery CompPowerBattery;
 
@@ -127,7 +127,11 @@ namespace MYDE_AerocraftFramework
 
         public override bool Is_Static => Move_WarmUpTick <= 0;
 
-        public bool HasEnoughPilots => !If_NeedPawnToControl || ListPawn.Count >= NeedPawnToControl_Number;
+        /// <summary>Pilots must be able to fly: a wounded pawn carried aboard is a passenger.</summary>
+        public bool HasEnoughPilots => !If_NeedPawnToControl || CrewCapable.Count() >= NeedPawnToControl_Number;
+
+        /// <summary>Pawns on board who can act (neither downed nor dead), in boarding order.</summary>
+        public IEnumerable<Pawn> CrewCapable => ListPawn.Where(p => !p.Dead && !p.Downed);
 
         public IEnumerable<Building_Aerocraft_Base> AllTurrets
         {
@@ -291,6 +295,7 @@ namespace MYDE_AerocraftFramework
             Scribe_Collections.Look(ref ListCompTransporterPawn, "ListCompTransporterPawn", LookMode.Deep);
             Scribe_Collections.Look(ref pilotWeaponOwners, "pilotWeaponOwners", LookMode.Reference);
             Scribe_Collections.Look(ref pilotWeapons, "pilotWeapons", LookMode.Reference);
+            ExposeOperations();
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 ListPawn.RemoveAll(p => p == null);
@@ -506,6 +511,7 @@ namespace MYDE_AerocraftFramework
             {
                 return;
             }
+            OperationsTick();
             Hover();
             MoveToTarget();
             Check_GoToTarget();
@@ -620,6 +626,10 @@ namespace MYDE_AerocraftFramework
                     icon = MYDE_TexButton.DownByDraft,
                     action = () => ReleaseAllPawns(drafted: true)
                 };
+            }
+            foreach (Gizmo gizmo in GetOperationGizmos())
+            {
+                yield return gizmo;
             }
             if (!Is_Static)
             {
@@ -1197,13 +1207,14 @@ namespace MYDE_AerocraftFramework
             {
                 return;
             }
-            if (If_CanHover && Is_Flying)
+            if (If_CanHover && Is_Flying && !TroopDropActive)
             {
                 MoveSpeed_Now = MoveSpeed_Max;
                 Angle_Fly_Now = MYDE_ModFront.NormalizeAngle(Angle_Fly_Now + AngleChangePerTick_Hover);
             }
-            else if (!If_CanHover)
+            else if (!If_CanHover || TroopDropActive)
             {
+                // A troop drop needs the aircraft still, even one that circles when it arrives.
                 MoveSpeed_Now = 0f;
             }
         }
@@ -1461,6 +1472,15 @@ namespace MYDE_AerocraftFramework
 
         public void DoSomething_CarryPawn(Pawn Pawn)
         {
+            DoSomething_CarryPawn(Pawn, takeWeapon: true);
+        }
+
+        /// <summary>
+        /// Puts a pawn on board. <paramref name="takeWeapon"/>: with <see cref="If_ChangeWeaponByPawnWeaponWhenCarry"/>,
+        /// a boarding pilot's ranged weapon becomes the aircraft's; a wounded passenger keeps his.
+        /// </summary>
+        public void DoSomething_CarryPawn(Pawn Pawn, bool takeWeapon)
+        {
             if (Pawn == null || innerPawns.Contains(Pawn))
             {
                 return;
@@ -1473,7 +1493,7 @@ namespace MYDE_AerocraftFramework
             Map previousMap = Pawn.MapHeld;
             IntVec3 previousCell = Pawn.PositionHeld;
             ThingWithComps weapon = null;
-            if (If_ChangeWeaponByPawnWeaponWhenCarry && Pawn.equipment?.Primary != null && Pawn.equipment.Primary.def.IsRangedWeapon)
+            if (takeWeapon && If_ChangeWeaponByPawnWeaponWhenCarry && Pawn.equipment?.Primary != null && Pawn.equipment.Primary.def.IsRangedWeapon)
             {
                 weapon = Pawn.equipment.Primary;
                 Pawn.equipment.Remove(weapon);
@@ -1529,6 +1549,10 @@ namespace MYDE_AerocraftFramework
             }
         }
 
+        /// <summary>
+        /// Lets a pawn out next to the aircraft. In flight, only a hovering aircraft that takes off vertically can
+        /// let a pawn rope down, onto an unroofed cell below it.
+        /// </summary>
         public bool ReleasePawn(Pawn pawn, bool drafted)
         {
             if (pawn == null || !Spawned || !innerPawns.Contains(pawn))
@@ -1536,7 +1560,20 @@ namespace MYDE_AerocraftFramework
                 return false;
             }
             Map map = Map;
-            if (!CellFinder.TryFindRandomCellNear(Position, map, Math.Max(2, def.size.x / 2 + 1), c => c.Standable(map) && !c.Fogged(map), out IntVec3 cell))
+            bool fromAir = !Is_Static;
+            if (fromAir && (!CanRopeDown.Accepted || pawn.Downed))
+            {
+                return false;
+            }
+            IntVec3 cell;
+            if (fromAir)
+            {
+                if (!CellFinder.TryFindRandomCellNear(DrawPos.ToIntVec3(), map, RopeDownRadius, c => c.Standable(map) && !c.Roofed(map), out cell))
+                {
+                    return false;
+                }
+            }
+            else if (!CellFinder.TryFindRandomCellNear(Position, map, Math.Max(2, def.size.x / 2 + 1), c => c.Standable(map) && !c.Fogged(map), out cell))
             {
                 cell = Position;
             }
@@ -1547,7 +1584,14 @@ namespace MYDE_AerocraftFramework
             {
                 pawn.drafter.Drafted = true;
             }
-            SoundDefOf.CryptosleepCasket_Eject.PlayOneShot(new TargetInfo(Position, map));
+            if (fromAir)
+            {
+                FleckMaker.ThrowDustPuffThick(cell.ToVector3Shifted(), map, 1.5f, new Color(0.8f, 0.8f, 0.75f));
+            }
+            else
+            {
+                SoundDefOf.CryptosleepCasket_Eject.PlayOneShot(new TargetInfo(Position, map));
+            }
             return true;
         }
 

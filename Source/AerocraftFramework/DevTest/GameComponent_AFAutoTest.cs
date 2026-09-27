@@ -37,6 +37,12 @@ namespace MYDE_AerocraftFramework
         private Building_Aerocraft_Base testTurret;
         private ThingDef testAmmo;
         private Map defeatedMap;
+        private Building_Aerocraft_AsBaseThing opsCraft;
+        private Pawn opsWounded;
+        private List<Pawn> opsTroopers = new List<Pawn>();
+        private IntVec3 opsDropCell;
+        private bool opsStrafeAimed;
+        private bool opsStrafeFired;
         private int bombRunShells;
         private IntVec3 bombRunTarget;
         private float bombRunClosest;
@@ -250,6 +256,9 @@ namespace MYDE_AerocraftFramework
                 case 13:
                     Destruction();
                     break;
+                case 15:
+                    Operations();
+                    break;
                 case 14:
                     Finish();
                     break;
@@ -269,7 +278,7 @@ namespace MYDE_AerocraftFramework
                 Pawn pawn = PawnGenerator.GeneratePawn(PawnKindDefOf.Colonist, Faction.OfPlayer);
                 GenSpawn.Spawn(pawn, CellFinder.RandomClosewalkCellNear(map.Center, map, 10), map);
             }
-            foreach (Pawn pawn in map.mapPawns.FreeColonistsSpawned)
+            foreach (Pawn pawn in map.mapPawns.FreeColonistsSpawned.ToList())
             {
                 PrepareColonist(pawn);
             }
@@ -983,7 +992,7 @@ namespace MYDE_AerocraftFramework
                     if (subject == null || target == null)
                     {
                         Note("No aircraft or settlement for the cross-map test");
-                        Next(12);
+                        Next(15);
                         return;
                     }
                     FillUp(subject);
@@ -1018,7 +1027,7 @@ namespace MYDE_AerocraftFramework
                     else if (StepTicks > 120000)
                     {
                         Fail("the aircraft arrived at the settlement");
-                        Next(12);
+                        Next(15);
                     }
                     break;
                 case 2:
@@ -1064,7 +1073,7 @@ namespace MYDE_AerocraftFramework
                     if (!subject.Spawned)
                     {
                         Fail("the aircraft is still on the settlement map");
-                        Next(12);
+                        Next(15);
                         return;
                     }
                     Comp_CanCrossMap back = subject.TryGetComp<Comp_CanCrossMap>();
@@ -1079,15 +1088,193 @@ namespace MYDE_AerocraftFramework
                     {
                         Check(subject.ListPawn.Count == int.Parse(savedSummary[0]) && subject.AllExtraWeapon.All(m => m.Spawned && m.Map == HomeMap), "back home with pilots and mounts");
                         Current.Game.CurrentMap = HomeMap;
-                        Next(12);
+                        Next(15);
                     }
                     else if (StepTicks > 120000)
                     {
                         Fail("the aircraft came back home");
-                        Next(12);
+                        Next(15);
                     }
                     break;
             }
+        }
+
+        // ------------------------------------------------------------------ 15: medevac, troop drop, strafing
+
+        private void Operations()
+        {
+            Map map = HomeMap;
+            switch (counter)
+            {
+                case 0:
+                    foreach (Building_Aerocraft_AsBaseThing craft in aircraft.Where(a => a.Spawned && a.Is_Static))
+                    {
+                        craft.ReleaseAllPawns(drafted: false);
+                    }
+                    opsCraft = aircraft.FirstOrDefault(a => a.Spawned && a.Is_Static && a.def.defName == "MYDE_AF_MI24_Base")
+                        ?? aircraft.FirstOrDefault(a => a.Spawned && a.Is_Static && a.CanHoverInPlace && a.TryGetComp<Comp_CarryPawn>() != null && a.CarryPawnNumMax >= a.CrewToKeep + 3);
+                    opsWounded = opsCraft == null ? null : map.mapPawns.FreeColonistsSpawned.Where(p => !p.Downed).OrderBy(p => p.Position.DistanceToSquared(opsCraft.Position)).FirstOrDefault();
+                    if (opsCraft == null || opsWounded == null)
+                    {
+                        Note("No helicopter for the medevac and troop drop test");
+                        Next(12);
+                        return;
+                    }
+                    foreach (Pawn pawn in map.mapPawns.FreeColonistsSpawned.ToList())
+                    {
+                        PrepareColonist(pawn);
+                    }
+                    opsWounded.health.AddHediff(HediffDefOf.Anesthetic);
+                    Note($"Operations with {opsCraft.def.defName}: {opsWounded.LabelShort} is put under anesthetic");
+                    Check(opsWounded.Downed, $"{opsWounded.LabelShort} is downed");
+                    counter = 1;
+                    stepStartTick = Find.TickManager.TicksGame;
+                    break;
+                case 1:
+                    if (StepTicks < 60)
+                    {
+                        return;
+                    }
+                    int ordered = opsCraft.OrderMedevac();
+                    Check(ordered >= 1, $"medevac: {ordered} colonist(s) sent to carry the wounded aboard");
+                    counter = 2;
+                    stepStartTick = Find.TickManager.TicksGame;
+                    break;
+                case 2:
+                    if (!opsCraft.ListPawn.Contains(opsWounded) && StepTicks < 3000)
+                    {
+                        return;
+                    }
+                    Check(opsCraft.ListPawn.Contains(opsWounded) && opsWounded.ParentHolder == opsCraft && opsWounded.Downed, $"{opsWounded.LabelShort} was carried aboard, downed");
+                    Check(opsCraft.CrewToKeep == 0 || !opsCraft.HasEnoughPilots, "a downed pawn on board is no pilot");
+                    // Two fresh troopers: colonists of earlier steps may be hurt or busy.
+                    for (int i = 0; i < 2; i++)
+                    {
+                        Pawn trooper = PawnGenerator.GeneratePawn(PawnKindDefOf.Colonist, Faction.OfPlayer);
+                        GenSpawn.Spawn(trooper, CellFinder.RandomClosewalkCellNear(opsCraft.Position, map, 4), map);
+                        PrepareColonist(trooper);
+                    }
+                    int available = map.mapPawns.FreeColonistsSpawned.Count(p => !p.Downed);
+                    BoardPilots(opsCraft, Math.Min(available, opsCraft.CrewToKeep + 2));
+                    opsTroopers = opsCraft.Troops;
+                    Check(opsCraft.HasEnoughPilots, $"{opsCraft.CrewCapable.Count()} able pawns aboard ({opsCraft.CrewToKeep} crew, {opsTroopers.Count} troops)");
+                    FillUp(opsCraft);
+                    opsCraft.Set_Flying();
+                    counter = 3;
+                    stepStartTick = Find.TickManager.TicksGame;
+                    break;
+                case 3:
+                    if (StepTicks < 120)
+                    {
+                        return;
+                    }
+                    IntVec3? dropCell = SafeBombCell(map, opsCraft.Position, 10f, 20f);
+                    if (dropCell == null || opsTroopers.Count == 0)
+                    {
+                        Note("No troops or no place for the troop drop");
+                        counter = 5;
+                        break;
+                    }
+                    opsDropCell = dropCell.Value;
+                    AcceptanceReport dropStarted = opsCraft.StartTroopDrop(opsDropCell);
+                    Check(dropStarted.Accepted && opsCraft.TroopDropActive, $"troop drop at {opsDropCell} ordered ({dropStarted.Reason})");
+                    counter = 4;
+                    stepStartTick = Find.TickManager.TicksGame;
+                    break;
+                case 4:
+                    if (opsCraft.TroopDropActive && StepTicks < 3000)
+                    {
+                        return;
+                    }
+                    Check(opsTroopers.All(p => p.Spawned && p.Position.InHorDistOf(opsDropCell, 6f) && p.Drafted),
+                        $"{opsTroopers.Count} troops roped down at the drop point, drafted ({string.Join(", ", opsTroopers.Select(p => p.LabelShort + "@" + p.PositionHeld))})");
+                    Check(opsCraft.ListPawn.Contains(opsWounded) && opsCraft.CrewCapable.Count() == opsCraft.CrewToKeep && opsCraft.Is_Flying,
+                        "the crew and the wounded stayed aboard, the aircraft kept flying");
+                    counter = 5;
+                    break;
+                case 5:
+                    IntVec3? lineStart = SafeBombCell(map, opsCraft.Position, 12f, 25f);
+                    IntVec3? lineEnd = lineStart == null ? null : SafeBombCell(map, lineStart.Value, 16f, 20f);
+                    if (lineEnd == null)
+                    {
+                        Note("No safe line for a strafing run");
+                        counter = 7;
+                        break;
+                    }
+                    foreach (Building_Aerocraft_Base turret in opsCraft.AllTurrets)
+                    {
+                        turret.ResetForcedTarget();
+                    }
+                    opsStrafeAimed = false;
+                    opsStrafeFired = false;
+                    savedSummary = new List<string> { TotalRounds(opsCraft).ToString() };
+                    AcceptanceReport strafeStarted = opsCraft.StartStrafeRun(lineStart.Value, lineEnd.Value);
+                    Check(strafeStarted.Accepted && opsCraft.StrafeRunActive, $"strafing run along {lineStart.Value} - {lineEnd.Value} ordered ({strafeStarted.Reason})");
+                    counter = 6;
+                    stepStartTick = Find.TickManager.TicksGame;
+                    break;
+                case 6:
+                    Vector3 a = opsCraft.StrafeStart.ToVector3Shifted();
+                    Vector3 b = opsCraft.StrafeEnd.ToVector3Shifted();
+                    foreach (Building_Aerocraft_Base turret in opsCraft.AllTurrets)
+                    {
+                        LocalTargetInfo target = turret.ForcedTarget;
+                        if (opsCraft.StrafeRunActive && target.IsValid && !target.HasThing && DistanceToSegment(target.Cell.ToVector3Shifted(), a, b) <= 1.5f)
+                        {
+                            opsStrafeAimed = true;
+                        }
+                        opsStrafeFired |= turret.CooldownTicks > 0;
+                    }
+                    if (StepTicks == 60)
+                    {
+                        foreach (Building_Aerocraft_Base turret in opsCraft.AllTurrets)
+                        {
+                            Verb verb = turret.AttackVerb;
+                            LocalTargetInfo target = turret.ForcedTarget;
+                            Note($"  {turret.def.defName}: target {target}, hold fire {turret.HoldFire}, available {verb?.Available()}, state {verb?.state}, "
+                                + $"can hit {(target.IsValid && verb != null ? verb.CanHitTargetFrom(turret.Position, target).ToString() : "-")}, cooldown {turret.CooldownTicks}, "
+                                + $"can fire {(turret.Gun_Now == null ? "-" : AerocraftCompat.Ammo.CanFireNow(turret.Gun_Now).ToString())}, flying {turret.Is_Flying}");
+                        }
+                    }
+                    if (opsCraft.StrafeRunActive && StepTicks < 3500)
+                    {
+                        return;
+                    }
+                    Check(opsStrafeAimed, "the weapons aimed along the strafing line");
+                    Check(opsStrafeFired && (!AerocraftCompat.Ammo.UsesAmmo || TotalRounds(opsCraft) < int.Parse(savedSummary[0])),
+                        $"the weapons fired during the run (rounds {savedSummary[0]} -> {TotalRounds(opsCraft)})");
+                    Check(!opsCraft.StrafeRunActive && opsCraft.AllTurrets.All(t => !t.ForcedTarget.IsValid || t.ForcedTarget.HasThing), "the run ended and the weapons let go of its points");
+                    counter = 7;
+                    break;
+                case 7:
+                    opsCraft.Change_Down();
+                    counter = 8;
+                    stepStartTick = Find.TickManager.TicksGame;
+                    break;
+                case 8:
+                    if (!opsCraft.Is_Static && StepTicks < 3000)
+                    {
+                        return;
+                    }
+                    opsCraft.ReleaseAllPawns(drafted: false);
+                    Check(opsWounded.Spawned && opsWounded.Downed, $"{opsWounded.LabelShort} was let out after landing, still downed");
+                    foreach (Pawn pawn in map.mapPawns.FreeColonistsSpawned.ToList())
+                    {
+                        PrepareColonist(pawn);
+                    }
+                    Next(12);
+                    break;
+            }
+        }
+
+        private static float DistanceToSegment(Vector3 point, Vector3 a, Vector3 b)
+        {
+            Vector3 line = b - a;
+            line.y = 0f;
+            Vector3 toPoint = point - a;
+            toPoint.y = 0f;
+            float t = line.sqrMagnitude < 0.001f ? 0f : Mathf.Clamp01(Vector3.Dot(toPoint, line) / line.sqrMagnitude);
+            return (toPoint - line * t).magnitude;
         }
 
         // ------------------------------------------------------------------ 12: UI

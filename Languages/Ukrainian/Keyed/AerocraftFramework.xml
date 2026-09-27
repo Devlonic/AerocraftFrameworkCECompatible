@@ -158,6 +158,33 @@
 	<AerocraftFramework_BombRun_Busy>апарат злітає або сідає</AerocraftFramework_BombRun_Busy>
 	<AerocraftFramework_BombRun_CannotReach>не вдалося вийти на ціль</AerocraftFramework_BombRun_CannotReach>
 
+	<!-- ============ Штурмовий захід ============ -->
+	<AerocraftFramework_Strafe_Label>Штурмовий захід</AerocraftFramework_Strafe_Label>
+	<AerocraftFramework_Strafe_Desc>Клацніть ціль: апарат пролетить короткою лінією через неї, і вся зброя, що дістає, стрілятиме в точку, що рухається вздовж лінії.\nShift+клік: початок лінії, потім клік: її кінець. Апарат пройде саме цю лінію.\n\nЗброя з наказом «не стріляти» відкриває вогонь на час заходу. Якщо виділено кілька апаратів, кожен іде своєю лінією поруч з іншими.</AerocraftFramework_Strafe_Desc>
+	<AerocraftFramework_Strafe_NoWeapon>жодна зброя не може стріляти</AerocraftFramework_Strafe_NoWeapon>
+	<AerocraftFramework_Strafe_Aborted>{0}: штурмовий захід перервано ({1}).</AerocraftFramework_Strafe_Aborted>
+	<AerocraftFramework_Run_MapEdge>надто близько до краю мапи, де апарати розвертаються</AerocraftFramework_Run_MapEdge>
+	<AerocraftFramework_Strafe_Cancel_Label>Скасувати штурмовий захід</AerocraftFramework_Strafe_Cancel_Label>
+	<AerocraftFramework_Strafe_Cancel_Desc>Припинити захід: зброя забуває його точки й знову сама обирає цілі.</AerocraftFramework_Strafe_Cancel_Desc>
+
+	<!-- ============ Десант ============ -->
+	<AerocraftFramework_TroopDrop_Label>Висадити десант</AerocraftFramework_TroopDrop_Label>
+	<AerocraftFramework_TroopDrop_Desc>Клацніть місце висадки: апарат прилетить, зависне, і всі на борту, крім екіпажу ({0}), по черзі спустяться тросом, одразу призвані. Поранені лишаються на борту.\n\nЗависати можуть лише апарати вертикального зльоту. У вкладці апарата можна висадити й окремого пішака, поки апарат висить.</AerocraftFramework_TroopDrop_Desc>
+	<AerocraftFramework_TroopDrop_Mouse>Клацніть місце висадки десанту.</AerocraftFramework_TroopDrop_Mouse>
+	<AerocraftFramework_TroopDrop_NotVtol>зависати можуть лише апарати вертикального зльоту</AerocraftFramework_TroopDrop_NotVtol>
+	<AerocraftFramework_TroopDrop_NotHovering>спершу апарат має зависнути на місці</AerocraftFramework_TroopDrop_NotHovering>
+	<AerocraftFramework_TroopDrop_NoTroops>нема кого висаджувати: екіпаж ({0}) лишається на борту, а поранені не можуть спуститися</AerocraftFramework_TroopDrop_NoTroops>
+	<AerocraftFramework_TroopDrop_NoRoom>{0}: під апаратом немає відкритого місця для спуску (дахи або стіни).</AerocraftFramework_TroopDrop_NoRoom>
+	<AerocraftFramework_TroopDrop_Downed>поранений: посадіть апарат, щоб його висадити</AerocraftFramework_TroopDrop_Downed>
+
+	<!-- ============ Евакуація поранених ============ -->
+	<AerocraftFramework_Medevac_Label>Евакуювати поранених</AerocraftFramework_Medevac_Label>
+	<AerocraftFramework_Medevac_Desc>Послати найближчих колоністів занести на борт усіх поранених колоністів, рабів, полонених і гостей у радіусі {0} клітинок, скільки вистачить місць. Ворогів лишають.\n\nНа борту поранені не стікають кров'ю і їм не гіршає, як у кріокапсулі. Удома висадіть їх: лікарі віднесуть їх у ліжка.\n\nПо одному: виділіть колоніста і клацніть правою кнопкою по апарату.</AerocraftFramework_Medevac_Desc>
+	<AerocraftFramework_Medevac_CarryAboard>Занести {0} на борт {1}</AerocraftFramework_Medevac_CarryAboard>
+	<AerocraftFramework_Medevac_CannotCarry>{0} не може нікого нести</AerocraftFramework_Medevac_CannotCarry>
+	<AerocraftFramework_Medevac_Nobody>Зараз ніхто не може занести поранених на борт.</AerocraftFramework_Medevac_Nobody>
+	<AerocraftFramework_Medevac_NoWounded>у радіусі {0} клітинок немає поранених</AerocraftFramework_Medevac_NoWounded>
+
 	<!-- ============ Переліт ============ -->
 	<AerocraftFramework_ChoseWorldTargetError>Виберіть об'єкт на карті світу.</AerocraftFramework_ChoseWorldTargetError>
 	<AerocraftFramework_OutOfRange>Задалеко</AerocraftFramework_OutOfRange>

@@ -44,6 +44,53 @@ namespace MYDE_AerocraftFramework
         }
     }
 
+    /// <summary>
+    /// Medevac: a colonist carries a downed pawn (target B) aboard a landed aircraft (target A). On board the wounded
+    /// does not bleed or worsen: pawns inside an aircraft are held like a sleeper in a cryptosleep casket.
+    /// </summary>
+    public class JobDriver_CarryToAerocraft : JobDriver
+    {
+        private const TargetIndex AircraftInd = TargetIndex.A;
+        private const TargetIndex TakeeInd = TargetIndex.B;
+
+        private Building_Aerocraft_AsBaseThing Aircraft => job.GetTarget(AircraftInd).Thing as Building_Aerocraft_AsBaseThing;
+
+        private Pawn Takee => job.GetTarget(TakeeInd).Thing as Pawn;
+
+        public override bool TryMakePreToilReservations(bool errorOnFailed)
+        {
+            // The aircraft is not reserved: several colonists can carry the wounded aboard at once.
+            return pawn.Reserve(Takee, job, 1, -1, null, errorOnFailed);
+        }
+
+        protected override IEnumerable<Toil> MakeNewToils()
+        {
+            this.FailOnDestroyedOrNull(TakeeInd);
+            this.FailOnDestroyedOrNull(AircraftInd);
+            this.FailOn(() => Aircraft == null || !Aircraft.Spawned || !Aircraft.Is_Static || Aircraft.ListPawn.Count >= Aircraft.CarryPawnNumMax);
+            this.FailOnAggroMentalState(TakeeInd);
+            yield return Toils_Goto.GotoThing(TakeeInd, PathEndMode.ClosestTouch)
+                .FailOnDespawnedNullOrForbidden(TakeeInd)
+                .FailOn(() => !Takee.Downed)
+                .FailOnSomeonePhysicallyInteracting(TakeeInd);
+            yield return Toils_Haul.StartCarryThing(TakeeInd);
+            yield return Toils_Goto.GotoThing(AircraftInd, PathEndMode.Touch);
+            Toil wait = Toils_General.Wait(60);
+            wait.WithProgressBarToilDelay(AircraftInd);
+            yield return wait;
+            Toil putAboard = ToilMaker.MakeToil("PutAboardAerocraft");
+            putAboard.initAction = () =>
+            {
+                if (pawn.carryTracker.CarriedThing is Pawn carried)
+                {
+                    Aircraft.DoSomething_CarryPawn(carried, takeWeapon: false);
+                }
+            };
+            putAboard.defaultCompleteMode = ToilCompleteMode.Instant;
+            yield return putAboard;
+        }
+    }
+
     /// <summary>A colonist installs his ranged weapon into the turret; the previous one is kept on board.</summary>
     public class JobDriver_ReplaceCurrentWeapon : JobDriver
     {

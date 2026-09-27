@@ -12,6 +12,9 @@ namespace MYDE_AerocraftFramework
 
         public static JobDef MYDE_AerocraftFramework_Job_LoadShell;
 
+        /// <summary>A colonist carries a wounded pawn aboard (medevac).</summary>
+        public static JobDef MYDE_AF_CarryToAerocraft;
+
         /// <summary>Reload job of the Combat Extended module (null without CE).</summary>
         [MayRequire("CETeam.CombatExtended")]
         public static JobDef MYDE_AF_CE_ReloadTurret;
