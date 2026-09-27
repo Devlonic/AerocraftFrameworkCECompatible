@@ -41,6 +41,15 @@ Other bugs of the original that show up in normal play:
 - Switching weapons could lose the original weapon, or leave the turret with none.
 - Extra weapon mounts were orphaned when the aircraft was destroyed or uninstalled.
 - The angle dialog logged a message every frame; weapon kits logged errors when built.
+- With CE a flying aircraft fired from the height of a building (about a metre), so its shots flew almost level:
+  a rocket that missed went on to the end of its range. It now fires from flight altitude and misses come down
+  around the target.
+- Any EMP or stun damage landed a flying aircraft, including the EMP that charged "ion" bullets of CE carry. Now
+  the aircraft stays up with its weapons silent while stunned; landing is a setting.
+- Flying to another tile despawned the aircraft on the spot and played a drop pod's shrinking take-off, and it
+  appeared in a map corner at the other end. Now it flies off the map edge towards its destination, climbing (drawn
+  larger) as it goes, and comes in over the edge on the side it flew from, as the aircraft of Vehicle Framework do.
+  The fuel is paid when it leaves the map; another order before that cancels the departure.
 
 ## What changed
 
@@ -108,6 +117,7 @@ tools\Repair-Save.ps1 -Path <Saves>\testreload.rws -Output <Saves>\testreload_re
 - *Colonists reload aircraft automatically* (CE, on).
 - *Also reload weapons stored on board* (on).
 - *Refuel and reload only inside the home area* (off; the original behaviour when on).
+- *EMP and stun force an aircraft to land* (off; the original behaviour when on).
 - Flight, shadows and debug options of the original.
 
 ## Development
@@ -159,11 +169,12 @@ and quests and removes other hostiles from the home map (a raid downs the coloni
 - colonists load bombs, a bomb is dropped in flight, bombing runs on a point and along a line drop their bombs
   over the targets, the support aircraft fires a fire foam shell;
 - boarding by job, a save/load round trip and the load of a legacy save with a nested follow target;
-- a flight to an enemy settlement and back with pilots and mounts; the crew counts as colonists there, and the
+- a flight to an enemy settlement and back with pilots and mounts, off the map edge and in over it; the crew counts as colonists there, and the
   map stays open when the settlement is defeated with only the crew on it;
 - medevac, troop drop and strafing with a helicopter (the Mi-24 with Gruppa Krovi): a colonist carries a downed
   one aboard, who does not count as a pilot; the troops rope down at the drop point, drafted, while the crew and
-  the wounded stay aboard; the weapons aim along the strafing line, fire, and let go of it after the run;
+  the wounded stay aboard; rockets of the mounts fired at a point come down around it; the weapons aim along the
+  strafing line, fire, and let go of it after the run;
 - the weapon orders: every weapon that reaches an enemy attacks it at once and its hold fire is lifted; the
   aircraft shows a weapon gizmo for each weapon, with a right click menu; a click selects the aircraft first;
 - the settings window, the aircraft tab, the weapon gizmos, the targeter and the dialogs draw without errors

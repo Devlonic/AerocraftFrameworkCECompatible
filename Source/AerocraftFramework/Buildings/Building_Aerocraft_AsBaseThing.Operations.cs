@@ -49,6 +49,7 @@ namespace MYDE_AerocraftFramework
 
         private void ExposeOperations()
         {
+            ExposeCrossMap();
             Scribe_Values.Look(ref troopDropCell, "AF_TroopDropCell", IntVec3.Invalid);
             Scribe_Values.Look(ref troopDropTarget, "AF_TroopDropTarget");
             Scribe_Values.Look(ref troopDropNextTick, "AF_TroopDropNextTick", 0);
@@ -62,6 +63,8 @@ namespace MYDE_AerocraftFramework
 
         private void OperationsTick()
         {
+            DepartureTick();
+            ArrivalTick();
             TroopDropTick();
             StrafeTick();
         }
@@ -510,6 +513,16 @@ namespace MYDE_AerocraftFramework
             if (Faction != Faction.OfPlayer && !MYDE_AerocraftFramework_Setting.If_CanControlNonPlayer)
             {
                 yield break;
+            }
+            if (IsDeparting)
+            {
+                yield return new Command_Action
+                {
+                    defaultLabel = "AerocraftFramework_Departure_Cancel_Label".Translate(),
+                    defaultDesc = "AerocraftFramework_Departure_Cancel_Desc".Translate(),
+                    icon = AerocraftWeaponOrders.HaltIcon,
+                    action = CancelDeparture
+                };
             }
             bool carriesPawns = GetComp<Comp_CarryPawn>() != null;
             if (Is_Flying && AllTurrets.Any(t => t.Gun_Now != null))

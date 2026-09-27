@@ -14,6 +14,9 @@ namespace MYDE_AerocraftFramework
         public static float Draw_Shadow_HeighRange_Max = 1f;
         public static float Draw_Shadow_Angle = 60f;
         public static bool If_CanFireOnlyFlying = true;
+
+        /// <summary>The original mod landed an aircraft hit by EMP or stun damage; now it stays up with its weapons silent.</summary>
+        public static bool If_StunForcesLanding = false;
         public static bool If_CanControlNonPlayer = false;
 
         // Added by the patched version.
@@ -31,6 +34,7 @@ namespace MYDE_AerocraftFramework
             Scribe_Values.Look(ref Draw_Shadow_HeighRange_Max, "Draw_Shadow_HeighRange_Max", 1f);
             Scribe_Values.Look(ref Draw_Shadow_Angle, "Draw_Shadow_Angle", 60f);
             Scribe_Values.Look(ref If_CanFireOnlyFlying, "If_CanFireOnlyFlying", true);
+            Scribe_Values.Look(ref If_StunForcesLanding, "If_StunForcesLanding", false);
             Scribe_Values.Look(ref If_CanControlNonPlayer, "If_CanControlNonPlayer", false);
             Scribe_Values.Look(ref If_ServiceOnlyInHomeArea, "If_ServiceOnlyInHomeArea", false);
             Scribe_Values.Look(ref If_AutoReload, "If_AutoReload", true);
@@ -70,6 +74,7 @@ namespace MYDE_AerocraftFramework
             Header(list, "AerocraftFramework_Setting_HeaderFlight");
             list.CheckboxLabeled("AerocraftFramework_Setting_If_CheckMapBoundary".Translate(), ref If_CheckMapBoundary, "AerocraftFramework_Setting_If_CheckMapBoundary_Tip".Translate());
             list.CheckboxLabeled("AerocraftFramework_Setting_If_CanFireOnlyFlying".Translate(), ref If_CanFireOnlyFlying, "AerocraftFramework_Setting_If_CanFireOnlyFlying_Tip".Translate());
+            list.CheckboxLabeled("AerocraftFramework_Setting_If_StunForcesLanding".Translate(), ref If_StunForcesLanding, "AerocraftFramework_Setting_If_StunForcesLanding_Tip".Translate());
             list.Gap();
 
             Header(list, "AerocraftFramework_Setting_HeaderService");

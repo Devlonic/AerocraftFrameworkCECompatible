@@ -83,6 +83,26 @@ namespace MYDE_AerocraftFramework
         }
     }
 
+    /// <summary>
+    /// A flying aircraft shoots from the air. For CE a building shoots from its fill height, about a metre for an
+    /// aircraft, so its shots flew almost level: a rocket that missed went on to the end of its range. From flight
+    /// altitude the shots come down onto the target.
+    /// </summary>
+    [HarmonyPatch(typeof(Verb_LaunchProjectileCE), nameof(Verb_LaunchProjectileCE.ShotHeight), MethodType.Getter)]
+    internal static class Patch_Verb_LaunchProjectileCE_ShotHeight
+    {
+        /// <summary>Metres, as CE heights: a human is about 1.75, a wall 2.</summary>
+        public const float FlightShotHeight = 6f;
+
+        private static void Postfix(Verb_LaunchProjectileCE __instance, ref float __result)
+        {
+            if (__instance.caster is Building_Aerocraft_Base turret && turret.Spawned && turret.Is_Flying && __result < FlightShotHeight)
+            {
+                __result = FlightShotHeight;
+            }
+        }
+    }
+
     /// <summary>Projectiles fired by a weapon mount do not collide with the aircraft carrying it.</summary>
     [HarmonyPatch(typeof(ProjectileCE), nameof(ProjectileCE.Launch), new Type[] { typeof(Thing), typeof(UnityEngine.Vector2), typeof(Thing) })]
     internal static class Patch_ProjectileCE_Launch

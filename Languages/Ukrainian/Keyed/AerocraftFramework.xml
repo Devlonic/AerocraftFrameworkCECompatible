@@ -13,6 +13,8 @@
 	<AerocraftFramework_Setting_If_CheckMapBoundary>Розвертати апарати біля краю мапи</AerocraftFramework_Setting_If_CheckMapBoundary>
 	<AerocraftFramework_Setting_If_CheckMapBoundary_Tip>Апарат, що долетів до краю мапи, розвертається, а не губиться.</AerocraftFramework_Setting_If_CheckMapBoundary_Tip>
 	<AerocraftFramework_Setting_If_CanFireOnlyFlying>Стріляти лише в польоті</AerocraftFramework_Setting_If_CanFireOnlyFlying>
+	<AerocraftFramework_Setting_If_StunForcesLanding>ЕМІ й оглушення змушують апарат сісти</AerocraftFramework_Setting_If_StunForcesLanding>
+	<AerocraftFramework_Setting_If_StunForcesLanding_Tip>Поведінка оригіналу: будь-яке ЕМІ чи оглушення садить апарат, зокрема ЕМІ, яке несуть зарядні «іонні» кулі Combat Extended. Вимкнено: оглушений апарат лишається в повітрі, а його зброя мовчить, поки триває оглушення.</AerocraftFramework_Setting_If_StunForcesLanding_Tip>
 	<AerocraftFramework_Setting_If_CanFireOnlyFlying_Tip>Апарати на землі не стріляють. У польоті ближній бій їх не дістає, а вибухи завдають лише 20% шкоди.</AerocraftFramework_Setting_If_CanFireOnlyFlying_Tip>
 	<AerocraftFramework_Setting_If_AutoReload>Колоністи самі перезаряджають апарати (Combat Extended)</AerocraftFramework_Setting_If_AutoReload>
 	<AerocraftFramework_Setting_If_AutoReload_Tip>Носії (робота «Переносити») підносять набої до апаратів на землі та їхніх збройових блоків, щойно магазин неповний. Перезарядку завжди можна наказати вручну: кнопкою апарата, з вкладки «Апарат» або правим кліком.</AerocraftFramework_Setting_If_AutoReload_Tip>
@@ -34,6 +36,9 @@
 	<AerocraftFramework_Status_TakingOff>злітає</AerocraftFramework_Status_TakingOff>
 	<AerocraftFramework_Status_Landing>сідає</AerocraftFramework_Status_Landing>
 	<AerocraftFramework_Status_Crashing>падає</AerocraftFramework_Status_Crashing>
+	<AerocraftFramework_Status_Departing>відлітає з карти</AerocraftFramework_Status_Departing>
+	<AerocraftFramework_Departure_Cancel_Label>Скасувати виліт</AerocraftFramework_Departure_Cancel_Label>
+	<AerocraftFramework_Departure_Cancel_Desc>Лишитися на цій карті: апарат летить до краю карти, щоб вирушити до іншої точки світу. Паливо на переліт витрачається лише тоді, коли він покидає карту.</AerocraftFramework_Departure_Cancel_Desc>
 	<AerocraftFramework_Stunned>Оглушено</AerocraftFramework_Stunned>
 	<AerocraftFramework_ShowRadiusofRange_Label>Дальність</AerocraftFramework_ShowRadiusofRange_Label>
 	<AerocraftFramework_ShowRadiusofRange_Description>Показувати дальність стрільби.</AerocraftFramework_ShowRadiusofRange_Description>

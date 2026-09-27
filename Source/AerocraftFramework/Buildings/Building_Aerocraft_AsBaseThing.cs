@@ -156,6 +156,10 @@ namespace MYDE_AerocraftFramework
                 {
                     return "AerocraftFramework_Status_Crashing".Translate();
                 }
+                if (IsDeparting)
+                {
+                    return "AerocraftFramework_Status_Departing".Translate();
+                }
                 if (Is_Static)
                 {
                     return "AerocraftFramework_Status_Landed".Translate();
@@ -740,7 +744,12 @@ namespace MYDE_AerocraftFramework
             }
             else if (dinfo.Def.defName == "Stun" || dinfo.Def.defName == "EMP")
             {
-                ForceLanding();
+                // A charged "ion" bullet of Combat Extended carries EMP: landing on every hit was the original
+                // behaviour and is a setting now. Otherwise the stun only silences the weapons.
+                if (MYDE_AerocraftFramework_Setting.If_StunForcesLanding)
+                {
+                    ForceLanding();
+                }
             }
             else if (!dinfo.Def.isRanged)
             {
@@ -768,7 +777,7 @@ namespace MYDE_AerocraftFramework
                 }
                 If_DropingNow = true;
             }
-            if (IsStunned)
+            if (IsStunned && MYDE_AerocraftFramework_Setting.If_StunForcesLanding)
             {
                 ForceLanding();
             }
@@ -1016,7 +1025,7 @@ namespace MYDE_AerocraftFramework
             {
                 Position = position;
             }
-            if (MYDE_AerocraftFramework_Setting.If_CheckMapBoundary)
+            if (MYDE_AerocraftFramework_Setting.If_CheckMapBoundary && !IgnoresMapEdge)
             {
                 if (!If_CheckInMapBoundaryPos)
                 {

@@ -15,6 +15,8 @@
 	<AerocraftFramework_Setting_If_ServiceOnlyInHomeArea>Refuel and reload only inside the home area</AerocraftFramework_Setting_If_ServiceOnlyInHomeArea>
 	<AerocraftFramework_Setting_If_ServiceOnlyInHomeArea_Tip>The original mod only serviced aircraft inside the home area. Aircraft do not expand the home area, so an aircraft parked outside of it was never refuelled or reloaded. Off by default.</AerocraftFramework_Setting_If_ServiceOnlyInHomeArea_Tip>
 	<AerocraftFramework_Setting_If_DebugLogging>Debug logging</AerocraftFramework_Setting_If_DebugLogging>
+	<AerocraftFramework_Setting_If_StunForcesLanding>EMP and stun force an aircraft to land</AerocraftFramework_Setting_If_StunForcesLanding>
+	<AerocraftFramework_Setting_If_StunForcesLanding_Tip>The original behaviour: any EMP or stun damage lands the aircraft, including the EMP that charged "ion" bullets of Combat Extended carry. Off: a stunned aircraft stays in the air and its weapons are silent while the stun lasts.</AerocraftFramework_Setting_If_StunForcesLanding_Tip>
 
 	<!-- ============ Status ============ -->
 	<AerocraftFramework_Status>Status</AerocraftFramework_Status>
@@ -23,6 +25,9 @@
 	<AerocraftFramework_Status_TakingOff>taking off</AerocraftFramework_Status_TakingOff>
 	<AerocraftFramework_Status_Landing>landing</AerocraftFramework_Status_Landing>
 	<AerocraftFramework_Status_Crashing>crashing</AerocraftFramework_Status_Crashing>
+	<AerocraftFramework_Status_Departing>leaving the map</AerocraftFramework_Status_Departing>
+	<AerocraftFramework_Departure_Cancel_Label>Cancel the departure</AerocraftFramework_Departure_Cancel_Label>
+	<AerocraftFramework_Departure_Cancel_Desc>Stay on this map: the aircraft is flying off the map edge towards another tile. The fuel for the trip is only used when it leaves.</AerocraftFramework_Departure_Cancel_Desc>
 	<AerocraftFramework_Stunned>Stunned</AerocraftFramework_Stunned>
 	<AerocraftFramework_AsWeapon_BrokenDown>broken down, repair it</AerocraftFramework_AsWeapon_BrokenDown>
 	<AerocraftFramework_PilotsNeeded>needs {0} to fly</AerocraftFramework_PilotsNeeded>

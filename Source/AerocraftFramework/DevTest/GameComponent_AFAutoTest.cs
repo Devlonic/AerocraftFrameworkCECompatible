@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using HarmonyLib;
 using System.Xml;
 using RimWorld;
 using RimWorld.Planet;
@@ -43,6 +44,11 @@ namespace MYDE_AerocraftFramework
         private IntVec3 opsDropCell;
         private bool opsStrafeAimed;
         private bool opsStrafeFired;
+        private float departureMaxScale;
+        private IntVec3 rocketTarget;
+        private readonly Dictionary<Thing, IntVec3> rocketsInFlight = new Dictionary<Thing, IntVec3>();
+        private readonly List<float> rocketImpacts = new List<float>();
+        private readonly HashSet<ThingDef> rocketDefs = new HashSet<ThingDef>();
         private int bombRunShells;
         private IntVec3 bombRunTarget;
         private float bombRunClosest;
@@ -1007,7 +1013,23 @@ namespace MYDE_AerocraftFramework
                     comp.NoBackRange = 9999;
                     Note($"Flying {subject.def.defName} to {target.Label} ({Find.WorldGrid.ApproxDistanceInTiles(target.Tile, homeTile):F0} tiles)");
                     Check(comp.ChoseWorldTarget(new GlobalTargetInfo(target)), "cross-map flight ordered");
-                    Check(!subject.Spawned, "the aircraft left the map");
+                    Check(subject.Spawned && subject.IsDeparting, "the aircraft flies towards the map edge to leave");
+                    departureMaxScale = subject.Draw_ScaleFactorNow;
+                    counter = 10;
+                    stepStartTick = Find.TickManager.TicksGame;
+                    break;
+                case 10:
+                    if (subject.Spawned)
+                    {
+                        departureMaxScale = Mathf.Max(departureMaxScale, subject.Draw_ScaleFactorNow);
+                        if (StepTicks > 5000)
+                        {
+                            Fail($"the aircraft left the map (still at {subject.DrawPos}, {subject.FlightStatusLabel})");
+                            Next(15);
+                        }
+                        return;
+                    }
+                    Check(Flying != null, $"it flew off the map edge in {StepTicks} ticks, climbing (drawn up to x{departureMaxScale:F2})");
                     counter = 1;
                     break;
                 case 1:
@@ -1017,6 +1039,9 @@ namespace MYDE_AerocraftFramework
                         Check(flying.LinkToAerocraft == subject && flying.AllExtraWeapon.Count == int.Parse(savedSummary[1]), "the aircraft and its mounts are travelling");
                         flying.DoSomething_Attack();
                         Check(subject.Spawned && subject.Map != HomeMap, $"landed on {subject.Map?.Parent?.Label}");
+                        Vector3 entry = subject.DrawPos;
+                        Check(subject.IsArrivingOverEdge && subject.Is_Flying && (entry.x < 0f || entry.z < 0f || entry.x > subject.Map.Size.x || entry.z > subject.Map.Size.z),
+                            $"it comes in from beyond the map edge ({entry.x:F0}, {entry.z:F0})");
                         Check(subject.ListPawn.Count == int.Parse(savedSummary[0]), "pilots arrived with it");
                         Check(subject.AllExtraWeapon.All(m => m.Spawned && m.Map == subject.Map), "mounts arrived with it");
                         Check(subject.Spawned && subject.ListPawn.All(p => p.MapHeld == subject.Map && subject.Map.mapPawns.FreeColonists.Contains(p)), "the crew counts as colonists of the settlement map");
@@ -1190,6 +1215,74 @@ namespace MYDE_AerocraftFramework
                         $"{opsTroopers.Count} troops roped down at the drop point, drafted ({string.Join(", ", opsTroopers.Select(p => p.LabelShort + "@" + p.PositionHeld))})");
                     Check(opsCraft.ListPawn.Contains(opsWounded) && opsCraft.CrewCapable.Count() == opsCraft.CrewToKeep && opsCraft.Is_Flying,
                         "the crew and the wounded stayed aboard, the aircraft kept flying");
+                    counter = 11;
+                    break;
+                case 11:
+                    // Rockets of the mounts at a point on the ground: they must come down there, not fly on.
+                    List<Building_Aerocraft_Base> pods = opsCraft.AllExtraWeapon.OfType<Building_Aerocraft_Base>().Where(AerocraftWeaponOrders.CanFire).ToList();
+                    IntVec3? podTarget = SafeBombCell(map, opsCraft.Position, 16f, 24f);
+                    if (pods.Count == 0 || podTarget == null)
+                    {
+                        Note("No weapon mount or no place for the rocket accuracy test");
+                        counter = 5;
+                        break;
+                    }
+                    rocketTarget = podTarget.Value;
+                    rocketsInFlight.Clear();
+                    rocketImpacts.Clear();
+                    // Only the pods' own projectiles: explosions of CE rockets throw fragments, projectiles too.
+                    rocketDefs.Clear();
+                    rocketDefs.AddRange(pods.Select(pod => AerocraftCompat.Ammo.CurrentProjectile(pod.Gun_Now)).Where(d => d != null));
+                    FillUp(opsCraft);
+                    int podsOrdered = AerocraftWeaponOrders.OrderAttack(pods, rocketTarget);
+                    Note($"{podsOrdered} mounts ordered to fire at {rocketTarget} ({(rocketTarget - opsCraft.Position).LengthHorizontal:F0} cells)");
+                    counter = 12;
+                    stepStartTick = Find.TickManager.TicksGame;
+                    break;
+                case 12:
+                    foreach (Thing thing in map.listerThings.AllThings)
+                    {
+                        if (rocketDefs.Contains(thing.def) && !rocketsInFlight.ContainsKey(thing))
+                        {
+                            rocketsInFlight[thing] = thing.Position;
+                            if (rocketsInFlight.Count + rocketImpacts.Count <= 3)
+                            {
+                                // What CE launched it with (read by name: the core has no reference to CE).
+                                Traverse projectile = Traverse.Create(thing);
+                                string Field(string name) => projectile.Field(name).FieldExists() ? projectile.Field(name).GetValue()?.ToString() : "-";
+                                Note($"  rocket {thing.def.defName} ({thing.GetType().Name}) from {thing.DrawPos.x:F1},{thing.DrawPos.z:F1}: shotHeight {Field("shotHeight")}, shotAngle {Field("shotAngle")}, "
+                                    + $"shotRotation {Field("shotRotation")}, shotSpeed {Field("shotSpeed")}, origin {Field("origin")}, intended {Field("intendedTarget")}, aim {AimModeOf(opsCraft)}");
+                            }
+                        }
+                    }
+                    foreach (Thing rocket in rocketsInFlight.Keys.ToList())
+                    {
+                        if (rocket.Spawned)
+                        {
+                            rocketsInFlight[rocket] = rocket.Position;
+                        }
+                        else
+                        {
+                            rocketImpacts.Add((rocketsInFlight[rocket] - rocketTarget).LengthHorizontal);
+                            if (rocketImpacts.Count <= 5)
+                            {
+                                Note($"  rocket came down at {rocketsInFlight[rocket]}, {(rocketsInFlight[rocket] - rocketTarget).LengthHorizontal:F1} cells from the target {rocketTarget}");
+                            }
+                            rocketsInFlight.Remove(rocket);
+                        }
+                    }
+                    if (StepTicks < 600)
+                    {
+                        return;
+                    }
+                    foreach (Building_Aerocraft_Base pod in opsCraft.AllExtraWeapon.OfType<Building_Aerocraft_Base>())
+                    {
+                        pod.ResetForcedTarget();
+                    }
+                    rocketImpacts.Sort();
+                    float median = rocketImpacts.Count == 0 ? float.MaxValue : rocketImpacts[rocketImpacts.Count / 2];
+                    Check(rocketImpacts.Count > 0 && median <= 6f,
+                        $"{rocketImpacts.Count} rockets came down around the target (median {median:F1} cells off, farthest {(rocketImpacts.Count == 0 ? 0f : rocketImpacts.Last()):F1})");
                     counter = 5;
                     break;
                 case 5:
@@ -1265,6 +1358,12 @@ namespace MYDE_AerocraftFramework
                     Next(12);
                     break;
             }
+        }
+
+        private static string AimModeOf(Building_Aerocraft_AsBaseThing craft)
+        {
+            return string.Join(", ", craft.AllExtraWeapon.OfType<Building_Aerocraft_Base>().Select(t => t.Gun_Now).Where(g => g != null)
+                .Select(g => g.def.defName + ": " + string.Join(" ", AerocraftCompat.Ammo.GetGunModeCommands(craft, g).Select(c => c.LabelCap.ToString()))));
         }
 
         private static float DistanceToSegment(Vector3 point, Vector3 a, Vector3 b)

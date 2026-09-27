@@ -275,15 +275,6 @@ namespace MYDE_AerocraftFramework
             {
                 return;
             }
-            const int margin = 15;
-            List<IntVec3> corners = new List<IntVec3>
-            {
-                new IntVec3(margin, 0, margin),
-                new IntVec3(TargetMap.Size.x - margin, 0, margin),
-                new IntVec3(margin, 0, TargetMap.Size.z - margin),
-                new IntVec3(TargetMap.Size.x - margin, 0, TargetMap.Size.z - margin)
-            };
-            IntVec3 entry = corners.RandomElement();
             for (int i = 0; i < AllExtraWeapon.Count; i++)
             {
                 if (AllExtraWeapon[i] != null && !LinkToAerocraft.AllExtraWeapon.Contains(AllExtraWeapon[i]))
@@ -303,15 +294,11 @@ namespace MYDE_AerocraftFramework
             }
             Building_Aerocraft_AsBaseThing aircraft = LinkToAerocraft;
             LinkToAerocraft = null;
-            GenSpawn.Spawn(aircraft, entry, TargetMap);
-            aircraft.RealCurrentPosition = new Vector2(entry.x + 0.5f, entry.z + 0.5f);
-            if (!aircraft.Is_Flying)
-            {
-                aircraft.Set_Flying();
-            }
-            aircraft.Set_TargetVPos(TargetMap.Center.ToVector3Shifted());
+            // It comes in over the edge on the side it flew from and heads for the middle of the map.
+            float fromHeading = InitialTile >= 0 && InitialTile != Tile ? Find.WorldGrid.GetHeadingFromTo(Tile, InitialTile) : Rand.Range(0f, 360f);
+            Building_Aerocraft_AsBaseThing.ArriveOverEdge(aircraft, TargetMap, fromHeading, TargetMap.Center.ToVector3Shifted());
             Current.Game.CurrentMap = TargetMap;
-            CameraJumper.TryJump(entry, TargetMap);
+            CameraJumper.TryJump(aircraft.Position, TargetMap);
             Find.Selector.ClearSelection();
             Find.Selector.Select(aircraft);
             Destroy();

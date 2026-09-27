@@ -126,39 +126,19 @@ namespace MYDE_AerocraftFramework
                 Messages.Message("AerocraftFramework_OutOfRange".Translate(), MessageTypeDefOf.RejectInput, historical: false);
                 return false;
             }
-            aircraft.TryGetComp<CompRefuelable>()?.ConsumeFuel(distance * Props.FuelConsumeBase);
-            StowTransporterPawns(aircraft, map);
-            if (map.ParentFaction == Faction.OfPlayer && Props.LeavingThingDef != null)
+            // It flies off the map edge towards the destination (see Building_Aerocraft_AsBaseThing.BeginDeparture);
+            // the fuel is paid when it leaves the map. Skyfaller_Aerocraft_Leaving stays for older saves.
+            aircraft.BeginDeparture(Target.Tile, Props.WorldObjectDef, Props.TravelSpeed, distance * Props.FuelConsumeBase);
+            if (!aircraft.IsDeparting)
             {
-                Skyfaller_Aerocraft_Leaving skyfaller = (Skyfaller_Aerocraft_Leaving)SkyfallerMaker.MakeSkyfaller(Props.LeavingThingDef);
-                skyfaller.LinkToAerocraft = aircraft;
-                skyfaller.DestinationTile = Target.Tile;
-                skyfaller.WorldObject = Props.WorldObjectDef;
-                skyfaller.TravelSpeed = Props.TravelSpeed;
-                skyfaller.AllExtraWeapon.AddRange(aircraft.AllExtraWeapon);
-                IntVec3 position = aircraft.Position;
-                aircraft.DepartingCrossMap = true;
-                aircraft.DeSpawn();
-                GenSpawn.Spawn(skyfaller, position, map);
+                return false;
             }
-            else
-            {
-                WorldObject_CrossMapThing_Flying flying = (WorldObject_CrossMapThing_Flying)WorldObjectMaker.MakeWorldObject(Props.WorldObjectDef);
-                flying.Tile = map.Tile;
-                flying.SetFaction(Faction.OfPlayer);
-                flying.DestinationTile = Target.Tile;
-                flying.TravelSpeed = Props.TravelSpeed;
-                flying.LinkToAerocraft = aircraft;
-                flying.AllExtraWeapon.AddRange(aircraft.AllExtraWeapon);
-                aircraft.DepartingCrossMap = true;
-                aircraft.DeSpawn();
-                Find.WorldObjects.Add(flying);
-            }
+            CameraJumper.TryJump(aircraft);
             return true;
         }
 
         /// <summary>Pawns loaded through the transporter travel in a separate list (their lord is dissolved).</summary>
-        private static void StowTransporterPawns(Building_Aerocraft_AsBaseThing aircraft, Map map)
+        internal static void StowTransporterPawns(Building_Aerocraft_AsBaseThing aircraft, Map map)
         {
             CompTransporter transporter = aircraft.TryGetComp<CompTransporter>();
             if (transporter == null)
